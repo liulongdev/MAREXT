@@ -16,15 +16,23 @@
 #define MAREX_h
 
 #import "NSData+MAREX.h"
-#import "NSNumber+MAREX.h"
 #import "NSString+MAREX.h"
+#import "NSNumber+MAREX.h"
 #import "NSDate+MAREX.h"
 #import "NSObject+MAREX.h"
+#import "NSNotificationCenter+MAREX.h"
+
+#import "CALayer+MAREX.h"
+#import "MARCGUtilities.h"
 
 #import "UIView+MAREX.h"
 #import "UIScrollView+MAREX.h"
 #import "UITextField+MAREX.h"
 #import "UIImage+MAREX.h"
 #import "UIDevice+MAREX.h"
+#import "UIButton+MAREX.h"
+#import "UIBarButtonItem+MAREX.h"
+#import "UIGestureRecognizer+MAREX.h"
+#import "UIBezierPath+MAREX.h"
 
 #endif /* MAREX_h */
