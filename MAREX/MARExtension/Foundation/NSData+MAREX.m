@@ -423,7 +423,7 @@ static const short mar_base64DecodingTable[256] = {
     const char *string = [base64EncodedString cStringUsingEncoding:NSASCIIStringEncoding];
     if (string == NULL) return nil;
     
-    while (length > 8 && string[length - 1] == '=') {
+    while (length > 0 && string[length - 1] == '=') {
         length --;
     }
     

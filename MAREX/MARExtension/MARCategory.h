@@ -16,10 +16,15 @@
 #define MAREX_h
 
 #import "NSData+MAREX.h"
-
+#import "NSNumber+MAREX.h"
+#import "NSString+MAREX.h"
+#import "NSDate+MAREX.h"
+#import "NSObject+MAREX.h"
 
 #import "UIView+MAREX.h"
 #import "UIScrollView+MAREX.h"
 #import "UITextField+MAREX.h"
+#import "UIImage+MAREX.h"
+#import "UIDevice+MAREX.h"
 
 #endif /* MAREX_h */

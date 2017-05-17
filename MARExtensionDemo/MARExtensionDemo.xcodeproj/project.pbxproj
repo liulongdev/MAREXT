@@ -17,6 +17,10 @@
 		C1150DE61ECAD5E400176F38 /* UITextField+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150DE51ECAD5E400176F38 /* UITextField+MAREX.m */; };
 		C1150DE91ECAD85D00176F38 /* NSString+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150DE81ECAD85D00176F38 /* NSString+MAREX.m */; };
 		C1150DEC1ECADC9500176F38 /* NSNumber+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150DEB1ECADC9500176F38 /* NSNumber+MAREX.m */; };
+		C1150E0E1ECBD6E400176F38 /* NSDate+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E0D1ECBD6E400176F38 /* NSDate+MAREX.m */; };
+		C1150E111ECBE1D400176F38 /* NSObject+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E101ECBE1D400176F38 /* NSObject+MAREX.m */; };
+		C1150E141ECBE84D00176F38 /* UIImage+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E131ECBE84D00176F38 /* UIImage+MAREX.m */; };
+		C1150E171ECBE87000176F38 /* UIDevice+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E161ECBE87000176F38 /* UIDevice+MAREX.m */; };
 		C149F9491ECA8D8A00C8B7C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F9481ECA8D8A00C8B7C8 /* main.m */; };
 		C149F94C1ECA8D8A00C8B7C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F94B1ECA8D8A00C8B7C8 /* AppDelegate.m */; };
 		C149F94F1ECA8D8A00C8B7C8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F94E1ECA8D8A00C8B7C8 /* ViewController.m */; };
@@ -64,6 +68,14 @@
 		C1150DE81ECAD85D00176F38 /* NSString+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MAREX.m"; sourceTree = "<group>"; };
 		C1150DEA1ECADC9500176F38 /* NSNumber+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+MAREX.h"; sourceTree = "<group>"; };
 		C1150DEB1ECADC9500176F38 /* NSNumber+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+MAREX.m"; sourceTree = "<group>"; };
+		C1150E0C1ECBD6E400176F38 /* NSDate+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MAREX.h"; sourceTree = "<group>"; };
+		C1150E0D1ECBD6E400176F38 /* NSDate+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MAREX.m"; sourceTree = "<group>"; };
+		C1150E0F1ECBE1D400176F38 /* NSObject+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MAREX.h"; sourceTree = "<group>"; };
+		C1150E101ECBE1D400176F38 /* NSObject+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MAREX.m"; sourceTree = "<group>"; };
+		C1150E121ECBE84D00176F38 /* UIImage+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MAREX.h"; sourceTree = "<group>"; };
+		C1150E131ECBE84D00176F38 /* UIImage+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MAREX.m"; sourceTree = "<group>"; };
+		C1150E151ECBE87000176F38 /* UIDevice+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+MAREX.h"; sourceTree = "<group>"; };
+		C1150E161ECBE87000176F38 /* UIDevice+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+MAREX.m"; sourceTree = "<group>"; };
 		C149F9441ECA8D8A00C8B7C8 /* MARExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C149F9481ECA8D8A00C8B7C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C149F94A1ECA8D8A00C8B7C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -158,6 +170,10 @@
 				C1150DE81ECAD85D00176F38 /* NSString+MAREX.m */,
 				C1150DEA1ECADC9500176F38 /* NSNumber+MAREX.h */,
 				C1150DEB1ECADC9500176F38 /* NSNumber+MAREX.m */,
+				C1150E0C1ECBD6E400176F38 /* NSDate+MAREX.h */,
+				C1150E0D1ECBD6E400176F38 /* NSDate+MAREX.m */,
+				C1150E0F1ECBE1D400176F38 /* NSObject+MAREX.h */,
+				C1150E101ECBE1D400176F38 /* NSObject+MAREX.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -178,6 +194,10 @@
 				C1150DE21ECAD4AE00176F38 /* UIScrollView+MAREX.m */,
 				C1150DE41ECAD5E400176F38 /* UITextField+MAREX.h */,
 				C1150DE51ECAD5E400176F38 /* UITextField+MAREX.m */,
+				C1150E121ECBE84D00176F38 /* UIImage+MAREX.h */,
+				C1150E131ECBE84D00176F38 /* UIImage+MAREX.m */,
+				C1150E151ECBE87000176F38 /* UIDevice+MAREX.h */,
+				C1150E161ECBE87000176F38 /* UIDevice+MAREX.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -380,14 +400,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1150E0E1ECBD6E400176F38 /* NSDate+MAREX.m in Sources */,
 				C149F94F1ECA8D8A00C8B7C8 /* ViewController.m in Sources */,
 				C149F94C1ECA8D8A00C8B7C8 /* AppDelegate.m in Sources */,
 				C1150DDD1ECACE5B00176F38 /* NSData+MAREX.m in Sources */,
 				C1150DE01ECACE6D00176F38 /* UIView+MAREX.m in Sources */,
+				C1150E141ECBE84D00176F38 /* UIImage+MAREX.m in Sources */,
 				C1150DE61ECAD5E400176F38 /* UITextField+MAREX.m in Sources */,
 				C1150DCF1ECACC6600176F38 /* NSObject+MARModel.m in Sources */,
 				C149F9491ECA8D8A00C8B7C8 /* main.m in Sources */,
+				C1150E111ECBE1D400176F38 /* NSObject+MAREX.m in Sources */,
 				C1150DE91ECAD85D00176F38 /* NSString+MAREX.m in Sources */,
+				C1150E171ECBE87000176F38 /* UIDevice+MAREX.m in Sources */,
 				C1150DCE1ECACC6600176F38 /* MARClassInfo.m in Sources */,
 				C1150DE31ECAD4AE00176F38 /* UIScrollView+MAREX.m in Sources */,
 				C1150DEC1ECADC9500176F38 /* NSNumber+MAREX.m in Sources */,

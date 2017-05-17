@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "MARCategory.h"
 
 @interface ViewController ()
+- (IBAction)clickTestBtnAction:(id)sender;
+- (IBAction)clickTestBtn2Action:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet UILabel *tipLabel;
 
 @end
 
@@ -26,4 +31,22 @@
 }
 
 
+- (IBAction)clickTestBtnAction:(id)sender {
+    NSString *tfValue = self.textField.text;
+    NSString *base64Str = [tfValue mar_base64EncodedString];
+    
+    self.textField.text = base64Str;
+    self.tipLabel.text = base64Str;
+    
+}
+
+- (IBAction)clickTestBtn2Action:(id)sender {
+    
+    NSString *tfValue = self.textField.text;
+    NSString *str = [NSString mar_stringWithBase64EncodedString:tfValue];
+    
+    self.textField.text = str;
+    self.tipLabel.text = str;
+    
+}
 @end
