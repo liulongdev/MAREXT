@@ -15,6 +15,10 @@
 #ifndef MAREX_h
 #define MAREX_h
 
+#import "NSObject+MARModel.h"
+
+#import "SVProgressHUD+MAREX.h"
+
 #import "NSData+MAREX.h"
 #import "NSString+MAREX.h"
 #import "NSNumber+MAREX.h"
@@ -34,5 +38,6 @@
 #import "UIBarButtonItem+MAREX.h"
 #import "UIGestureRecognizer+MAREX.h"
 #import "UIBezierPath+MAREX.h"
+#import "UINavigationController+MAREX.h"
 
 #endif /* MAREX_h */
