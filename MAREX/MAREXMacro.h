@@ -99,6 +99,14 @@ _sharedObject = block();            \
 return _sharedObject;
 #endif
 
+#if defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
+#define MARTARGET_OS_MAC 1
+#elif TARGET_OS_SIMULATOR
+#define MARTARGET_OS_iPhoneSIMULATOR 1
+#elif defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#define MARTARGET_OS_IPhone 1
+#endif
+
 /**
  Submits a block for asynchronous execution on a main queue and returns immediately.
  */

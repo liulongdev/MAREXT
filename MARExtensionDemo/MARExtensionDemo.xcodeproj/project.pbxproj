@@ -12,6 +12,9 @@
 		5B4DC5FC1ECC8B820063CF63 /* MARUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5FB1ECC8B820063CF63 /* MARUserDefault.m */; };
 		5B4DC6021ECC8BFD0063CF63 /* MARClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5FF1ECC8BFD0063CF63 /* MARClassInfo.m */; };
 		5B4DC6031ECC8BFD0063CF63 /* NSObject+MARModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC6011ECC8BFD0063CF63 /* NSObject+MARModel.m */; };
+		5B4DC6061ECC99FE0063CF63 /* MARGlobalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC6051ECC99FE0063CF63 /* MARGlobalManager.m */; };
+		5B4DC60B1ECCA0FA0063CF63 /* MARDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60A1ECCA0FA0063CF63 /* MARDebug.m */; };
+		5B4DC60E1ECCA24A0063CF63 /* MARWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */; };
 		C1150DD51ECACD8100176F38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1150DD41ECACD8100176F38 /* Foundation.framework */; };
 		C1150DD71ECACD8A00176F38 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1150DD61ECACD8A00176F38 /* libz.tbd */; };
 		C1150DDD1ECACE5B00176F38 /* NSData+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150DDA1ECACE5B00176F38 /* NSData+MAREX.m */; };
@@ -70,6 +73,12 @@
 		5B4DC5FF1ECC8BFD0063CF63 /* MARClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARClassInfo.m; sourceTree = "<group>"; };
 		5B4DC6001ECC8BFD0063CF63 /* NSObject+MARModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MARModel.h"; sourceTree = "<group>"; };
 		5B4DC6011ECC8BFD0063CF63 /* NSObject+MARModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MARModel.m"; sourceTree = "<group>"; };
+		5B4DC6041ECC99FE0063CF63 /* MARGlobalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARGlobalManager.h; sourceTree = "<group>"; };
+		5B4DC6051ECC99FE0063CF63 /* MARGlobalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARGlobalManager.m; sourceTree = "<group>"; };
+		5B4DC6091ECCA0FA0063CF63 /* MARDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARDebug.h; sourceTree = "<group>"; };
+		5B4DC60A1ECCA0FA0063CF63 /* MARDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARDebug.m; sourceTree = "<group>"; };
+		5B4DC60C1ECCA24A0063CF63 /* MARWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARWeakProxy.h; sourceTree = "<group>"; };
+		5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARWeakProxy.m; sourceTree = "<group>"; };
 		C1150DBE1ECAC96300176F38 /* MARCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARCategory.h; sourceTree = "<group>"; };
 		C1150DD41ECACD8100176F38 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C1150DD61ECACD8A00176F38 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -159,6 +168,10 @@
 				5B4DC5F81ECC885E0063CF63 /* SVProgressHUD+MAREX.m */,
 				5B4DC5FA1ECC8B820063CF63 /* MARUserDefault.h */,
 				5B4DC5FB1ECC8B820063CF63 /* MARUserDefault.m */,
+				5B4DC6041ECC99FE0063CF63 /* MARGlobalManager.h */,
+				5B4DC6051ECC99FE0063CF63 /* MARGlobalManager.m */,
+				5B4DC60C1ECCA24A0063CF63 /* MARWeakProxy.h */,
+				5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -172,6 +185,15 @@
 				5B4DC6011ECC8BFD0063CF63 /* NSObject+MARModel.m */,
 			);
 			path = MARModel;
+			sourceTree = "<group>";
+		};
+		5B4DC6081ECCA0FA0063CF63 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				5B4DC6091ECCA0FA0063CF63 /* MARDebug.h */,
+				5B4DC60A1ECCA0FA0063CF63 /* MARDebug.m */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 		C1150DBC1ECAC96300176F38 /* MAREX */ = {
@@ -188,6 +210,7 @@
 		C1150DBD1ECAC96300176F38 /* MARExtension */ = {
 			isa = PBXGroup;
 			children = (
+				5B4DC6081ECCA0FA0063CF63 /* Debug */,
 				5B4DC5F61ECC884C0063CF63 /* Utility */,
 				C1150DD81ECACE5B00176F38 /* Foundation */,
 				C1150DDB1ECACE5B00176F38 /* Quartz */,
@@ -475,9 +498,11 @@
 				5B4DC5F51ECC86400063CF63 /* UINavigationController+MAREX.m in Sources */,
 				C149F9491ECA8D8A00C8B7C8 /* main.m in Sources */,
 				C1150E111ECBE1D400176F38 /* NSObject+MAREX.m in Sources */,
+				5B4DC6061ECC99FE0063CF63 /* MARGlobalManager.m in Sources */,
 				5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */,
 				C1150DE91ECAD85D00176F38 /* NSString+MAREX.m in Sources */,
 				C1150E171ECBE87000176F38 /* UIDevice+MAREX.m in Sources */,
+				5B4DC60E1ECCA24A0063CF63 /* MARWeakProxy.m in Sources */,
 				C1150E231ECC415700176F38 /* UIButton+MAREX.m in Sources */,
 				5B4DC5FC1ECC8B820063CF63 /* MARUserDefault.m in Sources */,
 				5B4DC6021ECC8BFD0063CF63 /* MARClassInfo.m in Sources */,
@@ -485,6 +510,7 @@
 				C1150E1D1ECC223000176F38 /* MARCGUtilities.m in Sources */,
 				C1150DE31ECAD4AE00176F38 /* UIScrollView+MAREX.m in Sources */,
 				C1150DEC1ECADC9500176F38 /* NSNumber+MAREX.m in Sources */,
+				5B4DC60B1ECCA0FA0063CF63 /* MARDebug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,7 +658,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MARExtensionDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcorp.MARExtensionDemo;
@@ -645,7 +671,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MARExtensionDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcorp.MARExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

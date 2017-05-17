@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "MAREXMacro.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+MAR_EXTERN_C_BEGIN
 NS_ASSUME_NONNULL_BEGIN
 
 /// Create an `ARGB` Bitmap context. Returns NULL if an error occurs.
@@ -328,6 +327,4 @@ static inline UIEdgeInsets UIEdgeInsetPixelCeil(UIEdgeInsets insets) {
 #endif
 
 NS_ASSUME_NONNULL_END
-#ifdef __cplusplus
-}
-#endif
+MAR_EXTERN_C_END

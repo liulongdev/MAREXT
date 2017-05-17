@@ -17,7 +17,12 @@
 
 #import "NSObject+MARModel.h"
 
+#import "MARDebug.h"
+
 #import "SVProgressHUD+MAREX.h"
+#import "MARUserDefault.h"
+#import "MARGlobalManager.h"
+#import "MARWeakProxy.h"
 
 #import "NSData+MAREX.h"
 #import "NSString+MAREX.h"
