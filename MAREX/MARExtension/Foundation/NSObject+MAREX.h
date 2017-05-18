@@ -12,6 +12,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (MAREX)
 
+/**
+ *  Check if the object is valid (not nil or null)
+ *
+ *  @return Returns if the object is valid
+ */
+- (BOOL)isValid;
+
+/**
+ *  Perform selector with unlimited objects
+ *
+ *  @param aSelector The selector
+ *  @param object    The objects
+ *
+ *  @return An object that is the result of the message
+ */
+- (id _Nonnull)mar_performSelector:(SEL)aSelector
+                   withObjects:(id _Nullable)object, ... NS_REQUIRES_NIL_TERMINATION;
+
 @end
 
 @interface NSObject(MAREX_RUNTIME)
@@ -28,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param newSel        Selector 2.
  @return              YES if swizzling succeed; otherwise, NO.
  */
-+ (BOOL)swizzleInstanceMethod:(SEL)originalSel with:(SEL)newSel;
++ (BOOL)mar_swizzleInstanceMethod:(SEL)originalSel with:(SEL)newSel;
 
 /**
  Swap two class method's implementation in one class. Dangerous, be careful.
@@ -37,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param newSel        Selector 2.
  @return              YES if swizzling succeed; otherwise, NO.
  */
-+ (BOOL)swizzleClassMethod:(SEL)originalSel with:(SEL)newSel;
++ (BOOL)mar_swizzleClassMethod:(SEL)originalSel with:(SEL)newSel;
 
 
 #pragma mark - Associate value
@@ -51,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param value   The object to associate.
  @param key     The pointer to get value from `self`.
  */
-- (void)setAssociateValue:(nullable id)value withKey:(void *)key;
+- (void)mar_setAssociateValue:(nullable id)value withKey:(void *)key;
 
 /**
  Associate one object to `self`, as if it was a weak property (week, nonatomic).
@@ -59,19 +77,19 @@ NS_ASSUME_NONNULL_BEGIN
  @param value  The object to associate.
  @param key    The pointer to get value from `self`.
  */
-- (void)setAssociateWeakValue:(nullable id)value withKey:(void *)key;
+- (void)mar_setAssociateWeakValue:(nullable id)value withKey:(void *)key;
 
 /**
  Get the associated value from `self`.
  
  @param key The pointer to get value from `self`.
  */
-- (nullable id)getAssociatedValueForKey:(void *)key;
+- (nullable id)mar_getAssociatedValueForKey:(void *)key;
 
 /**
  Remove all associated values.
  */
-- (void)removeAssociatedValues;
+- (void)mar_removeAssociatedValues;
 
 /**
  Returns the class name in NSString.

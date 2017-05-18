@@ -78,6 +78,24 @@
     return NO;
 }
 
+- (BOOL)isRetina
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 2.0 || [UIScreen mainScreen].scale == 3.0 || [UIScreen mainScreen].scale > 3)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)isRetinaHD
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 3.0 || [UIScreen mainScreen].scale > 3)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
 - (BOOL)canMakePhoneCalls {
     __block BOOL can;

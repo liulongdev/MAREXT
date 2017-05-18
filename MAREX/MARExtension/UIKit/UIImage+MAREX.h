@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIFont+MAREX.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -131,6 +132,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)hasAlphaChannel;
 
+/**
+ *  Remove the alpha of the image
+ *
+ *  @return Returns the image without alpha
+ */
+- (UIImage *)removeAlpha;
+
+/**
+ *  Fill the alpha with the given color
+ *
+ *  @param color Color to fill
+ *
+ *  @return Returns the filled image
+ */
+- (UIImage *)fillAlphaWithColor:(UIColor *)color;
 
 #pragma mark - Modify Image
 ///=============================================================================
@@ -364,6 +380,48 @@ NS_ASSUME_NONNULL_BEGIN
                                tintMode:(CGBlendMode)tintBlendMode
                              saturation:(CGFloat)saturation
                               maskImage:(nullable UIImage *)maskImage;
+
+/**
+ *  Apply the blur effect to the image
+ *
+ *  @param blur Radius of the blur
+ *
+ *  @return Returns the transformed image
+ */
+- (UIImage *)blurImageWithBlur:(CGFloat)blur;
+
+/**
+ *  Create an image from a given text
+ *
+ *  @param text      Text
+ *  @param fontName  Text's font name
+ *  @param fontSize  Text's font size
+ *  @param imageSize Image's size
+ *
+ *  @return Returns the created UIImage
+ */
++ (UIImage *)imageFromText:(NSString *)text
+                               font:(MARFontName)fontName
+                           fontSize:(CGFloat)fontSize
+                          imageSize:(CGSize)imageSize;
+
+/**
+ *  Create an image with a background color and with a text with a mask
+ *
+ *  @param imageSize       Image's size
+ *  @param backgroundColor Image's background color
+ *  @param string          Text to mask
+ *  @param fontName        Text's font name
+ *  @param fontSize        Text's font size
+ *
+ *  @return Returns the created UIImage
+ */
++ (UIImage *)imageWithSize:(CGSize)imageSize
+                    backgroundColor:(UIColor *)backgroundColor
+                         maskedText:(NSString *)string
+                               font:(MARFontName)fontName
+                           fontSize:(CGFloat)fontSize;
+
 
 @end
 

@@ -13,10 +13,22 @@
 - (UIImage *)snapshotImage
 {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
-    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+        [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:NO];
+    }
+    else
+        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return snap;
+}
+
+- (UIImage *)saveSnapshotImage
+{
+    UIImage *image = [self saveSnapshotImage];
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    
+    return image;
 }
 
 - (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates
@@ -59,11 +71,101 @@
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
 }
 
+- (void)setLayerBorderWithColor:(UIColor *)color withCornerRadius:(CGFloat)radius andWidth:(CGFloat)width
+{
+    self.layer.borderWidth = width;
+    self.layer.cornerRadius = radius;
+    self.layer.shouldRasterize = NO;
+    self.layer.rasterizationScale = 2;
+    self.layer.edgeAntialiasingMask = kCALayerLeftEdge | kCALayerRightEdge | kCALayerBottomEdge | kCALayerTopEdge;
+    self.clipsToBounds = YES;
+    self.layer.masksToBounds = YES;
+    
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGColorRef cgColor = [color CGColor];
+    self.layer.borderColor = cgColor;
+    CGColorSpaceRelease(space);
+}
+
+- (void)removeBorders {
+    self.layer.borderWidth = 0;
+    self.layer.cornerRadius = 0;
+    self.layer.borderColor = nil;
+}
+
 - (void)removeAllSubviews
 {
     while (self.subviews.count) {
         [self.subviews.lastObject removeFromSuperview];
     }
+}
+
+- (void)setLayerShadowWithColor:(UIColor *)color cornerRadius:(CGFloat)cornerRadius offset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius
+{
+    if (!color) {
+        color = [UIColor blackColor];
+    }
+    self.layer.shadowColor = color.CGColor;
+    self.layer.shadowOpacity = opacity;
+    self.layer.shadowOffset = offset;
+    self.layer.shadowRadius = radius;
+    self.layer.shouldRasterize = YES;
+    self.layer.cornerRadius = cornerRadius;
+    self.layer.shadowPath = [[UIBezierPath bezierPathWithRoundedRect:[self bounds] cornerRadius:cornerRadius] CGPath];
+    self.layer.masksToBounds = NO;
+}
+
+- (void)removeShadow {
+    [self.layer setShadowColor:[[UIColor clearColor] CGColor]];
+    [self.layer setShadowOpacity:0.0f];
+    [self.layer setShadowOffset:CGSizeMake(0.0f, 0.0f)];
+}
+
+- (void)setGradientWithColors:(NSArray *)colors direction:(MARUIViewLinearGradientDirection)direction
+{
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.bounds;
+    
+    NSMutableArray *mutableColors = colors.mutableCopy;
+    for (int i = 0; i < colors.count; i++) {
+        UIColor *currentColor = colors[i];
+        [mutableColors replaceObjectAtIndex:i withObject:(id)currentColor.CGColor];
+    }
+    gradient.colors = mutableColors;
+    
+    switch (direction) {
+        case MARUIViewLinearGradientDirectionVertical: {
+            gradient.startPoint = CGPointMake(0.5f, 0.0f);
+            gradient.endPoint = CGPointMake(0.5f, 1.0f);
+            break;
+        }
+        case MARUIViewLinearGradientDirectionHorizontal: {
+            gradient.startPoint = CGPointMake(0.0f, 0.5f);
+            gradient.endPoint = CGPointMake(1.0f, 0.5f);
+            break;
+        }
+        case MARUIViewLinearGradientDirectionDiagonalFromLeftToRightAndTopToDown: {
+            gradient.startPoint = CGPointMake(0.0f, 0.0f);
+            gradient.endPoint = CGPointMake(1.0f, 1.0f);
+            break;
+        }
+        case MARUIViewLinearGradientDirectionDiagonalFromLeftToRightAndDownToTop: {
+            gradient.startPoint = CGPointMake(0.0f, 1.0f);
+            gradient.endPoint = CGPointMake(1.0f, 0.0f);
+            break;
+        }
+        case MARUIViewLinearGradientDirectionDiagonalFromRightToLeftAndTopToDown: {
+            gradient.startPoint = CGPointMake(1.0f, 0.0f);
+            gradient.endPoint = CGPointMake(0.0f, 1.0f);
+            break;
+        }
+        case MARUIViewLinearGradientDirectionDiagonalFromRightToLeftAndDownToTop: {
+            gradient.startPoint = CGPointMake(1.0f, 1.0f);
+            gradient.endPoint = CGPointMake(0.0f, 0.0f);
+            break;
+        }
+    }
+    [self.layer insertSublayer:gradient atIndex:0];
 }
 
 - (UIViewController *)viewController
@@ -268,6 +370,168 @@
     CGRect frame = self.frame;
     frame.size = size;
     self.frame = frame;
+}
+
+@end
+
+@implementation UIView (MAREX_Animation)
+
+- (void)shakeView
+{
+    CAKeyframeAnimation *shake = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    shake.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-5.0f, 0.0f, 0.0f)], [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(5.0f, 0.0f, 0.0f)]];
+    shake.autoreverses = YES;
+    shake.repeatCount = 2.0f;
+    shake.duration = 0.07f;
+    
+    [self.layer addAnimation:shake forKey:@"shake"];
+}
+
+- (void)pulseViewWithDuration:(CGFloat)duration
+{
+    [UIView animateWithDuration:duration / 6 animations:^{
+        [self setTransform:CGAffineTransformMakeScale(1.1, 1.1)];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:duration / 6 animations:^{
+                [self setTransform:CGAffineTransformMakeScale(0.96, 0.96)];
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    [UIView animateWithDuration:duration / 6 animations:^{
+                        [self setTransform:CGAffineTransformMakeScale(1.03, 1.03)];
+                    } completion:^(BOOL finished) {
+                        if (finished) {
+                            [UIView animateWithDuration:duration / 6 animations:^{
+                                [self setTransform:CGAffineTransformMakeScale(0.985, 0.985)];
+                            } completion:^(BOOL finished) {
+                                if (finished) {
+                                    [UIView animateWithDuration:duration / 6 animations:^{
+                                        [self setTransform:CGAffineTransformMakeScale(1.007, 1.007)];
+                                    } completion:^(BOOL finished) {
+                                        if (finished) {
+                                            [UIView animateWithDuration:duration / 6 animations:^{
+                                                [self setTransform:CGAffineTransformMakeScale(1, 1)];
+                                            } completion:nil];
+                                        }
+                                    }];
+                                }
+                            }];
+                        }
+                    }];
+                }
+            }];
+        }
+    }];
+}
+
+- (void)heartbeatViewWithDuration:(CGFloat)duration
+{
+    float maxSize = 1.4f, durationPerBeat = 0.5f;
+    
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    
+    CATransform3D scale1 = CATransform3DMakeScale(0.8, 0.8, 1);
+    CATransform3D scale2 = CATransform3DMakeScale(maxSize, maxSize, 1);
+    CATransform3D scale3 = CATransform3DMakeScale(maxSize - 0.3f, maxSize - 0.3f, 1);
+    CATransform3D scale4 = CATransform3DMakeScale(1.0, 1.0, 1);
+    
+    NSArray *frameValues = [NSArray arrayWithObjects:[NSValue valueWithCATransform3D:scale1], [NSValue valueWithCATransform3D:scale2], [NSValue valueWithCATransform3D:scale3], [NSValue valueWithCATransform3D:scale4], nil];
+    
+    [animation setValues:frameValues];
+    
+    NSArray *frameTimes = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.05], [NSNumber numberWithFloat:0.2], [NSNumber numberWithFloat:0.6], [NSNumber numberWithFloat:1.0], nil];
+    [animation setKeyTimes:frameTimes];
+    
+    animation.fillMode = kCAFillModeForwards;
+    animation.duration = durationPerBeat;
+    animation.repeatCount = duration / durationPerBeat;
+    
+    [self.layer addAnimation:animation forKey:@"heartbeat"];
+}
+
+- (void)applyMotionEffects
+{
+    UIInterpolatingMotionEffect *horizontalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    horizontalEffect.minimumRelativeValue = @(-10.0f);
+    horizontalEffect.maximumRelativeValue = @(10.0f);
+    UIInterpolatingMotionEffect *verticalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    verticalEffect.minimumRelativeValue = @(-10.0f);
+    verticalEffect.maximumRelativeValue = @(10.0f);
+    UIMotionEffectGroup *motionEffectGroup = [[UIMotionEffectGroup alloc] init];
+    motionEffectGroup.motionEffects = @[horizontalEffect, verticalEffect];
+    
+    [self addMotionEffect:motionEffectGroup];
+}
+
+- (void)flipWithDuration:(NSTimeInterval)duration direction:(MARUIViewAnimationFlipDirection)direction
+{
+    NSString *subtype = nil;
+    
+    switch (direction) {
+        case MARUIViewAnimationFlipDirectionFromTop:
+            subtype = @"fromTop";
+            break;
+        case MARUIViewAnimationFlipDirectionFromLeft:
+            subtype = @"fromLeft";
+            break;
+        case MARUIViewAnimationFlipDirectionFromBottom:
+            subtype = @"fromBottom";
+            break;
+        case MARUIViewAnimationFlipDirectionFromRight:
+        default:
+            subtype = @"fromRight";
+            break;
+    }
+    
+    CATransition *transition = [CATransition animation];
+    
+    transition.startProgress = 0;
+    transition.endProgress = 1.0;
+    transition.type = @"flip";
+    transition.subtype = subtype;
+    transition.duration = duration;
+    transition.repeatCount = 1;
+    transition.autoreverses = 1;
+    
+    [self.layer addAnimation:transition forKey:@"flip"];
+}
+
+- (void)translateAroundTheView:(UIView *)topView duration:(CGFloat)duration direction:(MARUIViewAnimationTranslationDirection)direction repeat:(BOOL)repeat startFromEdge:(BOOL)startFromEdge
+{
+    CGFloat startPosition = self.center.x, endPosition;
+    switch (direction) {
+        case MARUIViewAnimationTranslationDirectionFromLeftToRight: {
+            startPosition = self.frame.size.width / 2;
+            endPosition = -(self.frame.size.width / 2) + topView.frame.size.width;
+            break;
+        }
+        case MARUIViewAnimationTranslationDirectionFromRightToLeft:
+        default: {
+            startPosition = -(self.frame.size.width / 2) + topView.frame.size.width;
+            endPosition = self.frame.size.width / 2;
+            break;
+        }
+    }
+    
+    if (startFromEdge) {
+        [self setCenter:CGPointMake(startPosition, self.center.y)];
+    }
+    
+    [UIView animateWithDuration:duration / 2 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self setCenter:CGPointMake(endPosition, self.center.y)];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:duration / 2 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [self setCenter:CGPointMake(startPosition, self.center.y)];
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    if (repeat) {
+                        [self translateAroundTheView:topView duration:duration direction:direction repeat:repeat startFromEdge:startFromEdge];
+                    }
+                }
+            }];
+        }
+    }];
 }
 
 @end

@@ -67,7 +67,7 @@ blue:((float)(_hex & 0xFF))/255.0 alpha:_alpha]
 //版本号相关
 #define AppVersion              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define AppBuildVersion         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
-#define APPDisplayName          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayNa`me"]
+#define APPDisplayName          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
 
 #define DEVICEUUID              [[[UIDevice currentDevice] identifierForVendor] UUIDString]
 

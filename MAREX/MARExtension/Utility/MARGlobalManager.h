@@ -16,6 +16,15 @@
 #define ShowInfoMessage(message, durationValue) [SVProgressHUD mar_showInfoWithStatus:message  duration:durationValue]
 #define Duration_Normal 1.f
 
+typedef NS_OPTIONS(NSUInteger, MARReachabilityNetStatus) {
+    MARReachabilityNetStatusNotReachbale    = 0,
+    MARReachabilityNetStatusWAN             = 0x0000000F,
+    MARReachabilityNetStatusWAN2G           = 1 << 0,
+    MARReachabilityNetStatusWAN3G           = 1 << 1,
+    MARReachabilityNetStatusWAN4G           = 1 << 2,
+    MARReachabilityNetStatusWIFI            = 1 << 4,
+};
+
 @interface MARGlobalManager : NSObject
 
 @property (nonatomic, strong) NSDateFormatter *dataFormatter;
@@ -33,11 +42,38 @@
 - (NSDictionary*)postNotif:(NSInteger)type data:(id)data object:(id)object;
 
 /**
- *  是否是APP第一次打开应用
+ *  Executes a block on first start of the App for current version.
+ *  Remember to execute UI instuctions on main thread
  *
- *  @return 第一次打开app返回YES，否则NO
+ *  @param block The block to execute, returns isFirstStartForCurrentVersion
  */
-- (BOOL)isAPPFirstOpen;
+- (void)onFirstStart:(void (^)(BOOL isFirstStart))block;
++ (void)onFirstStart:(void (^)(BOOL isFirstStart))block;
+
+/**
+ *  Executes a block on first start of the App.
+ *  Remember to execute UI instuctions on main thread
+ *
+ *  @param block The block to execute, returns isFirstStart
+ */
+- (void)onFirstStartForCurrentVersion:(void (^)(BOOL isFirstStartForCurrentVersion))block;
++ (void)onFirstStartForCurrentVersion:(void (^)(BOOL isFirstStartForCurrentVersion))block;
+
+/**
+ *  Returns if is the first start of the App
+ *
+ *  @return Returns if is the first start of the App
+ */
+- (BOOL)isFirstStart;
++ (BOOL)isFirstStart;
+
+/**
+ *  Returns if is the first start of the App for current version
+ *
+ *  @return Returns if is the first start of the App for current version
+ */
+- (BOOL)isFirstStartForCurrentVersion;
++ (BOOL)isFirstStartForCurrentVersion;
 
 /*
  简单封装 NSUserDefaults
@@ -45,7 +81,6 @@
 - (void) userDefaultSetObject:(id)obj forKey:(NSString*)key;
 - (id) userDefaultObjectForKey:(NSString*)key;
 - (NSString*) userDefaultStringForKey:(NSString*)key;
-
 
 - (BOOL)isLocationServiceOpen;
 
@@ -55,6 +90,8 @@
 
 - (void)gotoMessageNotificationServiceSystemSetting;
 
-//- (BOOL)isNetworkAvailable;
+- (BOOL)isNetworkAvailable;
+
+- (void)setNotifyChangeNetStatusBlock:(void (^)(MARReachabilityNetStatus netStatus))notifyChangeNetStatusBlock;
 
 @end

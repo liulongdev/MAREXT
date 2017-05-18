@@ -31,10 +31,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (IBAction)clickTestBtnAction:(id)sender {
-    
-    
+- (void)testTextPath
+{
     static NSInteger count = 0;
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
@@ -61,7 +59,7 @@
     
     
     //让贝塞尔曲线与CAShapeLayer产生联系  从贝塞尔曲线获取到形状
-    NSString *testStr = @"Hello , Martin";
+    NSString *testStr = @"让贝塞尔曲线";
     UIBezierPath *path = [UIBezierPath bezierPathWithText:testStr font:[UIFont systemFontOfSize:40]];
     
     
@@ -74,7 +72,7 @@
     
     // 给这个layer添加动画效果
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    pathAnimation.duration = 10.0;
+    pathAnimation.duration = 100.0;
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
     [shapeLayer addAnimation:pathAnimation forKey:nil];
@@ -95,25 +93,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     count ++;
-    
-    
-//    CABasicAnimation *bas = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-//    bas.duration = 10;
-////    bas.delegate = self.imageView;
-//    bas.fromValue = [NSNumber numberWithInteger:0];
-//    bas.toValue = [NSNumber numberWithInteger:1];
-//    [arcLayer addAnimation:bas forKey:@"key"];
-    
-    return;
-    UIGraphicsBeginImageContext(self.imageView.frame.size);
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-    [[UIColor redColor] setStroke];
-    [path stroke];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.imageView.image = image;
-    
-    return;
+}
+
+- (IBAction)clickTestBtnAction:(id)sender {
     
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     
@@ -126,62 +108,69 @@
     [self presentViewController:imagePickerController animated:YES completion:^{
         
     }];
-    
-    return;
-    
-    NSString *tfValue = self.textField.text;
-    NSString *base64Str = [tfValue mar_base64EncodedString];
-    
-    self.textField.text = base64Str;
-    self.tipLabel.text = base64Str;
-    
 }
 
 - (IBAction)clickTestBtn2Action:(id)sender {
-    
+
     static NSInteger count = 0;
     
     UIImage* tmpImage = [chooseImage copy];
+//
+//    switch (count % 8) {
+//        case 0:
+//            tmpImage = [tmpImage imageByRoundCornerRadius:15 corners:UIRectCornerTopLeft | UIRectCornerBottomRight borderWidth:2 borderColor:[UIColor purpleColor] borderLineJoin:kCGLineJoinMiter];
+//            break;
+//        case 1 :
+//            tmpImage = [tmpImage imageByRoundCornerRadius:5 borderWidth:10 borderColor:[UIColor yellowColor]];
+//            break;
+//        case 2 :
+//            tmpImage = [tmpImage imageByRoundCornerRadius:10 borderWidth:1 borderColor:[UIColor orangeColor]];
+//            break;
+//        case 3 :
+//            tmpImage = [tmpImage imageByRotateLeft90];
+//            break;
+//        case 4:
+//            tmpImage = [tmpImage imageByFlipHorizontal];
+//            break;
+//        case 5:
+//            tmpImage = [tmpImage imageByRotate:0.5 fitSize:NO];
+//            break;
+//        case 6:
+//            tmpImage = [tmpImage imageByRotate:0.5 fitSize:YES];
+//            break;
+//        case 7:
+//            tmpImage = [tmpImage imageByResizeToSize:CGSizeMake(200, 200) contentMode:UIViewContentModeCenter];
+//            break;
+//        default:
+//            break;
+//    }
     
-    switch (count % 8) {
+    self.imageView.image = tmpImage;
+    
+    switch (count % 6) {
         case 0:
-            tmpImage = [tmpImage imageByRoundCornerRadius:15 corners:UIRectCornerTopLeft | UIRectCornerBottomRight borderWidth:2 borderColor:[UIColor purpleColor] borderLineJoin:kCGLineJoinMiter];
+            [self.imageView shakeView];
             break;
         case 1 :
-            tmpImage = [tmpImage imageByRoundCornerRadius:5 borderWidth:10 borderColor:[UIColor yellowColor]];
+            [self.imageView pulseViewWithDuration:5.0f];
             break;
         case 2 :
-            tmpImage = [tmpImage imageByRoundCornerRadius:10 borderWidth:1 borderColor:[UIColor orangeColor]];
+            [self.imageView heartbeatViewWithDuration:5.0f];
             break;
         case 3 :
-            tmpImage = [tmpImage imageByRotateLeft90];
+            [self.imageView applyMotionEffects];
             break;
         case 4:
-            tmpImage = [tmpImage imageByFlipHorizontal];
+            [self.imageView flipWithDuration:5.f direction:MARUIViewAnimationFlipDirectionFromTop];
             break;
         case 5:
-            tmpImage = [tmpImage imageByRotate:0.5 fitSize:NO];
-            break;
-        case 6:
-            tmpImage = [tmpImage imageByRotate:0.5 fitSize:YES];
-            break;
-        case 7:
-            tmpImage = [tmpImage imageByResizeToSize:CGSizeMake(200, 200) contentMode:UIViewContentModeCenter];
+            [self.imageView translateAroundTheView:self.tipLabel duration:5.f direction:MARUIViewAnimationTranslationDirectionFromLeftToRight repeat:YES startFromEdge:YES];
             break;
         default:
             break;
     }
-    self.imageView.image = tmpImage;
-    
     
     count ++;
-    return;
-    
-    NSString *tfValue = self.textField.text;
-    NSString *str = [NSString mar_stringWithBase64EncodedString:tfValue];
-    
-    self.textField.text = str;
-    self.tipLabel.text = str;
 }
 
 #pragma mark - UIImagePickerControllerDelegate

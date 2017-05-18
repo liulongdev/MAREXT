@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// Whether the device is jailbroken.
 @property (nonatomic, readonly) BOOL isJailbroken;
 
+/// Whether the current device has a Retina display
+@property (nonatomic, readonly) BOOL isRetina;
+
+///  Whether if the current device has a Retina HD display
+@property (nonatomic, readonly) BOOL isRetinaHD;
+
 /// Wherher the device can make phone calls.
 @property (nonatomic, readonly) BOOL canMakePhoneCalls NS_EXTENSION_UNAVAILABLE_IOS("");
 

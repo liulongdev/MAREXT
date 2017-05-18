@@ -9,12 +9,21 @@
 #import "MARGlobalManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "MAREXMacro.h"
+#import "MARReachability.h"
 
 /// 用到的宏
 #ifndef kMARGlobalNotification
 #define kMARGlobalNotification          @"kMARGlobalNotification"
 #endif
-static NSString * const kMarAppFirstOpenKey = @"kMarAppFirstOpenKey";
+static NSString *MARHasBeenOpened                   =   @"MARHasBeenOpened";
+static NSString *MARHasBeenOpenedForCurrentVersion  = @"";
+
+@interface MARGlobalManager()
+
+@property (nonatomic, strong) MARReachability *reachability;
+@property (nonatomic, copy) void (^notifyChangeNetStatusBlock)(MARReachabilityNetStatus reachabilityNetStatus);
+
+@end
 
 @implementation MARGlobalManager
 
@@ -34,6 +43,14 @@ static NSString * const kMarAppFirstOpenKey = @"kMarAppFirstOpenKey";
     return _dataFormatter;
 }
 
+- (MARReachability *)reachability
+{
+    if (!_reachability) {
+        _reachability = [MARReachability reachability];
+    }
+    return _reachability;
+}
+
 - (NSDictionary *)postNotif:(NSInteger)type data:(id)data object:(id)object
 {
     NSMutableDictionary *info=[NSMutableDictionary dictionary];
@@ -49,15 +66,64 @@ static NSString * const kMarAppFirstOpenKey = @"kMarAppFirstOpenKey";
     return info;
 }
 
-- (BOOL)isAPPFirstOpen
+- (void)onFirstStart:(void (^)(BOOL))block
 {
     NSUserDefaults* user = [NSUserDefaults standardUserDefaults];
-    BOOL isAPPFirstOpenFlag = [user boolForKey:kMarAppFirstOpenKey];
-    if (!isAPPFirstOpenFlag) {
-        [user setBool:YES forKey:kMarAppFirstOpenKey];
+    BOOL hasBeenOpened = [user boolForKey:MARHasBeenOpened];
+    if (!hasBeenOpened) {
+        [user setBool:YES forKey:MARHasBeenOpened];
         [user synchronize];
     }
+    
+    block(!hasBeenOpened);
+}
+
++ (void)onFirstStart:(void (^)(BOOL))block
+{
+    [MARGLOBALMANAGER onFirstStart:block];
+}
+
+- (void)onFirstStartForCurrentVersion:(void (^)(BOOL))block
+{
+    MARHasBeenOpenedForCurrentVersion = [NSString stringWithFormat:@"%@%@", MARHasBeenOpened, AppVersion];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasBeenOpenedForCurrentVersion = [defaults boolForKey:MARHasBeenOpenedForCurrentVersion];
+    if (hasBeenOpenedForCurrentVersion != true) {
+        [defaults setBool:YES forKey:MARHasBeenOpenedForCurrentVersion];
+        [defaults synchronize];
+    }
+    
+    block(!hasBeenOpenedForCurrentVersion);
+}
+
++ (void)onFirstStartForCurrentVersion:(void (^)(BOOL))block
+{
+    [MARGLOBALMANAGER onFirstStartForCurrentVersion:block];
+}
+
+- (BOOL)isFirstStart
+{
+    NSUserDefaults* user = [NSUserDefaults standardUserDefaults];
+    BOOL isAPPFirstOpenFlag = [user boolForKey:MARHasBeenOpened];
     return isAPPFirstOpenFlag;
+}
+
++ (BOOL)isFirstStart
+{
+    return [MARGLOBALMANAGER isFirstStart];
+}
+
+- (BOOL)isFirstStartForCurrentVersion
+{
+    MARHasBeenOpenedForCurrentVersion = [NSString stringWithFormat:@"%@%@", MARHasBeenOpened, AppVersion];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasBeenOpenedForCurrentVersion = [defaults boolForKey:MARHasBeenOpenedForCurrentVersion];
+    return hasBeenOpenedForCurrentVersion;
+}
+
++ (BOOL)isFirstStartForCurrentVersion
+{
+    return [MARGLOBALMANAGER isFirstStartForCurrentVersion];
 }
 
 - (void) userDefaultSetObject:(id)obj forKey:(NSString*)key
@@ -138,9 +204,53 @@ static NSString * const kMarAppFirstOpenKey = @"kMarAppFirstOpenKey";
     
 }
 
-//- (BOOL)isNetworkAvailable
-//{
+- (BOOL)isNetworkAvailable
+{
+    return self.reachability.isReachable;
 //    return [GLobalRealReachability currentReachabilityStatus] != RealStatusNotReachable;
-//}
+}
+
+- (void)setNotifyChangeNetStatusBlock:(void (^)(MARReachabilityNetStatus))notifyChangeNetStatusBlock
+{
+    _notifyChangeNetStatusBlock = nil;
+    _notifyChangeNetStatusBlock = [notifyChangeNetStatusBlock copy];
+    if (notifyChangeNetStatusBlock == nil) {
+        self.reachability = nil;
+        return;
+    }
+    __block MARReachabilityNetStatus netStatus = MARReachabilityNetStatusNotReachbale;
+    __weak typeof(self) weakSelf = self;
+    self.reachability.notifyBlock = ^(MARReachability *reachabilityB){
+        netStatus = MARReachabilityNetStatusNotReachbale;
+        if (reachabilityB.status == MARReachabilityStatusNone) {
+            netStatus = MARReachabilityNetStatusNotReachbale;
+        }
+        else if (reachabilityB.status == MARReachabilityStatusWWAN)
+        {
+            switch (reachabilityB.wwanStatus) {
+                case MARReachabilityWWANStatusNone:
+                    netStatus = MARReachabilityNetStatusNotReachbale;
+                    break;
+                case MARReachabilityWWANStatus2G:
+                    netStatus = MARReachabilityNetStatusWAN2G;
+                    break;
+                case MARReachabilityWWANStatus3G:
+                    netStatus = MARReachabilityNetStatusWAN3G;
+                    break;
+                case MARReachabilityWWANStatus4G:
+                    netStatus = MARReachabilityNetStatusWAN4G;
+                    break;
+            }
+        }
+        else if (reachabilityB.status == MARReachabilityStatusWiFi)
+        {
+            netStatus = MARReachabilityNetStatusWIFI;
+        }
+        if (weakSelf.notifyChangeNetStatusBlock) {
+            weakSelf.notifyChangeNetStatusBlock(netStatus);
+        }
+    };
+    
+}
 
 @end

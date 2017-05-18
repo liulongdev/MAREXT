@@ -283,6 +283,43 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
             alpha == kCGImageAlphaPremultipliedLast);
 }
 
+- (UIImage *)removeAlpha {
+    if (![self hasAlphaChannel]) {
+        return self;
+    }
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, self.size.width, self.size.height, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNoneSkipLast);
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, self.size.width, self.size.height), self.CGImage);
+    CGImageRef mainViewContentBitmapContext = CGBitmapContextCreateImage(mainViewContentContext);
+    CGContextRelease(mainViewContentContext);
+    UIImage *returnImage = [UIImage imageWithCGImage:mainViewContentBitmapContext];
+    CGImageRelease(mainViewContentBitmapContext);
+    
+    return returnImage;
+}
+
+- (UIImage *)fillAlphaWithColor:(UIColor *)color {
+    CGRect imageRect;
+    imageRect.origin = CGPointZero;
+    imageRect.size = self.size;
+    
+    CGColorRef cgColor = [color CGColor];
+    
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, [[UIScreen mainScreen] scale]);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, cgColor);
+    CGContextFillRect(context, imageRect);
+    [self drawInRect:imageRect];
+    
+    UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return returnImage;
+}
+
 - (void)drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode clipsToBounds:(BOOL)clips
 {
     CGRect drawRect = MARCGRectFitWithContentMode(rect, self.size, contentMode);
@@ -491,11 +528,13 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
 }
 
 - (UIImage *)imageByFlipVertical {
-    return [self _mar_flipHorizontal:NO vertical:YES];
+//    return [self _mar_flipHorizontal:NO vertical:YES];
+    return [[UIImage alloc] initWithCGImage:self.CGImage scale:self.scale orientation:UIImageOrientationLeftMirrored];
 }
 
 - (UIImage *)imageByFlipHorizontal {
-    return [self _mar_flipHorizontal:YES vertical:NO];
+//    return [self _mar_flipHorizontal:YES vertical:NO];
+    return [[UIImage alloc] initWithCGImage:self.CGImage scale:self.scale orientation:UIImageOrientationUpMirrored];
 }
 
 - (UIImage *)imageByTintColor:(UIColor *)color
@@ -747,6 +786,99 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return outputImage;
+}
+
+- (UIImage *)blurImageWithBlur:(CGFloat)blur {
+    if (blur < 0.f || blur > 1.f) {
+        blur = 0.5f;
+    }
+    int boxSize = (int)(blur * 50);
+    boxSize = boxSize - (boxSize % 2) + 1;
+    
+    CGImageRef img = self.CGImage;
+    
+    vImage_Buffer inBuffer, outBuffer;
+    
+    vImage_Error error;
+    
+    void *pixelBuffer;
+    
+    CGDataProviderRef inProvider = CGImageGetDataProvider(img);
+    CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
+    
+    inBuffer.width = CGImageGetWidth(img);
+    inBuffer.height = CGImageGetHeight(img);
+    inBuffer.rowBytes = CGImageGetBytesPerRow(img);
+    
+    inBuffer.data = (void*)CFDataGetBytePtr(inBitmapData);
+    
+    pixelBuffer = malloc(CGImageGetBytesPerRow(img) * CGImageGetHeight(img));
+    
+    if (pixelBuffer == NULL) {
+        NSLog(@"No pixelbuffer");
+    }
+    
+    outBuffer.data = pixelBuffer;
+    outBuffer.width = CGImageGetWidth(img);
+    outBuffer.height = CGImageGetHeight(img);
+    outBuffer.rowBytes = CGImageGetBytesPerRow(img);
+    
+    error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
+    
+    if (error) {
+        NSLog(@"Error from convolution %ld", error);
+    }
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef ctx = CGBitmapContextCreate(outBuffer.data, outBuffer.width, outBuffer.height, 8, outBuffer.rowBytes, colorSpace, (CGBitmapInfo)kCGImageAlphaNoneSkipLast);
+    CGImageRef imageRef = CGBitmapContextCreateImage (ctx);
+    UIImage *returnImage = [UIImage imageWithCGImage:imageRef];
+    
+    CGContextRelease(ctx);
+    CGColorSpaceRelease(colorSpace);
+    
+    free(pixelBuffer);
+    CFRelease(inBitmapData);
+    
+    CGImageRelease(imageRef);
+    
+    return returnImage;
+}
+
++ (UIImage * _Nonnull)imageFromText:(NSString * _Nonnull)text font:(MARFontName)fontName fontSize:(CGFloat)fontSize imageSize:(CGSize)imageSize {
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, [UIScreen mainScreen].scale);
+    
+    [text drawAtPoint:CGPointMake(0.0, 0.0) withAttributes:@{NSFontAttributeName:[UIFont fontForFontName:fontName size:fontSize]}];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
++ (UIImage *)imageWithSize:(CGSize)imageSize backgroundColor:(UIColor *)backgroundColor maskedText:(NSString *)string font:(MARFontName)fontName fontSize:(CGFloat)fontSize {
+    UIFont *font = [UIFont fontForFontName:fontName size:fontSize];
+    NSDictionary *textAttributes = @{NSFontAttributeName:font};
+    
+    CGSize textSize = [string sizeWithAttributes:textAttributes];
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, [[UIScreen mainScreen] scale]);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(ctx, backgroundColor.CGColor);
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+    CGContextAddPath(ctx, path.CGPath);
+    CGContextFillPath(ctx);
+    
+    CGContextSetBlendMode(ctx, kCGBlendModeDestinationOut);
+    CGPoint center = CGPointMake(imageSize.width / 2 - textSize.width / 2, imageSize.height / 2 - textSize.height / 2);
+    [string drawAtPoint:center withAttributes:textAttributes];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end

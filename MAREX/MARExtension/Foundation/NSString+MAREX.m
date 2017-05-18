@@ -407,4 +407,153 @@
     }
     return str;
 }
+
+
+- (BOOL)isEmail {
+    return [NSString isEmail:self];
+}
+
++ (BOOL)isEmail:(NSString * _Nonnull)email {
+    NSString *emailRegEx = @"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+    
+    NSPredicate *regExPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    return [regExPredicate evaluateWithObject:[email lowercaseString]];
+}
+
+- (NSString * _Nonnull)removeExtraSpaces {
+    NSString *squashed = [self stringByReplacingOccurrencesOfString:@"[ ]+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, self.length)];
+    return [squashed stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+@end
+
+@implementation NSString (MAREX_CheckPasswordStrong)
+
++ (MARPasswordStrengthLevel)mar_checkPasswordStrength:(NSString * _Nonnull)password {
+    NSInteger length = [password length];
+    int lowercase = [self countLowercaseLetters:password];
+    int uppercase = [self countUppercaseLetters:password];
+    int numbers = [self countNumbers:password];
+    int symbols = [self countSymbols:password];
+    
+    int score = 0;
+    
+    if (length < 5)
+        score += 5;
+    else
+        if (length > 4 && length < 8)
+            score += 10;
+        else
+            if (length > 7)
+                score += 20;
+    
+    if (numbers == 1)
+        score += 10;
+    else
+        if (numbers == 2)
+            score += 15;
+        else
+            if (numbers > 2)
+                score += 20;
+    
+    if (symbols == 1)
+        score += 10;
+    else
+        if (symbols == 2)
+            score += 15;
+        else
+            if (symbols > 2)
+                score += 20;
+    
+    if (lowercase == 1)
+        score += 10;
+    else
+        if (lowercase == 2)
+            score += 15;
+        else
+            if (lowercase > 2)
+                score += 20;
+    
+    if (uppercase == 1)
+        score += 10;
+    else
+        if (uppercase == 2)
+            score += 15;
+        else
+            if (uppercase > 2)
+                score += 20;
+    
+    if (score == 100)
+        return MARPasswordStrengthLevelVerySecure;
+    else
+        if (score >= 90)
+            return MARPasswordStrengthLevelSecure;
+        else
+            if (score >= 80)
+                return MARPasswordStrengthLevelVeryStrong;
+            else
+                if (score >= 70)
+                    return MARPasswordStrengthLevelStrong;
+                else
+                    if (score >= 60)
+                        return MARPasswordStrengthLevelAverage;
+                    else
+                        if (score >= 50)
+                            return MARPasswordStrengthLevelWeak;
+                        else
+                            return MARPasswordStrengthLevelVeryWeak;
+}
+
++ (int)countLowercaseLetters:(NSString * _Nonnull)password {
+    int count = 0;
+    
+    for (int i = 0; i < [password length]; i++) {
+        BOOL isLowercase = [[NSCharacterSet lowercaseLetterCharacterSet] characterIsMember:[password characterAtIndex:i]];
+        if (isLowercase == YES) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
++ (int)countUppercaseLetters:(NSString * _Nonnull)password {
+    int count = 0;
+    
+    for (int i = 0; i < [password length]; i++) {
+        BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[password characterAtIndex:i]];
+        if (isUppercase == YES) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
++ (int)countNumbers:(NSString * _Nonnull)password {
+    int count = 0;
+    
+    for (int i = 0; i < [password length]; i++) {
+        BOOL isNumber = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] characterIsMember:[password characterAtIndex:i]];
+        if (isNumber == YES) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
++ (int)countSymbols:(NSString * _Nonnull)password {
+    int count = 0;
+    
+    for (int i = 0; i < [password length]; i++) {
+        BOOL isSymbol = [[NSCharacterSet characterSetWithCharactersInString:@"`~!?@#$€£¥§%^&*()_+-={}[]:\";.,<>'•\\|/"] characterIsMember:[password characterAtIndex:i]];
+        if (isSymbol == YES) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
 @end

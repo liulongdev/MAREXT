@@ -34,6 +34,16 @@
 		C1150E261ECC442500176F38 /* UIBarButtonItem+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E251ECC442500176F38 /* UIBarButtonItem+MAREX.m */; };
 		C1150E291ECC44BB00176F38 /* UIGestureRecognizer+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E281ECC44BB00176F38 /* UIGestureRecognizer+MAREX.m */; };
 		C1150E2C1ECC484D00176F38 /* UIBezierPath+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E2B1ECC484D00176F38 /* UIBezierPath+MAREX.m */; };
+		C1150E2F1ECD2A3300176F38 /* MARReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E2E1ECD2A3300176F38 /* MARReachability.m */; };
+		C1150E331ECD448D00176F38 /* MARUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E321ECD448D00176F38 /* MARUITextView.m */; };
+		C1150E361ECD46C900176F38 /* MARUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E351ECD46C900176F38 /* MARUIButton.m */; };
+		C1150E391ECD47A700176F38 /* NSMutableArray+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E381ECD47A700176F38 /* NSMutableArray+MAREX.m */; };
+		C1150E3C1ECD487E00176F38 /* NSArray+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E3B1ECD487E00176F38 /* NSArray+MAREX.m */; };
+		C1150E3F1ECD794700176F38 /* MARSystemSound.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E3E1ECD794700176F38 /* MARSystemSound.m */; };
+		C1150E421ECD7AB300176F38 /* MARTouchID.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E411ECD7AB300176F38 /* MARTouchID.m */; };
+		C1150E451ECD806A00176F38 /* NSFileManager+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E441ECD806A00176F38 /* NSFileManager+MAREX.m */; };
+		C1150E481ECD892200176F38 /* NSProcessInfo+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E471ECD892200176F38 /* NSProcessInfo+MAREX.m */; };
+		C1150E4E1ECD9F9200176F38 /* UIFont+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E4D1ECD9F9200176F38 /* UIFont+MAREX.m */; };
 		C149F9491ECA8D8A00C8B7C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F9481ECA8D8A00C8B7C8 /* main.m */; };
 		C149F94C1ECA8D8A00C8B7C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F94B1ECA8D8A00C8B7C8 /* AppDelegate.m */; };
 		C149F94F1ECA8D8A00C8B7C8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F94E1ECA8D8A00C8B7C8 /* ViewController.m */; };
@@ -116,6 +126,26 @@
 		C1150E281ECC44BB00176F38 /* UIGestureRecognizer+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+MAREX.m"; sourceTree = "<group>"; };
 		C1150E2A1ECC484D00176F38 /* UIBezierPath+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+MAREX.h"; sourceTree = "<group>"; };
 		C1150E2B1ECC484D00176F38 /* UIBezierPath+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+MAREX.m"; sourceTree = "<group>"; };
+		C1150E2D1ECD2A3300176F38 /* MARReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARReachability.h; sourceTree = "<group>"; };
+		C1150E2E1ECD2A3300176F38 /* MARReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARReachability.m; sourceTree = "<group>"; };
+		C1150E311ECD448D00176F38 /* MARUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARUITextView.h; sourceTree = "<group>"; };
+		C1150E321ECD448D00176F38 /* MARUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARUITextView.m; sourceTree = "<group>"; };
+		C1150E341ECD46C900176F38 /* MARUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARUIButton.h; sourceTree = "<group>"; };
+		C1150E351ECD46C900176F38 /* MARUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARUIButton.m; sourceTree = "<group>"; };
+		C1150E371ECD47A700176F38 /* NSMutableArray+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+MAREX.h"; sourceTree = "<group>"; };
+		C1150E381ECD47A700176F38 /* NSMutableArray+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+MAREX.m"; sourceTree = "<group>"; };
+		C1150E3A1ECD487E00176F38 /* NSArray+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MAREX.h"; sourceTree = "<group>"; };
+		C1150E3B1ECD487E00176F38 /* NSArray+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MAREX.m"; sourceTree = "<group>"; };
+		C1150E3D1ECD794700176F38 /* MARSystemSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARSystemSound.h; sourceTree = "<group>"; };
+		C1150E3E1ECD794700176F38 /* MARSystemSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARSystemSound.m; sourceTree = "<group>"; };
+		C1150E401ECD7AB300176F38 /* MARTouchID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARTouchID.h; sourceTree = "<group>"; };
+		C1150E411ECD7AB300176F38 /* MARTouchID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARTouchID.m; sourceTree = "<group>"; };
+		C1150E431ECD806A00176F38 /* NSFileManager+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+MAREX.h"; sourceTree = "<group>"; };
+		C1150E441ECD806A00176F38 /* NSFileManager+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+MAREX.m"; sourceTree = "<group>"; };
+		C1150E461ECD892200176F38 /* NSProcessInfo+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+MAREX.h"; sourceTree = "<group>"; };
+		C1150E471ECD892200176F38 /* NSProcessInfo+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+MAREX.m"; sourceTree = "<group>"; };
+		C1150E4C1ECD9F9200176F38 /* UIFont+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MAREX.h"; sourceTree = "<group>"; };
+		C1150E4D1ECD9F9200176F38 /* UIFont+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MAREX.m"; sourceTree = "<group>"; };
 		C149F9441ECA8D8A00C8B7C8 /* MARExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C149F9481ECA8D8A00C8B7C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C149F94A1ECA8D8A00C8B7C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -172,6 +202,8 @@
 				5B4DC6051ECC99FE0063CF63 /* MARGlobalManager.m */,
 				5B4DC60C1ECCA24A0063CF63 /* MARWeakProxy.h */,
 				5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */,
+				C1150E2D1ECD2A3300176F38 /* MARReachability.h */,
+				C1150E2E1ECD2A3300176F38 /* MARReachability.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -244,6 +276,18 @@
 				C1150E101ECBE1D400176F38 /* NSObject+MAREX.m */,
 				C1150E1E1ECC261F00176F38 /* NSNotificationCenter+MAREX.h */,
 				C1150E1F1ECC261F00176F38 /* NSNotificationCenter+MAREX.m */,
+				C1150E371ECD47A700176F38 /* NSMutableArray+MAREX.h */,
+				C1150E381ECD47A700176F38 /* NSMutableArray+MAREX.m */,
+				C1150E3A1ECD487E00176F38 /* NSArray+MAREX.h */,
+				C1150E3B1ECD487E00176F38 /* NSArray+MAREX.m */,
+				C1150E3D1ECD794700176F38 /* MARSystemSound.h */,
+				C1150E3E1ECD794700176F38 /* MARSystemSound.m */,
+				C1150E401ECD7AB300176F38 /* MARTouchID.h */,
+				C1150E411ECD7AB300176F38 /* MARTouchID.m */,
+				C1150E431ECD806A00176F38 /* NSFileManager+MAREX.h */,
+				C1150E441ECD806A00176F38 /* NSFileManager+MAREX.m */,
+				C1150E461ECD892200176F38 /* NSProcessInfo+MAREX.h */,
+				C1150E471ECD892200176F38 /* NSProcessInfo+MAREX.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -262,6 +306,7 @@
 		C1150DDC1ECACE5B00176F38 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				C1150E301ECD447000176F38 /* CustomViews */,
 				C1150DDE1ECACE6D00176F38 /* UIView+MAREX.h */,
 				C1150DDF1ECACE6D00176F38 /* UIView+MAREX.m */,
 				C1150DE11ECAD4AE00176F38 /* UIScrollView+MAREX.h */,
@@ -282,8 +327,21 @@
 				C1150E2B1ECC484D00176F38 /* UIBezierPath+MAREX.m */,
 				5B4DC5F31ECC86400063CF63 /* UINavigationController+MAREX.h */,
 				5B4DC5F41ECC86400063CF63 /* UINavigationController+MAREX.m */,
+				C1150E4C1ECD9F9200176F38 /* UIFont+MAREX.h */,
+				C1150E4D1ECD9F9200176F38 /* UIFont+MAREX.m */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		C1150E301ECD447000176F38 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				C1150E311ECD448D00176F38 /* MARUITextView.h */,
+				C1150E321ECD448D00176F38 /* MARUITextView.m */,
+				C1150E341ECD46C900176F38 /* MARUIButton.h */,
+				C1150E351ECD46C900176F38 /* MARUIButton.m */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		C149F93B1ECA8D8A00C8B7C8 = {
@@ -417,6 +475,7 @@
 				TargetAttributes = {
 					C149F9431ECA8D8A00C8B7C8 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = M5SM2C7SVG;
 						ProvisioningStyle = Automatic;
 					};
 					C149F95C1ECA8D8A00C8B7C8 = {
@@ -486,10 +545,13 @@
 				C1150E0E1ECBD6E400176F38 /* NSDate+MAREX.m in Sources */,
 				C149F94F1ECA8D8A00C8B7C8 /* ViewController.m in Sources */,
 				5B4DC6031ECC8BFD0063CF63 /* NSObject+MARModel.m in Sources */,
+				C1150E391ECD47A700176F38 /* NSMutableArray+MAREX.m in Sources */,
 				C149F94C1ECA8D8A00C8B7C8 /* AppDelegate.m in Sources */,
 				C1150E1A1ECC20DB00176F38 /* CALayer+MAREX.m in Sources */,
 				C1150E201ECC261F00176F38 /* NSNotificationCenter+MAREX.m in Sources */,
 				C1150DDD1ECACE5B00176F38 /* NSData+MAREX.m in Sources */,
+				C1150E2F1ECD2A3300176F38 /* MARReachability.m in Sources */,
+				C1150E481ECD892200176F38 /* NSProcessInfo+MAREX.m in Sources */,
 				C1150DE01ECACE6D00176F38 /* UIView+MAREX.m in Sources */,
 				C1150E2C1ECC484D00176F38 /* UIBezierPath+MAREX.m in Sources */,
 				C1150E141ECBE84D00176F38 /* UIImage+MAREX.m in Sources */,
@@ -500,15 +562,22 @@
 				C1150E111ECBE1D400176F38 /* NSObject+MAREX.m in Sources */,
 				5B4DC6061ECC99FE0063CF63 /* MARGlobalManager.m in Sources */,
 				5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */,
+				C1150E421ECD7AB300176F38 /* MARTouchID.m in Sources */,
 				C1150DE91ECAD85D00176F38 /* NSString+MAREX.m in Sources */,
+				C1150E361ECD46C900176F38 /* MARUIButton.m in Sources */,
 				C1150E171ECBE87000176F38 /* UIDevice+MAREX.m in Sources */,
+				C1150E331ECD448D00176F38 /* MARUITextView.m in Sources */,
 				5B4DC60E1ECCA24A0063CF63 /* MARWeakProxy.m in Sources */,
 				C1150E231ECC415700176F38 /* UIButton+MAREX.m in Sources */,
 				5B4DC5FC1ECC8B820063CF63 /* MARUserDefault.m in Sources */,
 				5B4DC6021ECC8BFD0063CF63 /* MARClassInfo.m in Sources */,
+				C1150E451ECD806A00176F38 /* NSFileManager+MAREX.m in Sources */,
 				C1150E261ECC442500176F38 /* UIBarButtonItem+MAREX.m in Sources */,
+				C1150E3C1ECD487E00176F38 /* NSArray+MAREX.m in Sources */,
+				C1150E4E1ECD9F9200176F38 /* UIFont+MAREX.m in Sources */,
 				C1150E1D1ECC223000176F38 /* MARCGUtilities.m in Sources */,
 				C1150DE31ECAD4AE00176F38 /* UIScrollView+MAREX.m in Sources */,
+				C1150E3F1ECD794700176F38 /* MARSystemSound.m in Sources */,
 				C1150DEC1ECADC9500176F38 /* NSNumber+MAREX.m in Sources */,
 				5B4DC60B1ECCA0FA0063CF63 /* MARDebug.m in Sources */,
 			);
@@ -657,6 +726,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = M5SM2C7SVG;
 				INFOPLIST_FILE = MARExtensionDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -670,6 +740,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = M5SM2C7SVG;
 				INFOPLIST_FILE = MARExtensionDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

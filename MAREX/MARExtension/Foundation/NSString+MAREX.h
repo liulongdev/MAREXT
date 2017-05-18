@@ -398,7 +398,78 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)stringNamed:(NSString *)name;
 
+/**
+ *  Check if self is an email
+ *
+ *  @return Returns YES if it's an email, NO if not
+ */
+- (BOOL)isEmail;
+
+/**
+ *  Check if the given string is an email
+ *
+ *  @param email The string to be checked
+ *
+ *  @return Returns YES if it's an email, NO if not
+ */
++ (BOOL)isEmail:(NSString * _Nonnull)email;
+
+/**
+ *  Remove double or more duplicated spaces
+ *
+ *  @return String without additional spaces
+ */
+- (NSString * _Nonnull)removeExtraSpaces;
 
 @end
+
+/**
+ *  Password strength level enum, from 0 (min) to 6 (max)
+ */
+typedef NS_ENUM(NSInteger, MARPasswordStrengthLevel) {
+    /**
+     *  Password strength very weak
+     */
+    MARPasswordStrengthLevelVeryWeak = 0,
+    /**
+     *  Password strength weak
+     */
+    MARPasswordStrengthLevelWeak,
+    /**
+     *  Password strength average
+     */
+    MARPasswordStrengthLevelAverage,
+    /**
+     *  Password strength strong
+     */
+    MARPasswordStrengthLevelStrong,
+    /**
+     *  Password strength very strong
+     */
+    MARPasswordStrengthLevelVeryStrong,
+    /**
+     *  Password strength secure
+     */
+    MARPasswordStrengthLevelSecure,
+    /**
+     *  Password strength very secure
+     */
+    MARPasswordStrengthLevelVerySecure
+};
+
+
+@interface NSString (MAREX_CheckPasswordStrong)
+
+/**
+ *  Check the password strength level
+ *
+ *  @param password Password string
+ *
+ *  @return Returns the password strength level with value from enum PasswordStrengthLevel
+ */
++ (MARPasswordStrengthLevel)mar_checkPasswordStrength:(NSString * _Nonnull)password;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

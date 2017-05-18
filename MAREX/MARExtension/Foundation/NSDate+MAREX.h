@@ -180,4 +180,39 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface NSDate (MAREX_briefTime)
+- (NSString *)timeInWords;
+
+/**
+ Returns a string representing the time interval from now in words.
+ 
+ The strings produced by this method will be similar to produced by ActiveSupport's `time_ago_in_words` helper method.
+ 
+ @param includeSeconds `YES` if seconds should be included. `NO` if they should not.
+ 
+ @return A string representing the time interval from now in words
+ 
+ @see timeInWordsIncludingSeconds:
+ @see timeInWordsFromTimeInterval:includingSeconds:
+ */
+- (NSString *)timeInWordsIncludingSeconds:(BOOL)includeSeconds;
+
+/**
+ Returns a string representing a time interval in words.
+ 
+ The strings produced by this method will be similar to produced by ActiveSupport's `time_ago_in_words` helper method.
+ 
+ @param intervalInSeconds The time interval to convert to a string
+ 
+ @param includeSeconds `YES` if seconds should be included. `NO` if they should not.
+ 
+ @return A string representing the time interval in words
+ 
+ @see timeInWords
+ @see timeInWordsIncludingSeconds:
+ */
++ (NSString *)timeInWordsFromTimeInterval:(NSTimeInterval)intervalInSeconds includingSeconds:(BOOL)includeSeconds;
+
+@end
+
 NS_ASSUME_NONNULL_END

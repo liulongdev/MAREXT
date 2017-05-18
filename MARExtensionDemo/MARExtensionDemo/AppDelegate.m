@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MARGlobalManager.h"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [MARGLOBALMANAGER setNotifyChangeNetStatusBlock:^(MARReachabilityNetStatus netStatus) {
+        NSLog(@"notify status : %ld", netStatus);
+    }];
     return YES;
 }
 

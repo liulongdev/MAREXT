@@ -23,6 +23,7 @@
 #import "MARUserDefault.h"
 #import "MARGlobalManager.h"
 #import "MARWeakProxy.h"
+//#import "MARReachability.h"
 
 #import "NSData+MAREX.h"
 #import "NSString+MAREX.h"
@@ -30,6 +31,12 @@
 #import "NSDate+MAREX.h"
 #import "NSObject+MAREX.h"
 #import "NSNotificationCenter+MAREX.h"
+#import "NSMutableArray+MAREX.h"
+#import "NSArray+MAREX.h"
+#import "MARSystemSound.h"
+#import "MARTouchID.h"
+#import "NSFileManager+MAREX.h"
+#import "NSProcessInfo+MAREX.h"
 
 #import "CALayer+MAREX.h"
 #import "MARCGUtilities.h"
@@ -44,5 +51,9 @@
 #import "UIGestureRecognizer+MAREX.h"
 #import "UIBezierPath+MAREX.h"
 #import "UINavigationController+MAREX.h"
+#import "UIFont+MAREX.h"
+
+#import "MARUITextView.h"
+#import "MARUIButton.h"
 
 #endif /* MAREX_h */
