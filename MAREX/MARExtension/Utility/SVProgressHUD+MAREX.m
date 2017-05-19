@@ -33,9 +33,9 @@
 #else
 
 @implementation SVProgressHUD
-+ (void) mar_showSuccessWithStatus:(NSString*)status duration:(CGFloat)duration{}
-+ (void) mar_showErrorWithStatus:(NSString*)status duration:(CGFloat)duration{}
-+ (void) mar_showInfoWithStatus:(NSString*)status  duration:(CGFloat)duration{}
++ (void) mar_showSuccessWithStatus:(NSString*)status duration:(CGFloat)duration{NSLog(@"%@", status);}
++ (void) mar_showErrorWithStatus:(NSString*)status duration:(CGFloat)duration{NSLog(@"%@", status);}
++ (void) mar_showInfoWithStatus:(NSString*)status  duration:(CGFloat)duration{NSLog(@"%@", status);}
 @end
 
 #endif

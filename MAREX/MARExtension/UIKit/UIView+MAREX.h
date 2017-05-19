@@ -250,6 +250,11 @@ typedef NS_ENUM(NSInteger, MARUIViewAnimationTranslationDirection) {
 - (void)applyMotionEffects;
 
 /**
+ *  Adds a motion effect to the view With offset
+ */
+- (void)applyMotionEffectsWithOffset:(CGSize)offset;
+
+/**
  *  Flip the view
  *
  *  @param duration  Seconds of animation

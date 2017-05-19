@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Provide hash, encrypt, encode and some common method for `NSData`.
  */
-
 @interface NSData (MAREX)
 
 /**

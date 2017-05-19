@@ -12,43 +12,43 @@
 /**
  *  Touch result enum
  */
-typedef NS_ENUM(NSInteger, TouchIDResult) {
+typedef NS_ENUM(NSInteger, MARTouchIDResult) {
     /**
      *  Success
      */
-    TouchIDResultSuccess = 0,
+    MARTouchIDResultSuccess = 0,
     /**
      *  Generic error
      */
-    TouchIDResultError,
+    MARTouchIDResultError,
     /**
      *  Authentication failed
      */
-    TouchIDResultAuthenticationFailed,
+    MARTouchIDResultAuthenticationFailed,
     /**
      *  User cancel
      */
-    TouchIDResultUserCancel,
+    MARTouchIDResultUserCancel,
     /**
      *  User fallback
      */
-    TouchIDResultUserFallback,
+    MARTouchIDResultUserFallback,
     /**
      *  System cancel
      */
-    TouchIDResultSystemCancel,
+    MARTouchIDResultSystemCancel,
     /**
      *  Passcode not set
      */
-    TouchIDResultPasscodeNotSet,
+    MARTouchIDResultPasscodeNotSet,
     /**
      *  Not available
      */
-    TouchIDResultNotAvailable,
+    MARTouchIDResultNotAvailable,
     /**
      *  Not enrolled
      */
-    TouchIDResultNotEnrolled
+    MARTouchIDResultNotEnrolled
 } NS_ENUM_AVAILABLE_IOS(8_0);
 
 NS_CLASS_AVAILABLE_IOS(8_0) @interface MARTouchID : NSObject
@@ -60,7 +60,7 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface MARTouchID : NSObject
  *  @param completion Completion handler. It returns the TouchID result, from the TouchIDResult enum
  */
 + (void)showTouchIDAuthenticationWithReason:(NSString * _Nonnull)reason
-                                 completion:(void (^ _Nullable)(TouchIDResult result))completion;
+                                 completion:(void (^ _Nullable)(MARTouchIDResult result))completion;
 
 /**
  *  Shows the TouchID alert
@@ -71,6 +71,6 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface MARTouchID : NSObject
  */
 + (void)showTouchIDAuthenticationWithReason:(NSString * _Nonnull)reason
                               fallbackTitle:(NSString * _Nullable)fallbackTitle
-                                 completion:(void (^ _Nullable)(TouchIDResult result))completion;
+                                 completion:(void (^ _Nullable)(MARTouchIDResult result))completion;
 
 @end

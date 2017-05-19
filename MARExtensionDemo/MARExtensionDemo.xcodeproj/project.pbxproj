@@ -44,6 +44,7 @@
 		C1150E451ECD806A00176F38 /* NSFileManager+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E441ECD806A00176F38 /* NSFileManager+MAREX.m */; };
 		C1150E481ECD892200176F38 /* NSProcessInfo+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E471ECD892200176F38 /* NSProcessInfo+MAREX.m */; };
 		C1150E4E1ECD9F9200176F38 /* UIFont+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E4D1ECD9F9200176F38 /* UIFont+MAREX.m */; };
+		C1150E511ECDAC7C00176F38 /* UIWindow+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150E501ECDAC7C00176F38 /* UIWindow+MAREX.m */; };
 		C149F9491ECA8D8A00C8B7C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F9481ECA8D8A00C8B7C8 /* main.m */; };
 		C149F94C1ECA8D8A00C8B7C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F94B1ECA8D8A00C8B7C8 /* AppDelegate.m */; };
 		C149F94F1ECA8D8A00C8B7C8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F94E1ECA8D8A00C8B7C8 /* ViewController.m */; };
@@ -52,6 +53,7 @@
 		C149F9571ECA8D8A00C8B7C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C149F9551ECA8D8A00C8B7C8 /* LaunchScreen.storyboard */; };
 		C149F9621ECA8D8A00C8B7C8 /* MARExtensionDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F9611ECA8D8A00C8B7C8 /* MARExtensionDemoTests.m */; };
 		C149F96D1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F96C1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m */; };
+		C188C4A51ECE8FCA00A500C9 /* NSData+MAREX_Type.m in Sources */ = {isa = PBXBuildFile; fileRef = C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +148,8 @@
 		C1150E471ECD892200176F38 /* NSProcessInfo+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+MAREX.m"; sourceTree = "<group>"; };
 		C1150E4C1ECD9F9200176F38 /* UIFont+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MAREX.h"; sourceTree = "<group>"; };
 		C1150E4D1ECD9F9200176F38 /* UIFont+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MAREX.m"; sourceTree = "<group>"; };
+		C1150E4F1ECDAC7C00176F38 /* UIWindow+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+MAREX.h"; sourceTree = "<group>"; };
+		C1150E501ECDAC7C00176F38 /* UIWindow+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+MAREX.m"; sourceTree = "<group>"; };
 		C149F9441ECA8D8A00C8B7C8 /* MARExtensionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARExtensionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C149F9481ECA8D8A00C8B7C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C149F94A1ECA8D8A00C8B7C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 		C149F9681ECA8D8A00C8B7C8 /* MARExtensionDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MARExtensionDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C149F96C1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARExtensionDemoUITests.m; sourceTree = "<group>"; };
 		C149F96E1ECA8D8B00C8B7C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C188C4A31ECE8FCA00A500C9 /* NSData+MAREX_Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MAREX_Type.h"; sourceTree = "<group>"; };
+		C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MAREX_Type.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +272,8 @@
 			children = (
 				C1150DD91ECACE5B00176F38 /* NSData+MAREX.h */,
 				C1150DDA1ECACE5B00176F38 /* NSData+MAREX.m */,
+				C188C4A31ECE8FCA00A500C9 /* NSData+MAREX_Type.h */,
+				C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */,
 				C1150DE71ECAD85D00176F38 /* NSString+MAREX.h */,
 				C1150DE81ECAD85D00176F38 /* NSString+MAREX.m */,
 				C1150DEA1ECADC9500176F38 /* NSNumber+MAREX.h */,
@@ -329,6 +337,8 @@
 				5B4DC5F41ECC86400063CF63 /* UINavigationController+MAREX.m */,
 				C1150E4C1ECD9F9200176F38 /* UIFont+MAREX.h */,
 				C1150E4D1ECD9F9200176F38 /* UIFont+MAREX.m */,
+				C1150E4F1ECDAC7C00176F38 /* UIWindow+MAREX.h */,
+				C1150E501ECDAC7C00176F38 /* UIWindow+MAREX.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -564,6 +574,7 @@
 				5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */,
 				C1150E421ECD7AB300176F38 /* MARTouchID.m in Sources */,
 				C1150DE91ECAD85D00176F38 /* NSString+MAREX.m in Sources */,
+				C1150E511ECDAC7C00176F38 /* UIWindow+MAREX.m in Sources */,
 				C1150E361ECD46C900176F38 /* MARUIButton.m in Sources */,
 				C1150E171ECBE87000176F38 /* UIDevice+MAREX.m in Sources */,
 				C1150E331ECD448D00176F38 /* MARUITextView.m in Sources */,
@@ -575,6 +586,7 @@
 				C1150E261ECC442500176F38 /* UIBarButtonItem+MAREX.m in Sources */,
 				C1150E3C1ECD487E00176F38 /* NSArray+MAREX.m in Sources */,
 				C1150E4E1ECD9F9200176F38 /* UIFont+MAREX.m in Sources */,
+				C188C4A51ECE8FCA00A500C9 /* NSData+MAREX_Type.m in Sources */,
 				C1150E1D1ECC223000176F38 /* MARCGUtilities.m in Sources */,
 				C1150DE31ECAD4AE00176F38 /* UIScrollView+MAREX.m in Sources */,
 				C1150E3F1ECD794700176F38 /* MARSystemSound.m in Sources */,

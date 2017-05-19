@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 #import "MARCategory.h"
-
+#import "AppDelegate.h"
+#import "NSData+MAREX_Type.h"
 @interface ViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 - (IBAction)clickTestBtnAction:(id)sender;
 - (IBAction)clickTestBtn2Action:(id)sender;
@@ -23,8 +24,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -97,6 +97,14 @@
 
 - (IBAction)clickTestBtnAction:(id)sender {
     
+    UIImage* image = [(AppDelegate*)[UIApplication sharedApplication].delegate window].touchImage;
+    NSData *imageData = UIImagePNGRepresentation(image);
+    if (imageData) {
+        NSString *typeStr = [imageData mar_dataType];
+        NSLog(@"typestr : %@", typeStr);
+    }
+    return;
+    
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     
     imagePickerController.delegate = self;
@@ -146,7 +154,9 @@
 //    }
     
     self.imageView.image = tmpImage;
-    
+    [self.imageView applyMotionEffects];
+    [self.view applyMotionEffects];
+    return;
     switch (count % 6) {
         case 0:
             [self.imageView shakeView];

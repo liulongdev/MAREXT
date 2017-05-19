@@ -463,6 +463,20 @@
     [self addMotionEffect:motionEffectGroup];
 }
 
+- (void)applyMotionEffectsWithOffset:(CGSize)offset
+{
+    UIInterpolatingMotionEffect *horizontalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    horizontalEffect.minimumRelativeValue = @(offset.width);;
+    horizontalEffect.maximumRelativeValue = @(-offset.width);;
+    UIInterpolatingMotionEffect *verticalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    verticalEffect.minimumRelativeValue = @(offset.height);
+    verticalEffect.maximumRelativeValue = @(-offset.height);
+    UIMotionEffectGroup *motionEffectGroup = [[UIMotionEffectGroup alloc] init];
+    motionEffectGroup.motionEffects = @[horizontalEffect, verticalEffect];
+    
+    [self addMotionEffect:motionEffectGroup];
+}
+
 - (void)flipWithDuration:(NSTimeInterval)duration direction:(MARUIViewAnimationFlipDirection)direction
 {
     NSString *subtype = nil;
