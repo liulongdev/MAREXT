@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MARSystemSound.h"
 
 @interface UIButton (MAREX)
 
@@ -19,5 +20,12 @@
  Remvoe all blocks
  */
 - (void)mar_removeAllActionBlocks;
+
+/**
+ Set the sound for a particular control event (or events).
+ */
+- (void)mar_setSoundID:(MARAudioID)audioID forState:(UIControlEvents)event;
+
+- (void)mar_setLocalSoundURL:(NSURL *)soundURL forState:(UIControlEvents)event;
 
 @end

@@ -13,6 +13,7 @@
 @interface ViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 - (IBAction)clickTestBtnAction:(id)sender;
 - (IBAction)clickTestBtn2Action:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *btn1;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UILabel *tipLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
@@ -24,11 +25,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)testTextPath
@@ -96,7 +92,7 @@
 
 - (IBAction)clickTestBtnAction:(id)sender {
     
-    [MARSystemSound playSystemSoundVibrate];
+//    [MARSystemSound playSystemSoundVibrate];
     return;
     
     UIImage* image = [(AppDelegate*)[UIApplication sharedApplication].delegate window].mar_touchImage;
@@ -121,8 +117,8 @@
 }
 
 - (IBAction)clickTestBtn2Action:(id)sender {
-
-    [MARSystemSound playSystemSound:AudioIDPhotoShutter];
+    
+    [MARSystemSound playSystemSound:MARAudioIDPhotoShutter];
     return;
     static NSInteger count = 0;
     

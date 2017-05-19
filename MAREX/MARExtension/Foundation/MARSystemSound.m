@@ -10,7 +10,7 @@
 
 @implementation MARSystemSound
 
-+ (void)playSystemSound:(AudioID)audioID {
++ (void)playSystemSound:(MARAudioID)audioID {
     AudioServicesPlaySystemSound(audioID);
 }
 
@@ -35,6 +35,17 @@
         return NO;
     }
     return YES;
+}
+
+- (void)play
+{
+    if (self.audioID != 0) {
+        [self.class playSystemSound:self.audioID];
+    }
+    else if (self.soundURL)
+    {
+        [self.class playCustomSound:self.soundURL];
+    }
 }
 
 @end

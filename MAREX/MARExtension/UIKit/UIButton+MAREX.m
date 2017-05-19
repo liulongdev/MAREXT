@@ -8,6 +8,7 @@
 
 #import "UIButton+MAREX.h"
 #import <objc/runtime.h>
+#import "NSObject+MAREX.h"
 
 static const char kAllButtonTargetsKey;
 
@@ -37,6 +38,8 @@ static const char kAllButtonTargetsKey;
 
 @end
 
+static char * mar_button_sounddic_key;
+
 @implementation UIButton (MAREX)
 
 - (void)mar_addActionBlock:(void (^)(id))block forState:(UIControlEvents)event
@@ -65,6 +68,46 @@ static const char kAllButtonTargetsKey;
         objc_setAssociatedObject(self, &kAllButtonTargetsKey, targets, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return targets;
+}
+
+- (void)mar_setSoundID:(MARAudioID)audioID forState:(UIControlEvents)event
+{
+    NSMutableDictionary *soundDic = [self mar_soundDic];
+    NSString *key = [NSString stringWithFormat:@"%ld", (long)event];
+    MARSystemSound *sound = [soundDic objectForKey:key];
+    if (sound) {
+        [self removeTarget:sound action:@selector(play) forControlEvents:event];
+        [soundDic removeAllObjects];
+    }
+    sound = [MARSystemSound new];
+    sound.audioID = audioID;
+    [soundDic setObject:sound forKey:key];
+    [self addTarget:sound action:@selector(play) forControlEvents:event];
+}
+
+- (void)mar_setLocalSoundURL:(NSURL *)soundURL forState:(UIControlEvents)event
+{
+    NSMutableDictionary *soundDic = [self mar_soundDic];
+    NSString *key = [NSString stringWithFormat:@"%ld", (long)event];
+    MARSystemSound *sound = [soundDic objectForKey:key];
+    if (sound) {
+        [self removeTarget:sound action:@selector(play) forControlEvents:event];
+        [soundDic removeAllObjects];
+    }
+    sound = [MARSystemSound new];
+    sound.soundURL = soundURL;
+    [soundDic setObject:sound forKey:key];
+    [self addTarget:sound action:@selector(play) forControlEvents:event];
+}
+
+- (NSMutableDictionary *)mar_soundDic
+{
+    NSMutableDictionary *soundDic = [self mar_getAssociatedValueForKey:mar_button_sounddic_key];
+    if (!soundDic) {
+        soundDic = [NSMutableDictionary dictionaryWithCapacity:7];
+        [self mar_setAssociateValue:soundDic withKey:mar_button_sounddic_key];
+    }
+    return soundDic;
 }
 
 @end
