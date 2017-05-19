@@ -18,7 +18,7 @@
 
 @implementation UIDevice (MAREX)
 
-+ (double)systemVersion
++ (double)mar_systemVersion
 {
     static double version;
     static dispatch_once_t onceToken;
@@ -28,7 +28,7 @@
     return version;
 }
 
-- (BOOL)isPad
+- (BOOL)mar_isPad
 {
     static BOOL pad;
     static dispatch_once_t onceToken;
@@ -38,7 +38,7 @@
     return pad;
 }
 
-- (BOOL)isSimulator
+- (BOOL)mar_isSimulator
 {
 #if TARGET_OS_SIMULATOR
     return YES;
@@ -47,9 +47,9 @@
 #endif
 }
 
-- (BOOL)isJailbroken
+- (BOOL)mar_isJailbroken
 {
-    if ([self isSimulator]) return NO; // Dont't check simulator
+    if ([self mar_isSimulator]) return NO; // Dont't check simulator
     
     // iOS9 URL Scheme query changed ...
     // NSURL *cydiaURL = [NSURL URLWithString:@"cydia://package"];
@@ -69,7 +69,7 @@
         return YES;
     }
     
-    NSString *path = [NSString stringWithFormat:@"/private/%@", [NSString stringWithUUID]];
+    NSString *path = [NSString stringWithFormat:@"/private/%@", [NSString mar_stringWithUUID]];
     if ([@"test" writeToFile : path atomically : YES encoding : NSUTF8StringEncoding error : NULL]) {
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         return YES;
@@ -78,7 +78,7 @@
     return NO;
 }
 
-- (BOOL)isRetina
+- (BOOL)mar_isRetina
 {
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 2.0 || [UIScreen mainScreen].scale == 3.0 || [UIScreen mainScreen].scale > 3)) {
         return YES;
@@ -87,7 +87,7 @@
     }
 }
 
-- (BOOL)isRetinaHD
+- (BOOL)mar_isRetinaHD
 {
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 3.0 || [UIScreen mainScreen].scale > 3)) {
         return YES;
@@ -97,7 +97,7 @@
 }
 
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
-- (BOOL)canMakePhoneCalls {
+- (BOOL)mar_canMakePhoneCalls {
     __block BOOL can;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -107,7 +107,7 @@
 }
 #endif
 
-- (NSString *)ipAddressWithIfaName:(NSString *)name {
+- (NSString *)mar_ipAddressWithIfaName:(NSString *)name {
     if (name.length == 0) return nil;
     NSString *address = nil;
     struct ifaddrs *addrs = NULL;
@@ -144,12 +144,12 @@
     return address;
 }
 
-- (NSString *)ipAddressWIFI {
-    return [self ipAddressWithIfaName:@"en0"];
+- (NSString *)mar_ipAddressWIFI {
+    return [self mar_ipAddressWithIfaName:@"en0"];
 }
 
-- (NSString *)ipAddressCell {
-    return [self ipAddressWithIfaName:@"pdp_ip0"];
+- (NSString *)mar_ipAddressCell {
+    return [self mar_ipAddressWithIfaName:@"pdp_ip0"];
 }
 
 typedef struct {
@@ -234,12 +234,12 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return counter;
 }
 
-- (uint64_t)getNetworkTrafficBytes:(MARNetworkTrafficType)types {
+- (uint64_t)mar_getNetworkTrafficBytes:(MARNetworkTrafficType)types {
     mar_net_interface_counter counter = mar_get_net_interface_counter();
     return mar_net_counter_get_by_type(&counter, types);
 }
 
-- (NSString *)machineModel {
+- (NSString *)mar_machineModel {
     static dispatch_once_t one;
     static NSString *model;
     dispatch_once(&one, ^{
@@ -253,11 +253,11 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return model;
 }
 
-- (NSString *)machineModelName {
+- (NSString *)mar_machineModelName {
     static dispatch_once_t one;
     static NSString *name;
     dispatch_once(&one, ^{
-        NSString *model = [self machineModel];
+        NSString *model = [self mar_machineModel];
         if (!model) return;
         NSDictionary *dic = @{
                               @"Watch1,1" : @"Apple Watch 38mm",
@@ -343,12 +343,12 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return name;
 }
 
-- (NSDate *)systemUptime {
+- (NSDate *)mar_systemUptime {
     NSTimeInterval time = [[NSProcessInfo processInfo] systemUptime];
     return [[NSDate alloc] initWithTimeIntervalSinceNow:(0 - time)];
 }
 
-- (int64_t)diskSpace {
+- (int64_t)mar_diskSpace {
     NSError *error = nil;
     NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
     if (error) return -1;
@@ -357,7 +357,7 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return space;
 }
 
-- (int64_t)diskSpaceFree {
+- (int64_t)mar_diskSpaceFree {
     NSError *error = nil;
     NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
     if (error) return -1;
@@ -366,22 +366,22 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return space;
 }
 
-- (int64_t)diskSpaceUsed {
-    int64_t total = self.diskSpace;
-    int64_t free = self.diskSpaceFree;
+- (int64_t)mar_diskSpaceUsed {
+    int64_t total = self.mar_diskSpace;
+    int64_t free = self.mar_diskSpaceFree;
     if (total < 0 || free < 0) return -1;
     int64_t used = total - free;
     if (used < 0) used = -1;
     return used;
 }
 
-- (int64_t)memoryTotal {
+- (int64_t)mar_memoryTotal {
     int64_t mem = [[NSProcessInfo processInfo] physicalMemory];
     if (mem < -1) mem = -1;
     return mem;
 }
 
-- (int64_t)memoryUsed {
+- (int64_t)mar_memoryUsed {
     mach_port_t host_port = mach_host_self();
     mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
     vm_size_t page_size;
@@ -395,7 +395,7 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return page_size * (vm_stat.active_count + vm_stat.inactive_count + vm_stat.wire_count);
 }
 
-- (int64_t)memoryFree {
+- (int64_t)mar_memoryFree {
     mach_port_t host_port = mach_host_self();
     mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
     vm_size_t page_size;
@@ -409,7 +409,7 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return vm_stat.free_count * page_size;
 }
 
-- (int64_t)memoryActive {
+- (int64_t)mar_memoryActive {
     mach_port_t host_port = mach_host_self();
     mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
     vm_size_t page_size;
@@ -423,7 +423,7 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return vm_stat.active_count * page_size;
 }
 
-- (int64_t)memoryInactive {
+- (int64_t)mar_memoryInactive {
     mach_port_t host_port = mach_host_self();
     mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
     vm_size_t page_size;
@@ -437,7 +437,7 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return vm_stat.inactive_count * page_size;
 }
 
-- (int64_t)memoryWired {
+- (int64_t)mar_memoryWired {
     mach_port_t host_port = mach_host_self();
     mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
     vm_size_t page_size;
@@ -451,7 +451,7 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return vm_stat.wire_count * page_size;
 }
 
-- (int64_t)memoryPurgable {
+- (int64_t)mar_memoryPurgable {
     mach_port_t host_port = mach_host_self();
     mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
     vm_size_t page_size;
@@ -465,13 +465,13 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return vm_stat.purgeable_count * page_size;
 }
 
-- (NSUInteger)cpuCount {
+- (NSUInteger)mar_cpuCount {
     return [NSProcessInfo processInfo].activeProcessorCount;
 }
 
-- (float)cpuUsage {
+- (float)mar_cpuUsage {
     float cpu = 0;
-    NSArray *cpus = [self cpuUsagePerProcessor];
+    NSArray *cpus = [self mar_cpuUsagePerProcessor];
     if (cpus.count == 0) return -1;
     for (NSNumber *n in cpus) {
         cpu += n.floatValue;
@@ -479,7 +479,7 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return cpu;
 }
 
-- (NSArray *)cpuUsagePerProcessor {
+- (NSArray *)mar_cpuUsagePerProcessor {
     processor_info_array_t _cpuInfo, _prevCPUInfo = nil;
     mach_msg_type_number_t _numCPUInfo, _numPrevCPUInfo = 0;
     unsigned _numCPUs;

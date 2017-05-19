@@ -56,11 +56,11 @@
 
 @implementation UINavigationBar (MAREX_Translucent)
 
-- (void)setTransparent:(BOOL)transparent {
-    [self setTransparent:transparent translucent:YES];
+- (void)mar_setTransparent:(BOOL)transparent {
+    [self mar_setTransparent:transparent translucent:YES];
 }
 
-- (void)setTransparent:(BOOL)transparent translucent:(BOOL)translucent {
+- (void)mar_setTransparent:(BOOL)transparent translucent:(BOOL)translucent {
     if (transparent) {
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.shadowImage = [UIImage new];

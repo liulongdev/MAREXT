@@ -87,7 +87,7 @@
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
-- (NSString *)stringByURLEncode
+- (NSString *)mar_stringByURLEncode
 {
     if ([self respondsToSelector:@selector(stringByAddingPercentEncodingWithAllowedCharacters:)]) {
         /**
@@ -143,7 +143,7 @@
     }
 }
 
-- (NSString *)stringByURLDecode
+- (NSString *)mar_stringByURLDecode
 {
     if ([self respondsToSelector:@selector(stringByRemovingPercentEncoding)]) {
         return [self stringByRemovingPercentEncoding];
@@ -166,7 +166,7 @@
     }
 }
 
-- (NSString *)stringByEscapingHTML {
+- (NSString *)mar_stringByEscapingHTML {
     NSUInteger len = self.length;
     if (!len) return self;
     
@@ -196,7 +196,7 @@
     return result;
 }
 
-- (CGSize)sizeForFont:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode {
+- (CGSize)mar_sizeForFont:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode {
     CGSize result;
     if (!font) font = [UIFont systemFontOfSize:12];
     if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
@@ -220,23 +220,23 @@
     return result;
 }
 
-- (CGFloat)widthForFont:(UIFont *)font {
-    CGSize size = [self sizeForFont:font size:CGSizeMake(HUGE, HUGE) mode:NSLineBreakByWordWrapping];
+- (CGFloat)mar_widthForFont:(UIFont *)font {
+    CGSize size = [self mar_sizeForFont:font size:CGSizeMake(HUGE, HUGE) mode:NSLineBreakByWordWrapping];
     return size.width;
 }
 
-- (CGFloat)heightForFont:(UIFont *)font width:(CGFloat)width {
-    CGSize size = [self sizeForFont:font size:CGSizeMake(width, HUGE) mode:NSLineBreakByWordWrapping];
+- (CGFloat)mar_heightForFont:(UIFont *)font width:(CGFloat)width {
+    CGSize size = [self mar_sizeForFont:font size:CGSizeMake(width, HUGE) mode:NSLineBreakByWordWrapping];
     return size.height;
 }
 
-- (BOOL)matchesRegex:(NSString *)regex options:(NSRegularExpressionOptions)options {
+- (BOOL)mar_matchesRegex:(NSString *)regex options:(NSRegularExpressionOptions)options {
     NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:regex options:options error:NULL];
     if (!pattern) return NO;
     return ([pattern numberOfMatchesInString:self options:0 range:NSMakeRange(0, self.length)] > 0);
 }
 
-- (void)enumerateRegexMatches:(NSString *)regex
+- (void)mar_enumerateRegexMatches:(NSString *)regex
                       options:(NSRegularExpressionOptions)options
                    usingBlock:(void (^)(NSString *match, NSRange matchRange, BOOL *stop))block {
     if (regex.length == 0 || !block) return;
@@ -247,7 +247,7 @@
     }];
 }
 
-- (NSString *)stringByReplacingRegex:(NSString *)regex
+- (NSString *)mar_stringByReplacingRegex:(NSString *)regex
                              options:(NSRegularExpressionOptions)options
                           withString:(NSString *)replacement; {
     NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:regex options:options error:nil];
@@ -255,61 +255,61 @@
     return [pattern stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, [self length]) withTemplate:replacement];
 }
 
-- (char)charValue {
-    return self.numberValue.charValue;
+- (char)mar_charValue {
+    return self.mar_numberValue.charValue;
 }
 
-- (unsigned char) unsignedCharValue {
-    return self.numberValue.unsignedCharValue;
+- (unsigned char)mar_unsignedCharValue {
+    return self.mar_numberValue.unsignedCharValue;
 }
 
-- (short) shortValue {
-    return self.numberValue.shortValue;
+- (short)mar_shortValue {
+    return self.mar_numberValue.shortValue;
 }
 
-- (unsigned short) unsignedShortValue {
-    return self.numberValue.unsignedShortValue;
+- (unsigned short)mar_unsignedShortValue {
+    return self.mar_numberValue.unsignedShortValue;
 }
 
-- (unsigned int) unsignedIntValue {
-    return self.numberValue.unsignedIntValue;
+- (unsigned int)mar_unsignedIntValue {
+    return self.mar_numberValue.unsignedIntValue;
 }
 
-- (long) longValue {
-    return self.numberValue.longValue;
+- (long)mar_longValue {
+    return self.mar_numberValue.longValue;
 }
 
-- (unsigned long) unsignedLongValue {
-    return self.numberValue.unsignedLongValue;
+- (unsigned long)mar_unsignedLongValue {
+    return self.mar_numberValue.unsignedLongValue;
 }
 
-- (unsigned long long) unsignedLongLongValue {
-    return self.numberValue.unsignedLongLongValue;
+- (unsigned long long)mar_unsignedLongLongValue {
+    return self.mar_numberValue.unsignedLongLongValue;
 }
 
-- (NSUInteger) unsignedIntegerValue {
-    return self.numberValue.unsignedIntegerValue;
+- (NSUInteger)mar_unsignedIntegerValue {
+    return self.mar_numberValue.unsignedIntegerValue;
 }
 
-+ (NSString *)stringWithUUID {
++ (NSString *)mar_stringWithUUID {
     CFUUIDRef uuid = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, uuid);
     CFRelease(uuid);
     return (__bridge_transfer NSString *)string;
 }
 
-+ (NSString *)stringWithUTF32Char:(UTF32Char)char32 {
++ (NSString *)mar_stringWithUTF32Char:(UTF32Char)char32 {
     char32 = NSSwapHostIntToLittle(char32);
     return [[NSString alloc] initWithBytes:&char32 length:4 encoding:NSUTF32LittleEndianStringEncoding];
 }
 
-+ (NSString *)stringWithUTF32Chars:(const UTF32Char *)char32 length:(NSUInteger)length {
++ (NSString *)mar_stringWithUTF32Chars:(const UTF32Char *)char32 length:(NSUInteger)length {
     return [[NSString alloc] initWithBytes:(const void *)char32
                                     length:length * 4
                                   encoding:NSUTF32LittleEndianStringEncoding];
 }
 
-- (void)enumerateUTF32CharInRange:(NSRange)range usingBlock:(void (^)(UTF32Char char32, NSRange range, BOOL *stop))block {
+- (void)mar_enumerateUTF32CharInRange:(NSRange)range usingBlock:(void (^)(UTF32Char char32, NSRange range, BOOL *stop))block {
     NSString *str = self;
     if (range.location != 0 || range.length != self.length) {
         str = [self substringWithRange:range];
@@ -332,17 +332,17 @@
     }
 }
 
-- (NSString *)stringByTrim {
+- (NSString *)mar_stringByTrim {
     NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     return [self stringByTrimmingCharactersInSet:set];
 }
 
-- (NSString *)stringByAppendingNameScale:(CGFloat)scale {
+- (NSString *)mar_stringByAppendingNameScale:(CGFloat)scale {
     if (fabs(scale - 1) <= __FLT_EPSILON__ || self.length == 0 || [self hasSuffix:@"/"]) return self.copy;
     return [self stringByAppendingFormat:@"@%@x", @(scale)];
 }
 
-- (NSString *)stringByAppendingPathScale:(CGFloat)scale {
+- (NSString *)mar_stringByAppendingPathScale:(CGFloat)scale {
     if (fabs(scale - 1) <= __FLT_EPSILON__ || self.length == 0 || [self hasSuffix:@"/"]) return self.copy;
     NSString *ext = self.pathExtension;
     NSRange extRange = NSMakeRange(self.length - ext.length, 0);
@@ -351,17 +351,17 @@
     return [self stringByReplacingCharactersInRange:extRange withString:scaleStr];
 }
 
-- (CGFloat)pathScale {
+- (CGFloat)mar_pathScale {
     if (self.length == 0 || [self hasSuffix:@"/"]) return 1;
     NSString *name = self.stringByDeletingPathExtension;
     __block CGFloat scale = 1;
-    [name enumerateRegexMatches:@"@[0-9]+\\.?[0-9]*x$" options:NSRegularExpressionAnchorsMatchLines usingBlock: ^(NSString *match, NSRange matchRange, BOOL *stop) {
+    [name mar_enumerateRegexMatches:@"@[0-9]+\\.?[0-9]*x$" options:NSRegularExpressionAnchorsMatchLines usingBlock: ^(NSString *match, NSRange matchRange, BOOL *stop) {
         scale = [match substringWithRange:NSMakeRange(1, match.length - 2)].doubleValue;
     }];
     return scale;
 }
 
-- (BOOL)isNotBlank {
+- (BOOL)mar_isNotBlank {
     NSCharacterSet *blank = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     for (NSInteger i = 0; i < self.length; ++i) {
         unichar c = [self characterAtIndex:i];
@@ -372,33 +372,33 @@
     return NO;
 }
 
-- (BOOL)containsString:(NSString *)string {
+- (BOOL)mar_containsString:(NSString *)string {
     if (string == nil) return NO;
     return [self rangeOfString:string].location != NSNotFound;
 }
 
-- (BOOL)containsCharacterSet:(NSCharacterSet *)set {
+- (BOOL)mar_containsCharacterSet:(NSCharacterSet *)set {
     if (set == nil) return NO;
     return [self rangeOfCharacterFromSet:set].location != NSNotFound;
 }
 
-- (NSNumber *)numberValue {
-    return [NSNumber numberWithString:self];
+- (NSNumber *)mar_numberValue {
+    return [NSNumber mar_numberWithString:self];
 }
 
-- (NSData *)dataValue {
+- (NSData *)mar_dataValue {
     return [self dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (NSRange)rangeOfAll {
+- (NSRange)mar_rangeOfAll {
     return NSMakeRange(0, self.length);
 }
 
-- (id)jsonValueDecoded {
-    return [[self dataValue] mar_jsonValueDecoded];
+- (id)mar_jsonValueDecoded {
+    return [[self mar_dataValue] mar_jsonValueDecoded];
 }
 
-+ (NSString *)stringNamed:(NSString *)name {
++ (NSString *)mar_stringNamed:(NSString *)name {
     NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@""];
     NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
     if (!str) {
@@ -409,18 +409,18 @@
 }
 
 
-- (BOOL)isEmail {
-    return [NSString isEmail:self];
+- (BOOL)mar_isEmail {
+    return [NSString mar_isEmail:self];
 }
 
-+ (BOOL)isEmail:(NSString * _Nonnull)email {
++ (BOOL)mar_isEmail:(NSString * _Nonnull)email {
     NSString *emailRegEx = @"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
     
     NSPredicate *regExPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
     return [regExPredicate evaluateWithObject:[email lowercaseString]];
 }
 
-- (NSString * _Nonnull)removeExtraSpaces {
+- (NSString * _Nonnull)mar_removeExtraSpaces {
     NSString *squashed = [self stringByReplacingOccurrencesOfString:@"[ ]+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, self.length)];
     return [squashed stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
@@ -431,10 +431,10 @@
 
 + (MARPasswordStrengthLevel)mar_checkPasswordStrength:(NSString * _Nonnull)password {
     NSInteger length = [password length];
-    int lowercase = [self countLowercaseLetters:password];
-    int uppercase = [self countUppercaseLetters:password];
-    int numbers = [self countNumbers:password];
-    int symbols = [self countSymbols:password];
+    int lowercase = [self p_mar_countLowercaseLetters:password];
+    int uppercase = [self p_mar_countUppercaseLetters:password];
+    int numbers = [self p_mar_countNumbers:password];
+    int symbols = [self p_mar_countSymbols:password];
     
     int score = 0;
     
@@ -504,7 +504,7 @@
                             return MARPasswordStrengthLevelVeryWeak;
 }
 
-+ (int)countLowercaseLetters:(NSString * _Nonnull)password {
++ (int)p_mar_countLowercaseLetters:(NSString * _Nonnull)password {
     int count = 0;
     
     for (int i = 0; i < [password length]; i++) {
@@ -517,7 +517,7 @@
     return count;
 }
 
-+ (int)countUppercaseLetters:(NSString * _Nonnull)password {
++ (int)p_mar_countUppercaseLetters:(NSString * _Nonnull)password {
     int count = 0;
     
     for (int i = 0; i < [password length]; i++) {
@@ -530,7 +530,7 @@
     return count;
 }
 
-+ (int)countNumbers:(NSString * _Nonnull)password {
++ (int)p_mar_countNumbers:(NSString * _Nonnull)password {
     int count = 0;
     
     for (int i = 0; i < [password length]; i++) {
@@ -543,7 +543,7 @@
     return count;
 }
 
-+ (int)countSymbols:(NSString * _Nonnull)password {
++ (int)p_mar_countSymbols:(NSString * _Nonnull)password {
     int count = 0;
     
     for (int i = 0; i < [password length]; i++) {

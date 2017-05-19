@@ -11,8 +11,8 @@
 
 @implementation NSNumber (MAREX)
 
-+ (NSNumber *)numberWithString:(NSString *)string {
-    NSString *str = [[string stringByTrim] lowercaseString];
++ (NSNumber *)mar_numberWithString:(NSString *)string {
+    NSString *str = [[string mar_stringByTrim] lowercaseString];
     if (!str || !str.length) {
         return nil;
     }

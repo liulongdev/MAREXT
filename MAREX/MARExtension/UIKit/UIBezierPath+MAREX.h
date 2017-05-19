@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A new path object with the text and font, or nil if an error occurs.
  */
-+ (nullable UIBezierPath *)bezierPathWithText:(NSString *)text font:(UIFont *)font;
++ (nullable UIBezierPath *)mar_bezierPathWithText:(NSString *)text font:(UIFont *)font;
 
 @end
 

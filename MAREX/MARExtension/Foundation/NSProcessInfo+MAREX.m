@@ -11,11 +11,11 @@
 
 @implementation NSProcessInfo (MAREX)
 
-+ (float)cpuUsage {
-    return [self currentAppCPUUsage];
++ (float)mar_cpuUsage {
+    return [self mar_currentAppCPUUsage];
 }
 
-+ (float)currentAppCPUUsage {
++ (float)mar_currentAppCPUUsage {
     kern_return_t kr;
     task_info_data_t tinfo;
     mach_msg_type_number_t task_info_count;

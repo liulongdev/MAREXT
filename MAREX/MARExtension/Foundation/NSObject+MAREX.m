@@ -11,7 +11,7 @@
 
 @implementation NSObject (MAREX)
 
-- (BOOL)isValid {
+- (BOOL)mar_isValid {
     return !(self == nil || [self isKindOfClass:[NSNull class]]);
 }
 - (id)mar_performSelector:(SEL)aSelector withObjects:(id)object, ...
@@ -199,6 +199,16 @@ static const char marobj_kvo_block_key;
         objc_setAssociatedObject(self, &marobj_kvo_block_key, targets, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return targets;
+}
+
+@end
+
+@implementation NSObject (MAREX_GCD)
+
+- (void)mar_gcdPerformBlock:(void (^)(void))block afterDelay:(NSTimeInterval)seconds
+{
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), block);
 }
 
 @end

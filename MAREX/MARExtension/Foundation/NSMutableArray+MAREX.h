@@ -25,7 +25,7 @@
  *
  *  @return Returns the given array ordered by the given key ascending or descending
  */
-+ (NSMutableArray * _Nonnull)sortArrayByKey:(NSString * _Nonnull)key
++ (NSMutableArray * _Nonnull)mar_sortArrayByKey:(NSString * _Nonnull)key
                                       array:(NSMutableArray * _Nonnull)array
                                   ascending:(BOOL)ascending;
 

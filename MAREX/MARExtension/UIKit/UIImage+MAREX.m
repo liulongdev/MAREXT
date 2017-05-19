@@ -41,7 +41,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
 
 @implementation UIImage (MAREX)
 
-+ (UIImage *)imageWithSmallGIFData:(NSData *)data scale:(CGFloat)scale
++ (UIImage *)mar_imageWithSmallGIFData:(NSData *)data scale:(CGFloat)scale
 {
     CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFTypeRef)(data), NULL);
     if (!source) return nil;
@@ -137,7 +137,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return image;
 }
 
-+ (BOOL)isAnimatedGIFData:(NSData *)data
++ (BOOL)mar_isAnimatedGIFData:(NSData *)data
 {
     if (data.length < 16) return NO;
     UInt32 magic = *(UInt32 *)data.bytes;
@@ -150,7 +150,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return count > 1;
 }
 
-+ (BOOL)isAnimatedGIFFile:(NSString *)path {
++ (BOOL)mar_isAnimatedGIFFile:(NSString *)path {
     if (path.length == 0) return NO;
     const char *cpath = path.UTF8String;
     FILE *fd = fopen(cpath, "rb");
@@ -165,15 +165,15 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return isGIF;
 }
 
-+ (UIImage *)imageWithPDF:(id)dataOrPath {
++ (UIImage *)mar_imageWithPDF:(id)dataOrPath {
     return [self _mar_imageWithPDF:dataOrPath resize:NO size:CGSizeZero];
 }
 
-+ (UIImage *)imageWithPDF:(id)dataOrPath size:(CGSize)size {
++ (UIImage *)mar_imageWithPDF:(id)dataOrPath size:(CGSize)size {
     return [self _mar_imageWithPDF:dataOrPath resize:YES size:size];
 }
 
-+ (UIImage *)imageWithEmoji:(NSString *)emoji size:(CGFloat)size {
++ (UIImage *)mar_imageWithEmoji:(NSString *)emoji size:(CGFloat)size {
     if (emoji.length == 0) return nil;
     if (size < 1) return nil;
     
@@ -243,12 +243,12 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return pdfImage;
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)color
++ (UIImage *)mar_imageWithColor:(UIColor *)color
 {
-    return [self imageWithColor:color size:CGSizeMake(1, 1)];
+    return [self mar_imageWithColor:color size:CGSizeMake(1, 1)];
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size
++ (UIImage *)mar_imageWithColor:(UIColor *)color size:(CGSize)size
 {
     if (!color || size.width <= 0 || size.height <= 0) return nil;
     CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
@@ -261,7 +261,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return image;
 }
 
-+ (UIImage *)imageWithSize:(CGSize)size drawBlock:(void (^)(CGContextRef _Nonnull))drawBlock
++ (UIImage *)mar_imageWithSize:(CGSize)size drawBlock:(void (^)(CGContextRef _Nonnull))drawBlock
 {
     if (!drawBlock) return nil;
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
@@ -273,7 +273,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return image;
 }
 
-- (BOOL)hasAlphaChannel
+- (BOOL)mar_hasAlphaChannel
 {
     if (self.CGImage == NULL) return NO;
     CGImageAlphaInfo alpha = CGImageGetAlphaInfo(self.CGImage) & kCGBitmapAlphaInfoMask;
@@ -283,8 +283,8 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
             alpha == kCGImageAlphaPremultipliedLast);
 }
 
-- (UIImage *)removeAlpha {
-    if (![self hasAlphaChannel]) {
+- (UIImage *)mar_removeAlpha {
+    if (![self mar_hasAlphaChannel]) {
         return self;
     }
     
@@ -301,7 +301,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return returnImage;
 }
 
-- (UIImage *)fillAlphaWithColor:(UIColor *)color {
+- (UIImage *)mar_fillAlphaWithColor:(UIColor *)color {
     CGRect imageRect;
     imageRect.origin = CGPointZero;
     imageRect.size = self.size;
@@ -320,7 +320,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return returnImage;
 }
 
-- (void)drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode clipsToBounds:(BOOL)clips
+- (void)mar_drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode clipsToBounds:(BOOL)clips
 {
     CGRect drawRect = MARCGRectFitWithContentMode(rect, self.size, contentMode);
     if (drawRect.size.width == 0 || drawRect.size.height == 0) return;
@@ -340,7 +340,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     }
 }
 
-- (UIImage *)imageByResizeToSize:(CGSize)size
+- (UIImage *)mar_imageByResizeToSize:(CGSize)size
 {
     if (size.width <= 0 || size.height <= 0) return nil;
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
@@ -350,17 +350,17 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return image;
 }
 
-- (UIImage *)imageByResizeToSize:(CGSize)size contentMode:(UIViewContentMode)contentMode
+- (UIImage *)mar_imageByResizeToSize:(CGSize)size contentMode:(UIViewContentMode)contentMode
 {
     if (size.width <= 0 || size.height <= 0) return nil;
     UIGraphicsBeginImageContextWithOptions(size, NO, self.scale);
-    [self drawInRect:CGRectMake(0, 0, size.width, size.height) withContentMode:contentMode clipsToBounds:NO];
+    [self mar_drawInRect:CGRectMake(0, 0, size.width, size.height) withContentMode:contentMode clipsToBounds:NO];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 }
 
-- (UIImage *)imageByCropToRect:(CGRect)rect
+- (UIImage *)mar_imageByCropToRect:(CGRect)rect
 {
     rect.origin.x *= self.scale;
     rect.origin.y *= self.scale;
@@ -373,7 +373,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return image;
 }
 
-- (UIImage *)imageByInsetEdge:(UIEdgeInsets)insets withColor:(UIColor *)color
+- (UIImage *)mar_imageByInsetEdge:(UIEdgeInsets)insets withColor:(UIColor *)color
 {
     CGSize size = self.size;
     size.width -= insets.left + insets.right;
@@ -396,17 +396,17 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return image;
 }
 
-- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius
+- (UIImage *)mar_imageByRoundCornerRadius:(CGFloat)radius
 {
-    return [self imageByRoundCornerRadius:radius borderWidth:0 borderColor:nil];
+    return [self mar_imageByRoundCornerRadius:radius borderWidth:0 borderColor:nil];
 }
 
-- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor
+- (UIImage *)mar_imageByRoundCornerRadius:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor
 {
-    return [self imageByRoundCornerRadius:radius corners:UIRectCornerAllCorners borderWidth:borderWidth borderColor:borderColor borderLineJoin:kCGLineJoinMiter];
+    return [self mar_imageByRoundCornerRadius:radius corners:UIRectCornerAllCorners borderWidth:borderWidth borderColor:borderColor borderLineJoin:kCGLineJoinMiter];
 }
 
-- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius corners:(UIRectCorner)corners borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor borderLineJoin:(CGLineJoin)borderLineJoin
+- (UIImage *)mar_imageByRoundCornerRadius:(CGFloat)radius corners:(UIRectCorner)corners borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor borderLineJoin:(CGLineJoin)borderLineJoin
 {
     if (corners != UIRectCornerAllCorners) {
         UIRectCorner tmp = 0;
@@ -452,7 +452,7 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return image;
 }
 
-- (UIImage *)imageByRotate:(CGFloat)radians fitSize:(BOOL)fitSize {
+- (UIImage *)mar_imageByRotate:(CGFloat)radians fitSize:(BOOL)fitSize {
     size_t width = (size_t)CGImageGetWidth(self.CGImage);
     size_t height = (size_t)CGImageGetHeight(self.CGImage);
     CGRect newRect = CGRectApplyAffineTransform(CGRectMake(0., 0., width, height),
@@ -515,29 +515,29 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return img;
 }
 
-- (UIImage *)imageByRotateLeft90 {
-    return [self imageByRotate:90 * M_PI / 180 fitSize:YES];
+- (UIImage *)mar_imageByRotateLeft90 {
+    return [self mar_imageByRotate:90 * M_PI / 180 fitSize:YES];
 }
 
-- (UIImage *)imageByRotateRight90 {
-    return [self imageByRotate:-90 * M_PI / 180 fitSize:YES];
+- (UIImage *)mar_imageByRotateRight90 {
+    return [self mar_imageByRotate:-90 * M_PI / 180 fitSize:YES];
 }
 
-- (UIImage *)imageByRotate180 {
+- (UIImage *)mar_imageByRotate180 {
     return [self _mar_flipHorizontal:YES vertical:YES];
 }
 
-- (UIImage *)imageByFlipVertical {
+- (UIImage *)mar_imageByFlipVertical {
 //    return [self _mar_flipHorizontal:NO vertical:YES];
     return [[UIImage alloc] initWithCGImage:self.CGImage scale:self.scale orientation:UIImageOrientationLeftMirrored];
 }
 
-- (UIImage *)imageByFlipHorizontal {
+- (UIImage *)mar_imageByFlipHorizontal {
 //    return [self _mar_flipHorizontal:YES vertical:NO];
     return [[UIImage alloc] initWithCGImage:self.CGImage scale:self.scale orientation:UIImageOrientationUpMirrored];
 }
 
-- (UIImage *)imageByTintColor:(UIColor *)color
+- (UIImage *)mar_imageByTintColor:(UIColor *)color
 {
     UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
@@ -549,27 +549,27 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
     return newImage;
 }
 
-- (UIImage *)imageByGrayscale {
-    return [self imageByBlurRadius:0 tintColor:nil tintMode:0 saturation:0 maskImage:nil];
+- (UIImage *)mar_imageByGrayscale {
+    return [self mar_imageByBlurRadius:0 tintColor:nil tintMode:0 saturation:0 maskImage:nil];
 }
 
-- (UIImage *)imageByBlurSoft {
-    return [self imageByBlurRadius:60 tintColor:[UIColor colorWithWhite:0.84 alpha:0.36] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
+- (UIImage *)mar_imageByBlurSoft {
+    return [self mar_imageByBlurRadius:60 tintColor:[UIColor colorWithWhite:0.84 alpha:0.36] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
 }
 
-- (UIImage *)imageByBlurLight {
-    return [self imageByBlurRadius:60 tintColor:[UIColor colorWithWhite:1.0 alpha:0.3] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
+- (UIImage *)mar_imageByBlurLight {
+    return [self mar_imageByBlurRadius:60 tintColor:[UIColor colorWithWhite:1.0 alpha:0.3] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
 }
 
-- (UIImage *)imageByBlurExtraLight {
-    return [self imageByBlurRadius:40 tintColor:[UIColor colorWithWhite:0.97 alpha:0.82] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
+- (UIImage *)mar_imageByBlurExtraLight {
+    return [self mar_imageByBlurRadius:40 tintColor:[UIColor colorWithWhite:0.97 alpha:0.82] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
 }
 
-- (UIImage *)imageByBlurDark {
-    return [self imageByBlurRadius:40 tintColor:[UIColor colorWithWhite:0.11 alpha:0.73] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
+- (UIImage *)mar_imageByBlurDark {
+    return [self mar_imageByBlurRadius:40 tintColor:[UIColor colorWithWhite:0.11 alpha:0.73] tintMode:kCGBlendModeNormal saturation:1.8 maskImage:nil];
 }
 
-- (UIImage *)imageByBlurWithTint:(UIColor *)tintColor {
+- (UIImage *)mar_imageByBlurWithTint:(UIColor *)tintColor {
     const CGFloat EffectColorAlpha = 0.6;
     UIColor *effectColor = tintColor;
     size_t componentCount = CGColorGetNumberOfComponents(tintColor.CGColor);
@@ -584,10 +584,10 @@ static NSTimeInterval _mar_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef
             effectColor = [UIColor colorWithRed:r green:g blue:b alpha:EffectColorAlpha];
         }
     }
-    return [self imageByBlurRadius:20 tintColor:effectColor tintMode:kCGBlendModeNormal saturation:-1.0 maskImage:nil];
+    return [self mar_imageByBlurRadius:20 tintColor:effectColor tintMode:kCGBlendModeNormal saturation:-1.0 maskImage:nil];
 }
 
-- (UIImage *)imageByBlurRadius:(CGFloat)blurRadius
+- (UIImage *)mar_imageByBlurRadius:(CGFloat)blurRadius
                      tintColor:(UIColor *)tintColor
                       tintMode:(CGBlendMode)tintBlendMode
                     saturation:(CGFloat)saturation
@@ -788,7 +788,7 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     return outputImage;
 }
 
-- (UIImage *)blurImageWithBlur:(CGFloat)blur {
+- (UIImage *)mar_blurImageWithBlur:(CGFloat)blur {
     if (blur < 0.f || blur > 1.f) {
         blur = 0.5f;
     }
@@ -845,18 +845,18 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     return returnImage;
 }
 
-+ (UIImage * _Nonnull)imageFromText:(NSString * _Nonnull)text font:(MARFontName)fontName fontSize:(CGFloat)fontSize imageSize:(CGSize)imageSize {
++ (UIImage * _Nonnull)mar_imageFromText:(NSString * _Nonnull)text font:(MARFontName)fontName fontSize:(CGFloat)fontSize imageSize:(CGSize)imageSize {
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, [UIScreen mainScreen].scale);
     
-    [text drawAtPoint:CGPointMake(0.0, 0.0) withAttributes:@{NSFontAttributeName:[UIFont fontForFontName:fontName size:fontSize]}];
+    [text drawAtPoint:CGPointMake(0.0, 0.0) withAttributes:@{NSFontAttributeName:[UIFont mar_fontForFontName:fontName size:fontSize]}];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return image;
 }
 
-+ (UIImage *)imageWithSize:(CGSize)imageSize backgroundColor:(UIColor *)backgroundColor maskedText:(NSString *)string font:(MARFontName)fontName fontSize:(CGFloat)fontSize {
-    UIFont *font = [UIFont fontForFontName:fontName size:fontSize];
++ (UIImage *)mar_imageWithSize:(CGSize)imageSize backgroundColor:(UIColor *)backgroundColor maskedText:(NSString *)string font:(MARFontName)fontName fontSize:(CGFloat)fontSize {
+    UIFont *font = [UIFont mar_fontForFontName:fontName size:fontSize];
     NSDictionary *textAttributes = @{NSFontAttributeName:font};
     
     CGSize textSize = [string sizeWithAttributes:textAttributes];

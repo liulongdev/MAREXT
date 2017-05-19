@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A new image created from GIF, or nil when an error occurs.
  */
-+ (nullable UIImage *)imageWithSmallGIFData:(NSData *)data scale:(CGFloat)scale;
++ (nullable UIImage *)mar_imageWithSmallGIFData:(NSData *)data scale:(CGFloat)scale;
 
 /**
  Whether the data is animated GIF.
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return Returns YES only if the data is gif and contains more than one frame,
  otherwise returns NO.
  */
-+ (BOOL)isAnimatedGIFData:(NSData *)data;
++ (BOOL)mar_isAnimatedGIFData:(NSData *)data;
 
 /**
  Whether the file in the specified path is GIF.
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Returns YES if the file is gif, otherwise returns NO.
  */
-+ (BOOL)isAnimatedGIFFile:(NSString *)path;
++ (BOOL)mar_isAnimatedGIFFile:(NSString *)path;
 
 /**
  Create an image from a PDF file data or path.
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A new image create from PDF, or nil when an error occurs.
  */
-+ (nullable UIImage *)imageWithPDF:(id)dataOrPath;
++ (nullable UIImage *)mar_imageWithPDF:(id)dataOrPath;
 
 /**
  Create an image from a PDF file data or path.
@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A new image create from PDF, or nil when an error occurs.
  */
-+ (nullable UIImage *)imageWithPDF:(id)dataOrPath size:(CGSize)size;
++ (nullable UIImage *)mar_imageWithPDF:(id)dataOrPath size:(CGSize)size;
 
 /**
  Create a square image from apple emoji.
@@ -95,14 +95,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Image from emoji, or nil when an error occurs.
  */
-+ (nullable UIImage *)imageWithEmoji:(NSString *)emoji size:(CGFloat)size;
++ (nullable UIImage *)mar_imageWithEmoji:(NSString *)emoji size:(CGFloat)size;
 
 /**
  Create and return a 1x1 point size image with the given color.
  
  @param color  The color.
  */
-+ (nullable UIImage *)imageWithColor:(UIColor *)color;
++ (nullable UIImage *)mar_imageWithColor:(UIColor *)color;
 
 /**
  Create and return a pure color image with the given color and size.
@@ -110,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param color  The color.
  @param size   New image's type.
  */
-+ (nullable UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
++ (nullable UIImage *)mar_imageWithColor:(UIColor *)color size:(CGSize)size;
 
 /**
  Create and return an image with custom draw code.
@@ -120,7 +120,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The new image.
  */
-+ (nullable UIImage *)imageWithSize:(CGSize)size drawBlock:(void (^)(CGContextRef context))drawBlock;
++ (nullable UIImage *)mar_imageWithSize:(CGSize)size drawBlock:(void (^)(CGContextRef context))drawBlock;
 
 #pragma mark - Image Info
 ///=============================================================================
@@ -130,14 +130,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Whether this image has alpha channel.
  */
-- (BOOL)hasAlphaChannel;
+- (BOOL)mar_hasAlphaChannel;
 
 /**
  *  Remove the alpha of the image
  *
  *  @return Returns the image without alpha
  */
-- (UIImage *)removeAlpha;
+- (UIImage *)mar_removeAlpha;
 
 /**
  *  Fill the alpha with the given color
@@ -146,7 +146,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Returns the filled image
  */
-- (UIImage *)fillAlphaWithColor:(UIColor *)color;
+- (UIImage *)mar_fillAlphaWithColor:(UIColor *)color;
 
 #pragma mark - Modify Image
 ///=============================================================================
@@ -169,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param clips       A Boolean value that determines whether content are confined to the rect.
  */
-- (void)drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode clipsToBounds:(BOOL)clips;
+- (void)mar_drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode clipsToBounds:(BOOL)clips;
 
 /**
  Returns a new image which is scaled from this image.
@@ -179,7 +179,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return      The new image with the given size.
  */
-- (nullable UIImage *)imageByResizeToSize:(CGSize)size;
+- (nullable UIImage *)mar_imageByResizeToSize:(CGSize)size;
 
 /**
  Returns a new image which is scaled from this image.
@@ -191,7 +191,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The new image with the given size.
  */
-- (nullable UIImage *)imageByResizeToSize:(CGSize)size contentMode:(UIViewContentMode)contentMode;
+- (nullable UIImage *)mar_imageByResizeToSize:(CGSize)size contentMode:(UIViewContentMode)contentMode;
 
 /**
  Returns a new image which is cropped from this image.
@@ -200,7 +200,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return      The new image, or nil if an error occurs.
  */
-- (nullable UIImage *)imageByCropToRect:(CGRect)rect;
+- (nullable UIImage *)mar_imageByCropToRect:(CGRect)rect;
 
 /**
  Returns a new image which is edge inset from this image.
@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return        The new image, or nil if an error occurs.
  */
-- (nullable UIImage *)imageByInsetEdge:(UIEdgeInsets)insets withColor:(nullable UIColor *)color;
+- (nullable UIImage *)mar_imageByInsetEdge:(UIEdgeInsets)insets withColor:(nullable UIColor *)color;
 
 /**
  Rounds a new image with a given corner size.
@@ -220,7 +220,7 @@ NS_ASSUME_NONNULL_BEGIN
  rectangle's width or height are clamped appropriately to half
  the width or height.
  */
-- (nullable UIImage *)imageByRoundCornerRadius:(CGFloat)radius;
+- (nullable UIImage *)mar_imageByRoundCornerRadius:(CGFloat)radius;
 
 /**
  Rounds a new image with a given corner size.
@@ -235,7 +235,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param borderColor  The border stroke color. nil means clear color.
  */
-- (nullable UIImage *)imageByRoundCornerRadius:(CGFloat)radius
+- (nullable UIImage *)mar_imageByRoundCornerRadius:(CGFloat)radius
                                    borderWidth:(CGFloat)borderWidth
                                    borderColor:(nullable UIColor *)borderColor;
 
@@ -258,7 +258,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param borderLineJoin The border line join.
  */
-- (nullable UIImage *)imageByRoundCornerRadius:(CGFloat)radius
+- (nullable UIImage *)mar_imageByRoundCornerRadius:(CGFloat)radius
                                        corners:(UIRectCorner)corners
                                    borderWidth:(CGFloat)borderWidth
                                    borderColor:(nullable UIColor *)borderColor
@@ -272,34 +272,34 @@ NS_ASSUME_NONNULL_BEGIN
  @param fitSize   YES: new image's size is extend to fit all content.
  NO: image's size will not change, content may be clipped.
  */
-- (nullable UIImage *)imageByRotate:(CGFloat)radians fitSize:(BOOL)fitSize;
+- (nullable UIImage *)mar_imageByRotate:(CGFloat)radians fitSize:(BOOL)fitSize;
 
 /**
  Returns a new image rotated counterclockwise by a quarter‑turn (90°). ⤺
  The width and height will be exchanged.
  */
-- (nullable UIImage *)imageByRotateLeft90;
+- (nullable UIImage *)mar_imageByRotateLeft90;
 
 /**
  Returns a new image rotated clockwise by a quarter‑turn (90°). ⤼
  The width and height will be exchanged.
  */
-- (nullable UIImage *)imageByRotateRight90;
+- (nullable UIImage *)mar_imageByRotateRight90;
 
 /**
  Returns a new image rotated 180° . ↻
  */
-- (nullable UIImage *)imageByRotate180;
+- (nullable UIImage *)mar_imageByRotate180;
 
 /**
  Returns a vertically flipped image. ⥯
  */
-- (nullable UIImage *)imageByFlipVertical;
+- (nullable UIImage *)mar_imageByFlipVertical;
 
 /**
  Returns a horizontally flipped image. ⇋
  */
-- (nullable UIImage *)imageByFlipHorizontal;
+- (nullable UIImage *)mar_imageByFlipHorizontal;
 
 
 #pragma mark - Image Effect
@@ -312,42 +312,42 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param color  The color.
  */
-- (nullable UIImage *)imageByTintColor:(UIColor *)color;
+- (nullable UIImage *)mar_imageByTintColor:(UIColor *)color;
 
 /**
  Returns a grayscaled image.
  */
-- (nullable UIImage *)imageByGrayscale;
+- (nullable UIImage *)mar_imageByGrayscale;
 
 /**
  Applies a blur effect to this image. Suitable for blur any content.
  */
-- (nullable UIImage *)imageByBlurSoft;
+- (nullable UIImage *)mar_imageByBlurSoft;
 
 /**
  Applies a blur effect to this image. Suitable for blur any content except pure white.
  (same as iOS Control Panel)
  */
-- (nullable UIImage *)imageByBlurLight;
+- (nullable UIImage *)mar_imageByBlurLight;
 
 /**
  Applies a blur effect to this image. Suitable for displaying black text.
  (same as iOS Navigation Bar White)
  */
-- (nullable UIImage *)imageByBlurExtraLight;
+- (nullable UIImage *)mar_imageByBlurExtraLight;
 
 /**
  Applies a blur effect to this image. Suitable for displaying white text.
  (same as iOS Notification Center)
  */
-- (nullable UIImage *)imageByBlurDark;
+- (nullable UIImage *)mar_imageByBlurDark;
 
 /**
  Applies a blur and tint color to this image.
  
  @param tintColor  The tint color.
  */
-- (nullable UIImage *)imageByBlurWithTint:(UIColor *)tintColor;
+- (nullable UIImage *)mar_imageByBlurWithTint:(UIColor *)tintColor;
 
 /**
  Applies a blur, tint color, and saturation adjustment to this image,
@@ -375,7 +375,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return               image with effect, or nil if an error occurs (e.g. no
  enough memory).
  */
-- (nullable UIImage *)imageByBlurRadius:(CGFloat)blurRadius
+- (nullable UIImage *)mar_imageByBlurRadius:(CGFloat)blurRadius
                               tintColor:(nullable UIColor *)tintColor
                                tintMode:(CGBlendMode)tintBlendMode
                              saturation:(CGFloat)saturation
@@ -388,7 +388,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Returns the transformed image
  */
-- (UIImage *)blurImageWithBlur:(CGFloat)blur;
+- (UIImage *)mar_blurImageWithBlur:(CGFloat)blur;
 
 /**
  *  Create an image from a given text
@@ -400,7 +400,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Returns the created UIImage
  */
-+ (UIImage *)imageFromText:(NSString *)text
++ (UIImage *)mar_imageFromText:(NSString *)text
                                font:(MARFontName)fontName
                            fontSize:(CGFloat)fontSize
                           imageSize:(CGSize)imageSize;
@@ -416,7 +416,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Returns the created UIImage
  */
-+ (UIImage *)imageWithSize:(CGSize)imageSize
++ (UIImage *)mar_imageWithSize:(CGSize)imageSize
                     backgroundColor:(UIColor *)backgroundColor
                          maskedText:(NSString *)string
                                font:(MARFontName)fontName

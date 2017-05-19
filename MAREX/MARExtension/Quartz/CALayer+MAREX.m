@@ -11,7 +11,7 @@
 
 @implementation CALayer (MAREX)
 
--(UIImage *)snapshotImage
+-(UIImage *)mar_snapshotImage
 {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     [self renderInContext:UIGraphicsGetCurrentContext()];
@@ -20,7 +20,7 @@
     return snap;
 }
 
-- (NSData *)snapshotPDF
+- (NSData *)mar_snapshotPDF
 {
     CGRect bounds = self.bounds;
     NSMutableData *data = [NSMutableData data];
@@ -38,7 +38,7 @@
     return data;
 }
 
-- (void)setLayerShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius
+- (void)mar_setLayerShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius
 {
     self.shadowColor = color.CGColor;
     self.shadowOffset = offset;
@@ -48,242 +48,242 @@
     self.rasterizationScale = [UIScreen mainScreen].scale;
 }
 
-- (void)removeAllSublayers {
+- (void)mar_removeAllSublayers {
     while (self.sublayers.count) {
         [self.sublayers.lastObject removeFromSuperlayer];
     }
 }
 
-- (CGFloat)left {
+- (CGFloat)mar_left {
     return self.frame.origin.x;
 }
 
-- (void)setLeft:(CGFloat)x {
+- (void)setMar_left:(CGFloat)x {
     CGRect frame = self.frame;
     frame.origin.x = x;
     self.frame = frame;
 }
 
-- (CGFloat)top {
+- (CGFloat)mar_top {
     return self.frame.origin.y;
 }
 
-- (void)setTop:(CGFloat)y {
+- (void)setMar_top:(CGFloat)y {
     CGRect frame = self.frame;
     frame.origin.y = y;
     self.frame = frame;
 }
 
-- (CGFloat)right {
+- (CGFloat)mar_right {
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (void)setRight:(CGFloat)right {
+- (void)setMar_right:(CGFloat)right {
     CGRect frame = self.frame;
     frame.origin.x = right - frame.size.width;
     self.frame = frame;
 }
 
-- (CGFloat)bottom {
+- (CGFloat)mar_bottom {
     return self.frame.origin.y + self.frame.size.height;
 }
 
-- (void)setBottom:(CGFloat)bottom {
+- (void)setMar_bottom:(CGFloat)bottom {
     CGRect frame = self.frame;
     frame.origin.y = bottom - frame.size.height;
     self.frame = frame;
 }
 
-- (CGFloat)width {
+- (CGFloat)mar_width {
     return self.frame.size.width;
 }
 
-- (void)setWidth:(CGFloat)width {
+- (void)setMar_width:(CGFloat)width {
     CGRect frame = self.frame;
     frame.size.width = width;
     self.frame = frame;
 }
 
-- (CGFloat)height {
+- (CGFloat)mar_height {
     return self.frame.size.height;
 }
 
-- (void)setHeight:(CGFloat)height {
+- (void)setMar_height:(CGFloat)height {
     CGRect frame = self.frame;
     frame.size.height = height;
     self.frame = frame;
 }
 
-- (CGPoint)center {
+- (CGPoint)mar_center {
     return CGPointMake(self.frame.origin.x + self.frame.size.width * 0.5,
                        self.frame.origin.y + self.frame.size.height * 0.5);
 }
 
-- (void)setCenter:(CGPoint)center {
+- (void)setMar_center:(CGPoint)center {
     CGRect frame = self.frame;
     frame.origin.x = center.x - frame.size.width * 0.5;
     frame.origin.y = center.y - frame.size.height * 0.5;
     self.frame = frame;
 }
 
-- (CGFloat)centerX {
+- (CGFloat)mar_centerX {
     return self.frame.origin.x + self.frame.size.width * 0.5;
 }
 
-- (void)setCenterX:(CGFloat)centerX {
+- (void)setMar_centerX:(CGFloat)centerX {
     CGRect frame = self.frame;
     frame.origin.x = centerX - frame.size.width * 0.5;
     self.frame = frame;
 }
 
-- (CGFloat)centerY {
+- (CGFloat)mar_centerY {
     return self.frame.origin.y + self.frame.size.height * 0.5;
 }
 
-- (void)setCenterY:(CGFloat)centerY {
+- (void)setMar_centerY:(CGFloat)centerY {
     CGRect frame = self.frame;
     frame.origin.y = centerY - frame.size.height * 0.5;
     self.frame = frame;
 }
 
-- (CGPoint)origin {
+- (CGPoint)mar_origin {
     return self.frame.origin;
 }
 
-- (void)setOrigin:(CGPoint)origin {
+- (void)setMar_origin:(CGPoint)origin {
     CGRect frame = self.frame;
     frame.origin = origin;
     self.frame = frame;
 }
 
-- (CGSize)frameSize {
+- (CGSize)mar_frameSize {
     return self.frame.size;
 }
 
-- (void)setFrameSize:(CGSize)size {
+- (void)setMar_frameSize:(CGSize)size {
     CGRect frame = self.frame;
     frame.size = size;
     self.frame = frame;
 }
 
-- (CGFloat)transformRotation {
+- (CGFloat)mar_transformRotation {
     NSNumber *v = [self valueForKeyPath:@"transform.rotation"];
     return v.doubleValue;
 }
 
-- (void)setTransformRotation:(CGFloat)v {
+- (void)setMar_transformRotation:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.rotation"];
 }
 
-- (CGFloat)transformRotationX {
+- (CGFloat)mar_transformRotationX {
     NSNumber *v = [self valueForKeyPath:@"transform.rotation.x"];
     return v.doubleValue;
 }
 
-- (void)setTransformRotationX:(CGFloat)v {
+- (void)setMar_transformRotationX:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.rotation.x"];
 }
 
-- (CGFloat)transformRotationY {
+- (CGFloat)mar_transformRotationY {
     NSNumber *v = [self valueForKeyPath:@"transform.rotation.y"];
     return v.doubleValue;
 }
 
-- (void)setTransformRotationY:(CGFloat)v {
+- (void)setMar_transformRotationY:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.rotation.y"];
 }
 
-- (CGFloat)transformRotationZ {
+- (CGFloat)mar_transformRotationZ {
     NSNumber *v = [self valueForKeyPath:@"transform.rotation.z"];
     return v.doubleValue;
 }
 
-- (void)setTransformRotationZ:(CGFloat)v {
+- (void)setMar_transformRotationZ:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.rotation.z"];
 }
 
-- (CGFloat)transformScaleX {
+- (CGFloat)mar_transformScaleX {
     NSNumber *v = [self valueForKeyPath:@"transform.scale.x"];
     return v.doubleValue;
 }
 
-- (void)setTransformScaleX:(CGFloat)v {
+- (void)setMar_transformScaleX:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.scale.x"];
 }
 
-- (CGFloat)transformScaleY {
+- (CGFloat)mar_transformScaleY {
     NSNumber *v = [self valueForKeyPath:@"transform.scale.y"];
     return v.doubleValue;
 }
 
-- (void)setTransformScaleY:(CGFloat)v {
+- (void)setMar_transformScaleY:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.scale.y"];
 }
 
-- (CGFloat)transformScaleZ {
+- (CGFloat)mar_transformScaleZ {
     NSNumber *v = [self valueForKeyPath:@"transform.scale.z"];
     return v.doubleValue;
 }
 
-- (void)setTransformScaleZ:(CGFloat)v {
+- (void)setMar_transformScaleZ:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.scale.z"];
 }
 
-- (CGFloat)transformScale {
+- (CGFloat)mar_transformScale {
     NSNumber *v = [self valueForKeyPath:@"transform.scale"];
     return v.doubleValue;
 }
 
-- (void)setTransformScale:(CGFloat)v {
+- (void)setMar_transformScale:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.scale"];
 }
 
-- (CGFloat)transformTranslationX {
+- (CGFloat)mar_transformTranslationX {
     NSNumber *v = [self valueForKeyPath:@"transform.translation.x"];
     return v.doubleValue;
 }
 
-- (void)setTransformTranslationX:(CGFloat)v {
+- (void)setMar_transformTranslationX:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.translation.x"];
 }
 
-- (CGFloat)transformTranslationY {
+- (CGFloat)mar_transformTranslationY {
     NSNumber *v = [self valueForKeyPath:@"transform.translation.y"];
     return v.doubleValue;
 }
 
-- (void)setTransformTranslationY:(CGFloat)v {
+- (void)setMar_transformTranslationY:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.translation.y"];
 }
 
-- (CGFloat)transformTranslationZ {
+- (CGFloat)mar_transformTranslationZ {
     NSNumber *v = [self valueForKeyPath:@"transform.translation.z"];
     return v.doubleValue;
 }
 
-- (void)setTransformTranslationZ:(CGFloat)v {
+- (void)setMar_transformTranslationZ:(CGFloat)v {
     [self setValue:@(v) forKeyPath:@"transform.translation.z"];
 }
 
-- (CGFloat)transformDepth {
+- (CGFloat)mar_transformDepth {
     return self.transform.m34;
 }
 
-- (void)setTransformDepth:(CGFloat)v {
+- (void)setMar_transformDepth:(CGFloat)v {
     CATransform3D d = self.transform;
     d.m34 = v;
     self.transform = d;
 }
 
-- (UIViewContentMode)contentMode {
+- (UIViewContentMode)mar_contentMode {
     return MARCAGravityToUIViewContentMode(self.contentsGravity);
 }
 
-- (void)setContentMode:(UIViewContentMode)contentMode {
+- (void)setMar_contentMode:(UIViewContentMode)contentMode {
     self.contentsGravity = MARUIViewContentModeToCAGravity(contentMode);
 }
 
-- (void)addFadeAnimationWithDuration:(NSTimeInterval)duration curve:(UIViewAnimationCurve)curve {
+- (void)mar_addFadeAnimationWithDuration:(NSTimeInterval)duration curve:(UIViewAnimationCurve)curve {
     if (duration <= 0) return;
     
     NSString *mediaFunction;
@@ -312,7 +312,7 @@
     [self addAnimation:transition forKey:@"yykit.fade"];
 }
 
-- (void)removePreviousFadeAnimation {
+- (void)mar_removePreviousFadeAnimation {
     [self removeAnimationForKey:@"yykit.fade"];
 }
 

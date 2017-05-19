@@ -55,12 +55,11 @@
     }
     
     //创建出圆形贝塞尔曲线  这个方法是根据一个矩形画内切曲线。通常用它来画圆或者椭圆
-    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 200, 200)];
     
     
     //让贝塞尔曲线与CAShapeLayer产生联系  从贝塞尔曲线获取到形状
     NSString *testStr = @"让贝塞尔曲线";
-    UIBezierPath *path = [UIBezierPath bezierPathWithText:testStr font:[UIFont systemFontOfSize:40]];
+    UIBezierPath *path = [UIBezierPath mar_bezierPathWithText:testStr font:[UIFont systemFontOfSize:40]];
     
     
     shapeLayer.path = path.CGPath;
@@ -97,7 +96,10 @@
 
 - (IBAction)clickTestBtnAction:(id)sender {
     
-    UIImage* image = [(AppDelegate*)[UIApplication sharedApplication].delegate window].touchImage;
+    [MARSystemSound playSystemSoundVibrate];
+    return;
+    
+    UIImage* image = [(AppDelegate*)[UIApplication sharedApplication].delegate window].mar_touchImage;
     NSData *imageData = UIImagePNGRepresentation(image);
     if (imageData) {
         NSString *typeStr = [imageData mar_dataType];
@@ -120,6 +122,8 @@
 
 - (IBAction)clickTestBtn2Action:(id)sender {
 
+    [MARSystemSound playSystemSound:AudioIDPhotoShutter];
+    return;
     static NSInteger count = 0;
     
     UIImage* tmpImage = [chooseImage copy];
@@ -154,27 +158,27 @@
 //    }
     
     self.imageView.image = tmpImage;
-    [self.imageView applyMotionEffects];
-    [self.view applyMotionEffects];
+    [self.imageView mar_applyMotionEffects];
+    [self.view mar_applyMotionEffects];
     return;
     switch (count % 6) {
         case 0:
-            [self.imageView shakeView];
+            [self.imageView mar_shakeView];
             break;
         case 1 :
-            [self.imageView pulseViewWithDuration:5.0f];
+            [self.imageView mar_pulseViewWithDuration:5.0f];
             break;
         case 2 :
-            [self.imageView heartbeatViewWithDuration:5.0f];
+            [self.imageView mar_heartbeatViewWithDuration:5.0f];
             break;
         case 3 :
-            [self.imageView applyMotionEffects];
+            [self.imageView mar_applyMotionEffects];
             break;
         case 4:
-            [self.imageView flipWithDuration:5.f direction:MARUIViewAnimationFlipDirectionFromTop];
+            [self.imageView mar_flipWithDuration:5.f direction:MARUIViewAnimationFlipDirectionFromTop];
             break;
         case 5:
-            [self.imageView translateAroundTheView:self.tipLabel duration:5.f direction:MARUIViewAnimationTranslationDirectionFromLeftToRight repeat:YES startFromEdge:YES];
+            [self.imageView mar_translateAroundTheView:self.tipLabel duration:5.f direction:MARUIViewAnimationTranslationDirectionFromLeftToRight repeat:YES startFromEdge:YES];
             break;
         default:
             break;

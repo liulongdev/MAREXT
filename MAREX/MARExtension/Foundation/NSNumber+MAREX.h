@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return an NSNumber when parse succeed, or nil if an error occurs.
  */
-+ (nullable NSNumber *)numberWithString:(NSString *)string;
++ (nullable NSNumber *)mar_numberWithString:(NSString *)string;
 
 @end
 

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion This param is conflict with `target` and `action` property.
  Set this will set `target` and `action` property to some internal objects.
  */
-@property (nullable, nonatomic, copy) void (^actionBlock)(id);
+@property (nullable, nonatomic, copy) void (^mar_actionBlock)(id);
 
 @end
 

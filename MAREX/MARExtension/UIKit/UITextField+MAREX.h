@@ -13,13 +13,13 @@
 /**
  Set all text selected.
  */
-- (void)selectAllText;
+- (void)mar_selectAllText;
 
 /**
  Set text in range selected.
  
  @param range  The range of selected text in a document.
  */
-- (void)setSelectedRange:(NSRange)range;
+- (void)mar_setSelectedRange:(NSRange)range;
 
 @end

@@ -119,19 +119,19 @@ NS_ASSUME_NONNULL_BEGIN
  URL encode a string in utf-8.
  @return the encoded string.
  */
-- (NSString *)stringByURLEncode;
+- (NSString *)mar_stringByURLEncode;
 
 /**
  URL decode a string in utf-8.
  @return the decoded string.
  */
-- (NSString *)stringByURLDecode;
+- (NSString *)mar_stringByURLDecode;
 
 /**
  Escape common HTML to Entity.
  Example: "a<b" will be escape to "a&lt;b".
  */
-- (NSString *)stringByEscapingHTML;
+- (NSString *)mar_stringByEscapingHTML;
 
 #pragma mark - Drawing
 ///=============================================================================
@@ -152,7 +152,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return              The width and height of the resulting string's bounding box.
  These values may be rounded up to the nearest whole number.
  */
-- (CGSize)sizeForFont:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode;
+- (CGSize)mar_sizeForFont:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode;
 
 /**
  Returns the width of the string if it were to be rendered with the specified
@@ -163,7 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return      The width of the resulting string's bounding box. These values may be
  rounded up to the nearest whole number.
  */
-- (CGFloat)widthForFont:(UIFont *)font;
+- (CGFloat)mar_widthForFont:(UIFont *)font;
 
 /**
  Returns the height of the string if it were rendered with the specified constraints.
@@ -176,7 +176,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return       The height of the resulting string's bounding box. These values
  may be rounded up to the nearest whole number.
  */
-- (CGFloat)heightForFont:(UIFont *)font width:(CGFloat)width;
+- (CGFloat)mar_heightForFont:(UIFont *)font width:(CGFloat)width;
 
 
 #pragma mark - Regular Expression
@@ -191,7 +191,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param options     The matching options to report.
  @return YES if can match the regex; otherwise, NO.
  */
-- (BOOL)matchesRegex:(NSString *)regex options:(NSRegularExpressionOptions)options;
+- (BOOL)mar_matchesRegex:(NSString *)regex options:(NSRegularExpressionOptions)options;
 
 /**
  Match the regular expression, and executes a given block using each object in the matches.
@@ -207,7 +207,7 @@ NS_ASSUME_NONNULL_BEGIN
  argument is an out-only argument. You should only ever set
  this Boolean to YES within the Block.
  */
-- (void)enumerateRegexMatches:(NSString *)regex
+- (void)mar_enumerateRegexMatches:(NSString *)regex
                       options:(NSRegularExpressionOptions)options
                    usingBlock:(void (^)(NSString *match, NSRange matchRange, BOOL *stop))block;
 
@@ -220,7 +220,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A string with matching regular expressions replaced by the template string.
  */
-- (NSString *)stringByReplacingRegex:(NSString *)regex
+- (NSString *)mar_stringByReplacingRegex:(NSString *)regex
                              options:(NSRegularExpressionOptions)options
                           withString:(NSString *)replacement;
 
@@ -231,15 +231,15 @@ NS_ASSUME_NONNULL_BEGIN
 ///=============================================================================
 
 // Now you can use NSString as a NSNumber.
-@property (readonly) char charValue;
-@property (readonly) unsigned char unsignedCharValue;
-@property (readonly) short shortValue;
-@property (readonly) unsigned short unsignedShortValue;
-@property (readonly) unsigned int unsignedIntValue;
-@property (readonly) long longValue;
-@property (readonly) unsigned long unsignedLongValue;
-@property (readonly) unsigned long long unsignedLongLongValue;
-@property (readonly) NSUInteger unsignedIntegerValue;
+@property (readonly) char mar_charValue;
+@property (readonly) unsigned char mar_unsignedCharValue;
+@property (readonly) short mar_shortValue;
+@property (readonly) unsigned short mar_unsignedShortValue;
+@property (readonly) unsigned int mar_unsignedIntValue;
+@property (readonly) long mar_longValue;
+@property (readonly) unsigned long mar_unsignedLongValue;
+@property (readonly) unsigned long long mar_unsignedLongLongValue;
+@property (readonly) NSUInteger mar_unsignedIntegerValue;
 
 
 #pragma mark - Utilities
@@ -251,7 +251,7 @@ NS_ASSUME_NONNULL_BEGIN
  Returns a new UUID NSString
  e.g. "D1178E50-2A4D-4F1F-9BD3-F6AAB00E06B1"
  */
-+ (NSString *)stringWithUUID;
++ (NSString *)mar_stringWithUUID;
 
 /**
  Returns a string containing the characters in a given UTF32Char.
@@ -259,7 +259,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param char32 A UTF-32 character.
  @return A new string, or nil if the character is invalid.
  */
-+ (nullable NSString *)stringWithUTF32Char:(UTF32Char)char32;
++ (nullable NSString *)mar_stringWithUTF32Char:(UTF32Char)char32;
 
 /**
  Returns a string containing the characters in a given UTF32Char array.
@@ -268,7 +268,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param length The character count in array.
  @return A new string, or nil if an error occurs.
  */
-+ (nullable NSString *)stringWithUTF32Chars:(const UTF32Char *)char32 length:(NSUInteger)length;
++ (nullable NSString *)mar_stringWithUTF32Chars:(const UTF32Char *)char32 length:(NSUInteger)length;
 
 /**
  Enumerates the unicode characters (UTF-32) in the specified range of the string.
@@ -282,13 +282,13 @@ NS_ASSUME_NONNULL_BEGIN
  stop: A reference to a Boolean value that the block can use to stop the enumeration
  by setting *stop = YES; it should not touch *stop otherwise.
  */
-- (void)enumerateUTF32CharInRange:(NSRange)range usingBlock:(void (^)(UTF32Char char32, NSRange range, BOOL *stop))block;
+- (void)mar_enumerateUTF32CharInRange:(NSRange)range usingBlock:(void (^)(UTF32Char char32, NSRange range, BOOL *stop))block;
 
 /**
  Trim blank characters (space and newline) in head and tail.
  @return the trimmed string.
  */
-- (NSString *)stringByTrim;
+- (NSString *)mar_stringByTrim;
 
 /**
  Add scale modifier to the file name (without path extension),
@@ -307,7 +307,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param scale Resource scale.
  @return String by add scale modifier, or just return if it's not end with file name.
  */
-- (NSString *)stringByAppendingNameScale:(CGFloat)scale;
+- (NSString *)mar_stringByAppendingNameScale:(CGFloat)scale;
 
 /**
  Add scale modifier to the file path (with path extension),
@@ -328,7 +328,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param scale Resource scale.
  @return String by add scale modifier, or just return if it's not end with file name.
  */
-- (NSString *)stringByAppendingPathScale:(CGFloat)scale;
+- (NSString *)mar_stringByAppendingPathScale:(CGFloat)scale;
 
 /**
  Return the path scale.
@@ -344,12 +344,12 @@ NS_ASSUME_NONNULL_BEGIN
  <tr><td>"icon@2x.png/"  </td><td>1     </td></tr>
  </table>
  */
-- (CGFloat)pathScale;
+- (CGFloat)mar_pathScale;
 
 /**
  nil, @"", @"  ", @"\n" will Returns NO; otherwise Returns YES.
  */
-- (BOOL)isNotBlank;
+- (BOOL)mar_isNotBlank;
 
 /**
  Returns YES if the target string is contained within the receiver.
@@ -357,29 +357,29 @@ NS_ASSUME_NONNULL_BEGIN
  
  @discussion Apple has implemented this method in iOS8.
  */
-- (BOOL)containsString:(NSString *)string;
+- (BOOL)mar_containsString:(NSString *)string;
 
 /**
  Returns YES if the target CharacterSet is contained within the receiver.
  @param set  A character set to test the the receiver.
  */
-- (BOOL)containsCharacterSet:(NSCharacterSet *)set;
+- (BOOL)mar_containsCharacterSet:(NSCharacterSet *)set;
 
 /**
  Try to parse this string and returns an `NSNumber`.
  @return Returns an `NSNumber` if parse succeed, or nil if an error occurs.
  */
-- (nullable NSNumber *)numberValue;
+- (nullable NSNumber *)mar_numberValue;
 
 /**
  Returns an NSData using UTF-8 encoding.
  */
-- (nullable NSData *)dataValue;
+- (nullable NSData *)mar_dataValue;
 
 /**
  Returns NSMakeRange(0, self.length).
  */
-- (NSRange)rangeOfAll;
+- (NSRange)mar_rangeOfAll;
 
 /**
  Returns an NSDictionary/NSArray which is decoded from receiver.
@@ -387,7 +387,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  e.g. NSString: @"{"name":"a","count":2}"  => NSDictionary: @[@"name":@"a",@"count":@2]
  */
-- (nullable id)jsonValueDecoded;
+- (nullable id)mar_jsonValueDecoded;
 
 /**
  Create a string from the file in main bundle (similar to [UIImage imageNamed:]).
@@ -396,14 +396,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A new string create from the file in UTF-8 character encoding.
  */
-+ (nullable NSString *)stringNamed:(NSString *)name;
++ (nullable NSString *)mar_stringNamed:(NSString *)name;
 
 /**
  *  Check if self is an email
  *
  *  @return Returns YES if it's an email, NO if not
  */
-- (BOOL)isEmail;
+- (BOOL)mar_isEmail;
 
 /**
  *  Check if the given string is an email
@@ -412,14 +412,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Returns YES if it's an email, NO if not
  */
-+ (BOOL)isEmail:(NSString * _Nonnull)email;
++ (BOOL)mar_isEmail:(NSString * _Nonnull)email;
 
 /**
  *  Remove double or more duplicated spaces
  *
  *  @return String without additional spaces
  */
-- (NSString * _Nonnull)removeExtraSpaces;
+- (NSString * _Nonnull)mar_removeExtraSpaces;
 
 @end
 

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Returns if the object is valid
  */
-- (BOOL)isValid;
+- (BOOL)mar_isValid;
 
 /**
  *  Perform selector with unlimited objects
@@ -137,6 +137,19 @@ NS_ASSUME_NONNULL_BEGIN
  receiving change notifications, and release these blocks.
  */
 - (void)mar_removeObserverBlocks;
+
+@end
+
+@interface NSObject (MAREX_GCD)
+
+
+/**
+ This fun is valid only if on sub thread.
+ Instead of funcion - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay
+ and - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay inModes:(NSArray<NSRunLoopMode> *)modes
+ Because two funs above not valid on sub thread, reference runloop.
+ */
+- (void)mar_gcdPerformBlock:(void (^)(void))block afterDelay:(NSTimeInterval)seconds;
 
 @end
 

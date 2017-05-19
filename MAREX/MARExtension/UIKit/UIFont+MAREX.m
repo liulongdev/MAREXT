@@ -11,37 +11,37 @@
 
 @implementation UIFont (MAREX)
 
-static UIFont * _Nullable lightFont;
-static UIFont * _Nullable regularFont;
-static UIFont * _Nullable boldFont;
+static UIFont * _Nullable mar_lightFont;
+static UIFont * _Nullable mar_regularFont;
+static UIFont * _Nullable mar_boldFont;
 
-+ (UIFont *)lightFont {
-    return UIFont.lightFont;
++ (UIFont *)mar_lightFont {
+    return UIFont.mar_lightFont;
 }
 
-+ (void)setLightFont:(UIFont *)lightFont {
-    UIFont.lightFont = lightFont;
++ (void)setMar_lightFont:(UIFont *)lightFont {
+    UIFont.mar_lightFont = lightFont;
 }
 
-+ (UIFont *)regularFont {
-    return UIFont.regularFont;
++ (UIFont *)mar_regularFont {
+    return UIFont.mar_regularFont;
 }
 
-+ (void)setRegularFont:(UIFont *)regularFont {
-    UIFont.regularFont = regularFont;
++ (void)setMar_regularFont:(UIFont *)regularFont {
+    UIFont.mar_regularFont = regularFont;
 }
 
-+ (UIFont *)boldFont {
-    return UIFont.boldFont;
++ (UIFont *)mar_boldFont {
+    return UIFont.mar_boldFont;
 }
 
-+ (void)setBoldFont:(UIFont *)boldFont {
-    UIFont.boldFont = boldFont;
++ (void)setMar_boldFont:(UIFont *)boldFont {
+    UIFont.mar_boldFont = boldFont;
 }
 
-+ (NSDictionary * _Nonnull)allFamilyAndFonts {
++ (NSDictionary * _Nonnull)mar_allFamilyAndFonts {
     NSMutableArray *fontFamilies = (NSMutableArray *)[UIFont familyNames];
-    fontFamilies = [NSMutableArray sortArrayByKey:@"" array:fontFamilies ascending:YES];
+    fontFamilies = [NSMutableArray mar_sortArrayByKey:@"" array:fontFamilies ascending:YES];
     
     NSMutableDictionary *fontFamilyDic = [[NSMutableDictionary alloc] init];
     
@@ -56,7 +56,7 @@ static UIFont * _Nullable boldFont;
     return fontFamilyDic;
 }
 
-+ (NSArray * _Nonnull)fontsNameForFamilyName:(MARFamilyFontName)familyFontName {
++ (NSArray * _Nonnull)mar_fontsNameForFamilyName:(MARFamilyFontName)familyFontName {
     NSArray *fontNames;
     
     switch (familyFontName) {
@@ -295,7 +295,7 @@ static UIFont * _Nullable boldFont;
     return fontNames;
 }
 
-+ (UIFont * _Nonnull)fontForFontName:(MARFontName)fontName size:(CGFloat)fontSize {
++ (UIFont * _Nonnull)mar_fontForFontName:(MARFontName)fontName size:(CGFloat)fontSize {
     switch (fontName) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"

@@ -18,36 +18,36 @@ NS_ASSUME_NONNULL_BEGIN
 ///=============================================================================
 
 /// Device system version (e.g. 8.1)
-+ (double)systemVersion;
++ (double)mar_systemVersion;
 
 /// Whether the device is iPad/iPad mini.
-@property (nonatomic, readonly) BOOL isPad;
+@property (nonatomic, readonly) BOOL mar_isPad;
 
 /// Whether the device is a simulator.
-@property (nonatomic, readonly) BOOL isSimulator;
+@property (nonatomic, readonly) BOOL mar_isSimulator;
 
 /// Whether the device is jailbroken.
-@property (nonatomic, readonly) BOOL isJailbroken;
+@property (nonatomic, readonly) BOOL mar_isJailbroken;
 
 /// Whether the current device has a Retina display
-@property (nonatomic, readonly) BOOL isRetina;
+@property (nonatomic, readonly) BOOL mar_isRetina;
 
 ///  Whether if the current device has a Retina HD display
-@property (nonatomic, readonly) BOOL isRetinaHD;
+@property (nonatomic, readonly) BOOL mar_isRetinaHD;
 
 /// Wherher the device can make phone calls.
-@property (nonatomic, readonly) BOOL canMakePhoneCalls NS_EXTENSION_UNAVAILABLE_IOS("");
+@property (nonatomic, readonly) BOOL mar_canMakePhoneCalls NS_EXTENSION_UNAVAILABLE_IOS("");
 
 /// The device's machine model.  e.g. "iPhone6,1" "iPad4,6"
 /// @see http://theiphonewiki.com/wiki/Models
-@property (nullable, nonatomic, readonly) NSString *machineModel;
+@property (nullable, nonatomic, readonly) NSString *mar_machineModel;
 
 /// The device's machine model name. e.g. "iPhone 5s" "iPad mini 2"
 /// @see http://theiphonewiki.com/wiki/Models
-@property (nullable, nonatomic, readonly) NSString *machineModelName;
+@property (nullable, nonatomic, readonly) NSString *mar_machineModelName;
 
 /// The System's startup time.
-@property (nonatomic, readonly) NSDate *systemUptime;
+@property (nonatomic, readonly) NSDate *mar_systemUptime;
 
 
 #pragma mark - Network Information
@@ -56,10 +56,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///=============================================================================
 
 /// WIFI IP address of this device (can be nil). e.g. @"192.168.1.111"
-@property (nullable, nonatomic, readonly) NSString *ipAddressWIFI;
+@property (nullable, nonatomic, readonly) NSString *mar_ipAddressWIFI;
 
 /// Cell IP address of this device (can be nil). e.g. @"10.2.2.222"
-@property (nullable, nonatomic, readonly) NSString *ipAddressCell;
+@property (nullable, nonatomic, readonly) NSString *mar_ipAddressCell;
 
 
 /**
@@ -108,7 +108,7 @@ typedef NS_OPTIONS(NSUInteger, MARNetworkTrafficType) {
  @param types traffic types
  @return bytes counter.
  */
-- (uint64_t)getNetworkTrafficBytes:(MARNetworkTrafficType)types;
+- (uint64_t)mar_getNetworkTrafficBytes:(MARNetworkTrafficType)types;
 
 
 #pragma mark - Disk Space
@@ -117,13 +117,13 @@ typedef NS_OPTIONS(NSUInteger, MARNetworkTrafficType) {
 ///=============================================================================
 
 /// Total disk space in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t diskSpace;
+@property (nonatomic, readonly) int64_t mar_diskSpace;
 
 /// Free disk space in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t diskSpaceFree;
+@property (nonatomic, readonly) int64_t mar_diskSpaceFree;
 
 /// Used disk space in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t diskSpaceUsed;
+@property (nonatomic, readonly) int64_t mar_diskSpaceUsed;
 
 
 #pragma mark - Memory Information
@@ -132,25 +132,25 @@ typedef NS_OPTIONS(NSUInteger, MARNetworkTrafficType) {
 ///=============================================================================
 
 /// Total physical memory in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t memoryTotal;
+@property (nonatomic, readonly) int64_t mar_memoryTotal;
 
 /// Used (active + inactive + wired) memory in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t memoryUsed;
+@property (nonatomic, readonly) int64_t mar_memoryUsed;
 
 /// Free memory in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t memoryFree;
+@property (nonatomic, readonly) int64_t mar_memoryFree;
 
 /// Acvite memory in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t memoryActive;
+@property (nonatomic, readonly) int64_t mar_memoryActive;
 
 /// Inactive memory in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t memoryInactive;
+@property (nonatomic, readonly) int64_t mar_memoryInactive;
 
 /// Wired memory in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t memoryWired;
+@property (nonatomic, readonly) int64_t mar_memoryWired;
 
 /// Purgable memory in byte. (-1 when error occurs)
-@property (nonatomic, readonly) int64_t memoryPurgable;
+@property (nonatomic, readonly) int64_t mar_memoryPurgable;
 
 #pragma mark - CPU Information
 ///=============================================================================
@@ -158,13 +158,13 @@ typedef NS_OPTIONS(NSUInteger, MARNetworkTrafficType) {
 ///=============================================================================
 
 /// Avaliable CPU processor count.
-@property (nonatomic, readonly) NSUInteger cpuCount;
+@property (nonatomic, readonly) NSUInteger mar_cpuCount;
 
 /// Current CPU usage, 1.0 means 100%. (-1 when error occurs)
-@property (nonatomic, readonly) float cpuUsage;
+@property (nonatomic, readonly) float mar_cpuUsage;
 
 /// Current CPU usage per processor (array of NSNumber), 1.0 means 100%. (nil when error occurs)
-@property (nullable, nonatomic, readonly) NSArray<NSNumber *> *cpuUsagePerProcessor;
+@property (nullable, nonatomic, readonly) NSArray<NSNumber *> *mar_cpuUsagePerProcessor;
 
 
 @end

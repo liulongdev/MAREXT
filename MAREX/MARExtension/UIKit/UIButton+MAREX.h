@@ -13,11 +13,11 @@
 /**
  The block that invoked when the event is triggered.
  */
-- (void)addActionBlock:(void (^)(id sender))block forState:(UIControlEvents)event;
+- (void)mar_addActionBlock:(void (^)(id sender))block forState:(UIControlEvents)event;
 
 /**
  Remvoe all blocks
  */
-- (void)removeAllActionBlocks;
+- (void)mar_removeAllActionBlocks;
 
 @end

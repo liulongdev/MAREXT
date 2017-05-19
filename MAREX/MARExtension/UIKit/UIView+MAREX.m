@@ -10,7 +10,7 @@
 
 @implementation UIView (MAREX)
 
-- (UIImage *)snapshotImage
+- (UIImage *)mar_snapshotImage
 {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
@@ -23,18 +23,18 @@
     return snap;
 }
 
-- (UIImage *)saveSnapshotImage
+- (UIImage *)mar_saveSnapshotImage
 {
-    UIImage *image = [self saveSnapshotImage];
+    UIImage *image = [self mar_saveSnapshotImage];
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
     return image;
 }
 
-- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates
+- (UIImage *)mar_snapshotImageAfterScreenUpdates:(BOOL)afterUpdates
 {
     if (![self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        return [self snapshotImage];
+        return [self mar_snapshotImage];
     }
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:afterUpdates];
@@ -43,7 +43,7 @@
     return snap;
 }
 
-- (NSData *)snapshotPDF
+- (NSData *)mar_snapshotPDF
 {
     CGRect bounds = self.bounds;
     NSMutableData *data = [NSMutableData data];
@@ -61,7 +61,7 @@
     return data;
 }
 
-- (void)setLayerShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius
+- (void)mar_setLayerShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius
 {
     self.layer.shadowColor = color.CGColor;
     self.layer.shadowOffset = offset;
@@ -71,7 +71,7 @@
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
 }
 
-- (void)setLayerBorderWithColor:(UIColor *)color withCornerRadius:(CGFloat)radius andWidth:(CGFloat)width
+- (void)mar_setLayerBorderWithColor:(UIColor *)color withCornerRadius:(CGFloat)radius andWidth:(CGFloat)width
 {
     self.layer.borderWidth = width;
     self.layer.cornerRadius = radius;
@@ -87,20 +87,20 @@
     CGColorSpaceRelease(space);
 }
 
-- (void)removeBorders {
+- (void)mar_removeBorders {
     self.layer.borderWidth = 0;
     self.layer.cornerRadius = 0;
     self.layer.borderColor = nil;
 }
 
-- (void)removeAllSubviews
+- (void)mar_removeAllSubviews
 {
     while (self.subviews.count) {
         [self.subviews.lastObject removeFromSuperview];
     }
 }
 
-- (void)setLayerShadowWithColor:(UIColor *)color cornerRadius:(CGFloat)cornerRadius offset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius
+- (void)mar_setLayerShadowWithColor:(UIColor *)color cornerRadius:(CGFloat)cornerRadius offset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius
 {
     if (!color) {
         color = [UIColor blackColor];
@@ -115,13 +115,13 @@
     self.layer.masksToBounds = NO;
 }
 
-- (void)removeShadow {
+- (void)mar_removeShadow {
     [self.layer setShadowColor:[[UIColor clearColor] CGColor]];
     [self.layer setShadowOpacity:0.0f];
     [self.layer setShadowOffset:CGSizeMake(0.0f, 0.0f)];
 }
 
-- (void)setGradientWithColors:(NSArray *)colors direction:(MARUIViewLinearGradientDirection)direction
+- (void)mar_setGradientWithColors:(NSArray *)colors direction:(MARUIViewLinearGradientDirection)direction
 {
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.bounds;
@@ -168,7 +168,7 @@
     [self.layer insertSublayer:gradient atIndex:0];
 }
 
-- (UIViewController *)viewController
+- (UIViewController *)mar_viewController
 {
     for (UIView *view = self; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];
@@ -179,7 +179,7 @@
     return nil;
 }
 
-- (CGFloat)visibleAlpha
+- (CGFloat)mar_visibleAlpha
 {
     if ([self isKindOfClass:[UIWindow class]]) {
         if (self.hidden) return 0;
@@ -199,7 +199,7 @@
     return alpha;
 }
 
-- (CGPoint)convertPoint:(CGPoint)point toViewOrWindow:(UIView *)view
+- (CGPoint)mar_convertPoint:(CGPoint)point toViewOrWindow:(UIView *)view
 {
     if (!view) {
         if ([self isKindOfClass:[UIWindow class]]) {
@@ -221,7 +221,7 @@
     return point;
 }
 
-- (CGPoint)convertPoint:(CGPoint)point fromViewOrWindow:(UIView *)view {
+- (CGPoint)mar_convertPoint:(CGPoint)point fromViewOrWindow:(UIView *)view {
     if (!view) {
         if ([self isKindOfClass:[UIWindow class]]) {
             return [((UIWindow *)self) convertPoint:point fromWindow:nil];
@@ -239,7 +239,7 @@
     return point;
 }
 
-- (CGRect)convertRect:(CGRect)rect toViewOrWindow:(UIView *)view {
+- (CGRect)mar_convertRect:(CGRect)rect toViewOrWindow:(UIView *)view {
     if (!view) {
         if ([self isKindOfClass:[UIWindow class]]) {
             return [((UIWindow *)self) convertRect:rect toWindow:nil];
@@ -258,7 +258,7 @@
     return rect;
 }
 
-- (CGRect)convertRect:(CGRect)rect fromViewOrWindow:(UIView *)view {
+- (CGRect)mar_convertRect:(CGRect)rect fromViewOrWindow:(UIView *)view {
     if (!view) {
         if ([self isKindOfClass:[UIWindow class]]) {
             return [((UIWindow *)self) convertRect:rect fromWindow:nil];
@@ -276,97 +276,97 @@
     return rect;
 }
 
-- (CGFloat)left {
+- (CGFloat)mar_left {
     return self.frame.origin.x;
 }
 
-- (void)setLeft:(CGFloat)x {
+- (void)setMar_left:(CGFloat)x {
     CGRect frame = self.frame;
     frame.origin.x = x;
     self.frame = frame;
 }
 
-- (CGFloat)top {
+- (CGFloat)mar_top {
     return self.frame.origin.y;
 }
 
-- (void)setTop:(CGFloat)y {
+- (void)setMar_top:(CGFloat)y {
     CGRect frame = self.frame;
     frame.origin.y = y;
     self.frame = frame;
 }
 
-- (CGFloat)right {
+- (CGFloat)mar_right {
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (void)setRight:(CGFloat)right {
+- (void)setMar_right:(CGFloat)right {
     CGRect frame = self.frame;
     frame.origin.x = right - frame.size.width;
     self.frame = frame;
 }
 
-- (CGFloat)bottom {
+- (CGFloat)mar_bottom {
     return self.frame.origin.y + self.frame.size.height;
 }
 
-- (void)setBottom:(CGFloat)bottom {
+- (void)setMar_bottom:(CGFloat)bottom {
     CGRect frame = self.frame;
     frame.origin.y = bottom - frame.size.height;
     self.frame = frame;
 }
 
-- (CGFloat)width {
+- (CGFloat)mar_width {
     return self.frame.size.width;
 }
 
-- (void)setWidth:(CGFloat)width {
+- (void)setMar_width:(CGFloat)width {
     CGRect frame = self.frame;
     frame.size.width = width;
     self.frame = frame;
 }
 
-- (CGFloat)height {
+- (CGFloat)mar_height {
     return self.frame.size.height;
 }
 
-- (void)setHeight:(CGFloat)height {
+- (void)setMar_height:(CGFloat)height {
     CGRect frame = self.frame;
     frame.size.height = height;
     self.frame = frame;
 }
 
-- (CGFloat)centerX {
+- (CGFloat)mar_centerX {
     return self.center.x;
 }
 
-- (void)setCenterX:(CGFloat)centerX {
+- (void)setMar_centerX:(CGFloat)centerX {
     self.center = CGPointMake(centerX, self.center.y);
 }
 
-- (CGFloat)centerY {
+- (CGFloat)mar_centerY {
     return self.center.y;
 }
 
-- (void)setCenterY:(CGFloat)centerY {
+- (void)setMar_centerY:(CGFloat)centerY {
     self.center = CGPointMake(self.center.x, centerY);
 }
 
-- (CGPoint)origin {
+- (CGPoint)mar_origin {
     return self.frame.origin;
 }
 
-- (void)setOrigin:(CGPoint)origin {
+- (void)setMar_origin:(CGPoint)origin {
     CGRect frame = self.frame;
     frame.origin = origin;
     self.frame = frame;
 }
 
-- (CGSize)size {
+- (CGSize)mar_size {
     return self.frame.size;
 }
 
-- (void)setSize:(CGSize)size {
+- (void)setMar_size:(CGSize)size {
     CGRect frame = self.frame;
     frame.size = size;
     self.frame = frame;
@@ -376,7 +376,7 @@
 
 @implementation UIView (MAREX_Animation)
 
-- (void)shakeView
+- (void)mar_shakeView
 {
     CAKeyframeAnimation *shake = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     shake.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-5.0f, 0.0f, 0.0f)], [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(5.0f, 0.0f, 0.0f)]];
@@ -387,7 +387,7 @@
     [self.layer addAnimation:shake forKey:@"shake"];
 }
 
-- (void)pulseViewWithDuration:(CGFloat)duration
+- (void)mar_pulseViewWithDuration:(CGFloat)duration
 {
     [UIView animateWithDuration:duration / 6 animations:^{
         [self setTransform:CGAffineTransformMakeScale(1.1, 1.1)];
@@ -424,7 +424,7 @@
     }];
 }
 
-- (void)heartbeatViewWithDuration:(CGFloat)duration
+- (void)mar_heartbeatViewWithDuration:(CGFloat)duration
 {
     float maxSize = 1.4f, durationPerBeat = 0.5f;
     
@@ -449,7 +449,7 @@
     [self.layer addAnimation:animation forKey:@"heartbeat"];
 }
 
-- (void)applyMotionEffects
+- (void)mar_applyMotionEffects
 {
     UIInterpolatingMotionEffect *horizontalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
     horizontalEffect.minimumRelativeValue = @(-10.0f);
@@ -463,7 +463,7 @@
     [self addMotionEffect:motionEffectGroup];
 }
 
-- (void)applyMotionEffectsWithOffset:(CGSize)offset
+- (void)mar_applyMotionEffectsWithOffset:(CGSize)offset
 {
     UIInterpolatingMotionEffect *horizontalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
     horizontalEffect.minimumRelativeValue = @(offset.width);;
@@ -477,7 +477,7 @@
     [self addMotionEffect:motionEffectGroup];
 }
 
-- (void)flipWithDuration:(NSTimeInterval)duration direction:(MARUIViewAnimationFlipDirection)direction
+- (void)mar_flipWithDuration:(NSTimeInterval)duration direction:(MARUIViewAnimationFlipDirection)direction
 {
     NSString *subtype = nil;
     
@@ -510,7 +510,7 @@
     [self.layer addAnimation:transition forKey:@"flip"];
 }
 
-- (void)translateAroundTheView:(UIView *)topView duration:(CGFloat)duration direction:(MARUIViewAnimationTranslationDirection)direction repeat:(BOOL)repeat startFromEdge:(BOOL)startFromEdge
+- (void)mar_translateAroundTheView:(UIView *)topView duration:(CGFloat)duration direction:(MARUIViewAnimationTranslationDirection)direction repeat:(BOOL)repeat startFromEdge:(BOOL)startFromEdge
 {
     CGFloat startPosition = self.center.x, endPosition;
     switch (direction) {
@@ -540,7 +540,7 @@
             } completion:^(BOOL finished) {
                 if (finished) {
                     if (repeat) {
-                        [self translateAroundTheView:topView duration:duration direction:direction repeat:repeat startFromEdge:startFromEdge];
+                        [self mar_translateAroundTheView:topView duration:duration direction:direction repeat:repeat startFromEdge:startFromEdge];
                     }
                 }
             }];

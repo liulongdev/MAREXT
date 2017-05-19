@@ -16,7 +16,7 @@
 #define kMARGlobalNotification          @"kMARGlobalNotification"
 #endif
 static NSString *MARHasBeenOpened                   =   @"MARHasBeenOpened";
-static NSString *MARHasBeenOpenedForCurrentVersion  = @"";
+static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
 
 @interface MARGlobalManager()
 

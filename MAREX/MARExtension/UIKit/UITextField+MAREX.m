@@ -10,12 +10,12 @@
 
 @implementation UITextField (MAREX)
 
-- (void)selectAllText {
+- (void)mar_selectAllText {
     UITextRange *range = [self textRangeFromPosition:self.beginningOfDocument toPosition:self.endOfDocument];
     [self setSelectedTextRange:range];
 }
 
-- (void)setSelectedRange:(NSRange)range {
+- (void)mar_setSelectedRange:(NSRange)range {
     UITextPosition *beginning = self.beginningOfDocument;
     UITextPosition *startPosition = [self positionFromPosition:beginning offset:range.location];
     UITextPosition *endPosition = [self positionFromPosition:beginning offset:NSMaxRange(range)];

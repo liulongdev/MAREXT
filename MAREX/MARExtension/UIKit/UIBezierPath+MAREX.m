@@ -11,7 +11,7 @@
 
 @implementation UIBezierPath (MAREX)
 
-+ (UIBezierPath *)bezierPathWithText:(NSString *)text font:(UIFont *)font {
++ (UIBezierPath *)mar_bezierPathWithText:(NSString *)text font:(UIFont *)font {
     CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
     CTFontRef ctFont = fontRef;
     if (!ctFont) return nil;

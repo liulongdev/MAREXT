@@ -15,13 +15,13 @@
  *
  *  @return Returns the CPU usage
  */
-+ (float)cpuUsage DEPRECATED_MSG_ATTRIBUTE("Use +currentAppCPUUsage");
++ (float)mar_cpuUsage DEPRECATED_MSG_ATTRIBUTE("Use +currentAppCPUUsage");
 
 /**
  *  Returns the CPU usage by the current App
  *
  *  @return Returns the CPU usage by the current App
  */
-+ (float)currentAppCPUUsage;
++ (float)mar_currentAppCPUUsage;
 
 @end

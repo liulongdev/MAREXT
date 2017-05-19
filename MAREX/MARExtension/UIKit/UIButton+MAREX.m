@@ -39,7 +39,7 @@ static const char kAllButtonTargetsKey;
 
 @implementation UIButton (MAREX)
 
-- (void)addActionBlock:(void (^)(id))block forState:(UIControlEvents)event
+- (void)mar_addActionBlock:(void (^)(id))block forState:(UIControlEvents)event
 {
     if (!block) return;
     _MARUIButtonTarget *target = [[_MARUIButtonTarget alloc] initWithBlock:block];
@@ -48,7 +48,7 @@ static const char kAllButtonTargetsKey;
     [targets addObject:target];
 }
 
-- (void)removeAllActionBlocks
+- (void)mar_removeAllActionBlocks
 {
     NSMutableArray *targets = [self _mar_allButtonTargets];
     [targets enumerateObjectsUsingBlock:^(id  _Nonnull target, NSUInteger idx, BOOL * _Nonnull stop) {

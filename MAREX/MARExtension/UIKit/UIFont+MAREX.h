@@ -1313,7 +1313,7 @@ typedef NS_ENUM(NSInteger, MARFontName) {
  *
  *  @return Returns all the font family names
  */
-+ (NSDictionary * _Nonnull)allFamilyAndFonts;
++ (NSDictionary * _Nonnull)mar_allFamilyAndFonts;
 
 
 /**
@@ -1323,7 +1323,7 @@ typedef NS_ENUM(NSInteger, MARFontName) {
  *
  *  @return Returns all the fonts for the given family
  */
-+ (NSArray * _Nonnull)fontsNameForFamilyName:(MARFamilyFontName)familyFontName;;
++ (NSArray * _Nonnull)mar_fontsNameForFamilyName:(MARFamilyFontName)familyFontName;;
 
 /**
  *  Create an UIFont object from the given font name and size
@@ -1333,7 +1333,7 @@ typedef NS_ENUM(NSInteger, MARFontName) {
  *
  *  @return Returns an UIFont from the given font name and size
  */
-+ (UIFont * _Nonnull)fontForFontName:(MARFontName)fontName
++ (UIFont * _Nonnull)mar_fontForFontName:(MARFontName)fontName
                                 size:(CGFloat)fontSize;
 
 /**
@@ -1341,41 +1341,41 @@ typedef NS_ENUM(NSInteger, MARFontName) {
  *
  *  @return Returns light font to use in App
  */
-+ (UIFont * _Nullable)lightFont;
++ (UIFont * _Nullable)mar_lightFont;
 
 /**
  *  Set the new light font for the App
  *
  *  @param lightFont The new font
  */
-+ (void)setLightFont:(UIFont * _Nullable)lightFont;
++ (void)setMar_lightFont:(UIFont * _Nullable)lightFont;
 
 /**
  *  Static regular font to use in App
  *
  *  @return Returns regular font to use in App
  */
-+ (UIFont * _Nullable)regularFont;
++ (UIFont * _Nullable)mar_regularFont;
 
 /**
  *  Set the new regular font for the App
  *
  *  @param regularFont The new font
  */
-+ (void)setRegularFont:(UIFont * _Nullable)regularFont;
++ (void)setMar_regularFont:(UIFont * _Nullable)regularFont;
 
 /**
  *  Static bold font to use in App
  *
  *  @return Returns bold font to use in App
  */
-+ (UIFont * _Nullable)boldFont;
++ (UIFont * _Nullable)mar_boldFont;
 
 /**
  *  Set the new bold font for the App
  *
  *  @param boldFont The new font
  */
-+ (void)setBoldFont:(UIFont * _Nullable)boldFont;
++ (void)setMar_boldFont:(UIFont * _Nullable)boldFont;
 
 @end

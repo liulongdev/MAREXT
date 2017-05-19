@@ -38,20 +38,20 @@ static const char mar_gesture_block_key;
 
 @implementation UIGestureRecognizer (MAREX)
 
-- (instancetype)initWithActionBlock:(void (^)(id sender))block {
+- (instancetype)initWithMarActionBlock:(void (^)(id sender))block {
     self = [self init];
-    [self addActionBlock:block];
+    [self mar_addActionBlock:block];
     return self;
 }
 
-- (void)addActionBlock:(void (^)(id sender))block {
+- (void)mar_addActionBlock:(void (^)(id sender))block {
     _MARUIGestureRecognizerBlockTarget *target = [[_MARUIGestureRecognizerBlockTarget alloc] initWithBlock:block];
     [self addTarget:target action:@selector(invoke:)];
     NSMutableArray *targets = [self _mar_allUIGestureRecognizerBlockTargets];
     [targets addObject:target];
 }
 
-- (void)removeAllActionBlocks{
+- (void)mar_removeAllActionBlocks{
     NSMutableArray *targets = [self _mar_allUIGestureRecognizerBlockTargets];
     [targets enumerateObjectsUsingBlock:^(id target, NSUInteger idx, BOOL *stop) {
         [self removeTarget:target action:@selector(invoke:)];

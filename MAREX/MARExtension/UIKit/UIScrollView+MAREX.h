@@ -13,49 +13,49 @@
 /**
  Scroll content to top with animation.
  */
-- (void)scrollToTop;
+- (void)mar_scrollToTop;
 
 /**
  Scroll content to bottom with animation.
  */
-- (void)scrollToBottom;
+- (void)mar_scrollToBottom;
 
 /**
  Scroll content to left with animation.
  */
-- (void)scrollToLeft;
+- (void)mar_scrollToLeft;
 
 /**
  Scroll content to right with animation.
  */
-- (void)scrollToRight;
+- (void)mar_scrollToRight;
 
 /**
  Scroll content to top.
  
  @param animated  Use animation.
  */
-- (void)scrollToTopAnimated:(BOOL)animated;
+- (void)mar_scrollToTopAnimated:(BOOL)animated;
 
 /**
  Scroll content to bottom.
  
  @param animated  Use animation.
  */
-- (void)scrollToBottomAnimated:(BOOL)animated;
+- (void)mar_scrollToBottomAnimated:(BOOL)animated;
 
 /**
  Scroll content to left.
  
  @param animated  Use animation.
  */
-- (void)scrollToLeftAnimated:(BOOL)animated;
+- (void)mar_scrollToLeftAnimated:(BOOL)animated;
 
 /**
  Scroll content to right.
  
  @param animated  Use animation.
  */
-- (void)scrollToRightAnimated:(BOOL)animated;
+- (void)mar_scrollToRightAnimated:(BOOL)animated;
 
 @end

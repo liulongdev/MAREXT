@@ -43,26 +43,26 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
 /**
  Create a snapshot image of the complete view hierarchy.
  */
-- (nullable UIImage *)snapshotImage;
+- (nullable UIImage *)mar_snapshotImage;
 
 /**
  *  Take a screenshot of the current view an saving to the saved photos album
  *
  *  @return Returns screenshot as UIImage
  */
-- (UIImage * _Nonnull)saveSnapshotImage;
+- (UIImage * _Nonnull)mar_saveSnapshotImage;
 
 /**
  Create a snapshot image of the complete view hierarchy.
  @discussion It's faster than "snapshotImage", but may cause screen updates.
  See -[UIView drawViewHierarchyInRect:afterScreenUpdates:] for more information.
  */
-- (nullable UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
+- (nullable UIImage *)mar_snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
 
 /**
  Create a snapshot PDF of the complete view hierarchy.
  */
-- (nullable NSData *)snapshotPDF;
+- (nullable NSData *)mar_snapshotPDF;
 
 /**
  Shortcut to set the view.layer's shadow
@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  @param offset Shadow offset
  @param radius Shadow radius
  */
-- (void)setLayerShadow:(nullable UIColor*)color offset:(CGSize)offset radius:(CGFloat)radius;
+- (void)mar_setLayerShadow:(nullable UIColor*)color offset:(CGSize)offset radius:(CGFloat)radius;
 
 /**
  *  Create a border around the UIView
@@ -80,14 +80,14 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  *  @param radius Border's radius
  *  @param width  Border's width
  */
-- (void)setLayerBorderWithColor:(UIColor * _Nonnull)color
+- (void)mar_setLayerBorderWithColor:(UIColor * _Nonnull)color
                withCornerRadius:(CGFloat)radius
                        andWidth:(CGFloat)width;
 
 /**
  *  Remove the borders around the UIView
  */
-- (void)removeBorders;
+- (void)mar_removeBorders;
 
 /**
  *  Create a corner radius shadow on the UIView
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  *  @param opacity      Shadow's opacity
  *  @param radius       Shadow's radius
  */
-- (void)setLayerShadowWithColor:(nullable UIColor *)color
+- (void)mar_setLayerShadowWithColor:(nullable UIColor *)color
                    cornerRadius:(CGFloat)cornerRadius
                          offset:(CGSize)offset
                         opacity:(CGFloat)opacity
@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
 /**
  *  Remove the shadow around the UIView
  */
-- (void)removeShadow;
+- (void)mar_removeShadow;
 
 /**
  *  Create a linear gradient
@@ -114,7 +114,7 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  *  @param colors    NSArray of UIColor instances
  *  @param direction Direction of the gradient
  */
-- (void)setGradientWithColors:(NSArray * _Nonnull)colors
+- (void)mar_setGradientWithColors:(NSArray * _Nonnull)colors
                     direction:(MARUIViewLinearGradientDirection)direction;
 
 /**
@@ -122,17 +122,17 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  
  @warning Never call this method inside your view's drawRect: method.
  */
-- (void)removeAllSubviews;
+- (void)mar_removeAllSubviews;
 
 /**
  Returns the view's view controller (may be nil).
  */
-@property (nullable, nonatomic, readonly) UIViewController *viewController;
+@property (nullable, nonatomic, readonly) UIViewController *mar_viewController;
 
 /**
  Returns the visible alpha on screen, taking into account superview and window.
  */
-@property (nonatomic, readonly) CGFloat visibleAlpha;
+@property (nonatomic, readonly) CGFloat mar_visibleAlpha;
 
 /**
  Converts a point from the receiver's coordinate system to that of the specified view or window.
@@ -142,7 +142,7 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  If view is nil, this method instead converts to window base coordinates.
  @return The point converted to the coordinate system of view.
  */
-- (CGPoint)convertPoint:(CGPoint)point toViewOrWindow:(nullable UIView *)view;
+- (CGPoint)mar_convertPoint:(CGPoint)point toViewOrWindow:(nullable UIView *)view;
 
 /**
  Converts a point from the coordinate system of a given view or window to that of the receiver.
@@ -152,7 +152,7 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  If view is nil, this method instead converts from window base coordinates.
  @return The point converted to the local coordinate system (bounds) of the receiver.
  */
-- (CGPoint)convertPoint:(CGPoint)point fromViewOrWindow:(nullable UIView *)view;
+- (CGPoint)mar_convertPoint:(CGPoint)point fromViewOrWindow:(nullable UIView *)view;
 
 /**
  Converts a rectangle from the receiver's coordinate system to that of another view or window.
@@ -161,7 +161,7 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  @param view The view or window that is the target of the conversion operation. If view is nil, this method instead converts to window base coordinates.
  @return The converted rectangle.
  */
-- (CGRect)convertRect:(CGRect)rect toViewOrWindow:(nullable UIView *)view;
+- (CGRect)mar_convertRect:(CGRect)rect toViewOrWindow:(nullable UIView *)view;
 
 /**
  Converts a rectangle from the coordinate system of another view or window to that of the receiver.
@@ -171,18 +171,18 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  If view is nil, this method instead converts from window base coordinates.
  @return The converted rectangle.
  */
-- (CGRect)convertRect:(CGRect)rect fromViewOrWindow:(nullable UIView *)view;
+- (CGRect)mar_convertRect:(CGRect)rect fromViewOrWindow:(nullable UIView *)view;
 
-@property (nonatomic) CGFloat left;        ///< Shortcut for frame.origin.x.
-@property (nonatomic) CGFloat top;         ///< Shortcut for frame.origin.y
-@property (nonatomic) CGFloat right;       ///< Shortcut for frame.origin.x + frame.size.width
-@property (nonatomic) CGFloat bottom;      ///< Shortcut for frame.origin.y + frame.size.height
-@property (nonatomic) CGFloat width;       ///< Shortcut for frame.size.width.
-@property (nonatomic) CGFloat height;      ///< Shortcut for frame.size.height.
-@property (nonatomic) CGFloat centerX;     ///< Shortcut for center.x
-@property (nonatomic) CGFloat centerY;     ///< Shortcut for center.y
-@property (nonatomic) CGPoint origin;      ///< Shortcut for frame.origin.
-@property (nonatomic) CGSize  size;        ///< Shortcut for frame.size.
+@property (nonatomic) CGFloat mar_left;        ///< Shortcut for frame.origin.x.
+@property (nonatomic) CGFloat mar_top;         ///< Shortcut for frame.origin.y
+@property (nonatomic) CGFloat mar_right;       ///< Shortcut for frame.origin.x + frame.size.width
+@property (nonatomic) CGFloat mar_bottom;      ///< Shortcut for frame.origin.y + frame.size.height
+@property (nonatomic) CGFloat mar_width;       ///< Shortcut for frame.size.width.
+@property (nonatomic) CGFloat mar_height;      ///< Shortcut for frame.size.height.
+@property (nonatomic) CGFloat mar_centerX;     ///< Shortcut for center.x
+@property (nonatomic) CGFloat mar_centerY;     ///< Shortcut for center.y
+@property (nonatomic) CGPoint mar_origin;      ///< Shortcut for frame.origin.
+@property (nonatomic) CGSize  mar_size;        ///< Shortcut for frame.size.
 
 @end
 
@@ -228,31 +228,31 @@ typedef NS_ENUM(NSInteger, MARUIViewAnimationTranslationDirection) {
 /**
  *  Create a shake effect on the UIView
  */
-- (void)shakeView;
+- (void)mar_shakeView;
 
 /**
  *  Create a pulse effect on th UIView
  *
  *  @param duration Seconds of animation
  */
-- (void)pulseViewWithDuration:(CGFloat)duration;
+- (void)mar_pulseViewWithDuration:(CGFloat)duration;
 
 /**
  *  Create a heartbeat effect on the UIView
  *
  *  @param duration Seconds of animation
  */
-- (void)heartbeatViewWithDuration:(CGFloat)duration;
+- (void)mar_heartbeatViewWithDuration:(CGFloat)duration;
 
 /**
  *  Adds a motion effect to the view
  */
-- (void)applyMotionEffects;
+- (void)mar_applyMotionEffects;
 
 /**
  *  Adds a motion effect to the view With offset
  */
-- (void)applyMotionEffectsWithOffset:(CGSize)offset;
+- (void)mar_applyMotionEffectsWithOffset:(CGSize)offset;
 
 /**
  *  Flip the view
@@ -260,7 +260,7 @@ typedef NS_ENUM(NSInteger, MARUIViewAnimationTranslationDirection) {
  *  @param duration  Seconds of animation
  *  @param direction Direction of the flip animation
  */
-- (void)flipWithDuration:(NSTimeInterval)duration
+- (void)mar_flipWithDuration:(NSTimeInterval)duration
                direction:(MARUIViewAnimationFlipDirection)direction;
 
 /**
@@ -272,7 +272,7 @@ typedef NS_ENUM(NSInteger, MARUIViewAnimationTranslationDirection) {
  *  @param repeat        If the animation must be repeat or no
  *  @param startFromEdge If the animation must start from the edge
  */
-- (void)translateAroundTheView:(UIView * _Nonnull)topView
+- (void)mar_translateAroundTheView:(UIView * _Nonnull)topView
                       duration:(CGFloat)duration
                      direction:(MARUIViewAnimationTranslationDirection)direction
                         repeat:(BOOL)repeat
