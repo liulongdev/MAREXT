@@ -10,6 +10,8 @@
 #import "MARCategory.h"
 #import "AppDelegate.h"
 #import "NSData+MAREX_Type.h"
+#import "MARTestExamples.h"
+
 @interface ViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 - (IBAction)clickTestBtnAction:(id)sender;
 - (IBAction)clickTestBtn2Action:(id)sender;
@@ -22,9 +24,11 @@
 @implementation ViewController
 {
     UIImage* chooseImage;
+    MARTestExamples *testExamples;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    testExamples = [MARTestExamples new];
 //    [self.btn1 mar_setSoundID:MARAudioIDNewMail forState:<#(UIControlEvents)#>]
 }
 
@@ -126,8 +130,7 @@
 }
 
 - (IBAction)clickTestBtn2Action:(id)sender {
-    
-    [MARSystemSound playSystemSound:MARAudioIDPhotoShutter];
+    [testExamples testSoundIDS];
     return;
     static NSInteger count = 0;
     

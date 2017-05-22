@@ -55,6 +55,7 @@
 		C149F9621ECA8D8A00C8B7C8 /* MARExtensionDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F9611ECA8D8A00C8B7C8 /* MARExtensionDemoTests.m */; };
 		C149F96D1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F96C1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m */; };
 		C188C4A51ECE8FCA00A500C9 /* NSData+MAREX_Type.m in Sources */ = {isa = PBXBuildFile; fileRef = C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */; };
+		C1C2BD4D1ED27FB70095143D /* MARLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2BD4C1ED27FB70095143D /* MARLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,8 @@
 		C149F96E1ECA8D8B00C8B7C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C188C4A31ECE8FCA00A500C9 /* NSData+MAREX_Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MAREX_Type.h"; sourceTree = "<group>"; };
 		C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MAREX_Type.m"; sourceTree = "<group>"; };
+		C1C2BD4B1ED27FB70095143D /* MARLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARLabel.h; sourceTree = "<group>"; };
+		C1C2BD4C1ED27FB70095143D /* MARLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +356,8 @@
 				C1150E321ECD448D00176F38 /* MARUITextView.m */,
 				C1150E341ECD46C900176F38 /* MARUIButton.h */,
 				C1150E351ECD46C900176F38 /* MARUIButton.m */,
+				C1C2BD4B1ED27FB70095143D /* MARLabel.h */,
+				C1C2BD4C1ED27FB70095143D /* MARLabel.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 				C1150E4E1ECD9F9200176F38 /* UIFont+MAREX.m in Sources */,
 				C188C4A51ECE8FCA00A500C9 /* NSData+MAREX_Type.m in Sources */,
 				C1150E1D1ECC223000176F38 /* MARCGUtilities.m in Sources */,
+				C1C2BD4D1ED27FB70095143D /* MARLabel.m in Sources */,
 				C1150DE31ECAD4AE00176F38 /* UIScrollView+MAREX.m in Sources */,
 				C1150E3F1ECD794700176F38 /* MARSystemSound.m in Sources */,
 				C1150DEC1ECADC9500176F38 /* NSNumber+MAREX.m in Sources */,

@@ -94,15 +94,60 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns the class name in NSString.
  */
-+ (NSString *)className;
+- (NSString *)mar_className;
 
 /**
- Returns the class name in NSString.
- 
- @discussion Apple has implemented this method in NSObject(NSLayoutConstraintCallsThis),
- but did not make it public.
+ Returns array contains all the property in the current class
  */
-- (NSString *)className;
+- (NSArray *)mar_propertyKeyList;
++ (NSArray *)mar_propertyKeyList;
+
+/**
+ Return Detail info of all the perproty in the current class.
+ */
+- (NSArray *)mar_propertiyInfoList;
++ (NSArray *)mar_propertiyInfoList;
+
+/**
+ Return all the method name in the current class
+ */
+- (NSArray *)mar_methodNameList;
++ (NSArray *)mar_methodNameList;
+
+/**
+ Return all the method info in the current class
+ */
+- (NSArray *)mar_methodInfoList;
++ (NSArray *)mar_methodInfoList;
+
+/**
+ Return name of the classes which have registered
+ */
++ (NSArray *)mar_registedClassList;
+
+/**
+ Return all the instance variabel in the current class,each item contains type and name of ivar
+ */
+- (NSArray *)mar_instanceVariableList;
++ (NSArray *)mar_instanceVariableList;
+
+/**
+ return all the protocol which the class or ancestors classes confirms.
+ */
+- (NSDictionary *)mar_protocolList;
++ (NSDictionary *)mar_protocolList;
+
+/**
+ Indicate whether has the name of the property in the current.
+ */
+- (BOOL)mar_hasPropertyForKey:(NSString *)key;
++ (BOOL)mar_hasPropertyForKey:(NSString *)key;
+
+/**
+ Indicate whether has the name of the Ivar in the current.
+ */
+- (BOOL)mar_hasIvarForKey:(NSString *)key;
++ (BOOL)mar_hasIvarForKey:(NSString *)key;
 
 @end
 
@@ -140,6 +185,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+typedef __nonnull id <NSObject, NSCopying> MARCancelBlockToken;
+
 @interface NSObject (MAREX_GCD)
 
 
@@ -149,7 +196,19 @@ NS_ASSUME_NONNULL_BEGIN
  and - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay inModes:(NSArray<NSRunLoopMode> *)modes
  Because two funs above not valid on sub thread, reference runloop.
  */
-- (void)mar_gcdPerformAfterDelay:(NSTimeInterval)seconds usingBlock:(void (^)(void))block ;
++ (MARCancelBlockToken)mar_gcdPerformAfterDelay:(NSTimeInterval)delay usingBlock:(void (^)(void))block;
+
+- (MARCancelBlockToken)mar_gcdPerformAfterDelay:(NSTimeInterval)delay usingBlock:(void (^)(id objSelf))block;
+
+- (MARCancelBlockToken)mar_gcdPerformOnBackgroundAfterDelay:(NSTimeInterval)delay usingBlock:(void (^)(id objSelf))block;
+
++ (MARCancelBlockToken)mar_gcdPerformOnBackgroundAfterDelay:(NSTimeInterval)delay usingBlock:(void (^)(void))block;
+
+- (MARCancelBlockToken)mar_gcdPerformOnQueue:(dispatch_queue_t)queue afterDelay:(NSTimeInterval)delay usingBlock:(void (^)(id objSelf))block;
+
++ (MARCancelBlockToken)mar_gcdPerformOnQueue:(dispatch_queue_t)queue afterDelay:(NSTimeInterval)delay usingBlock:(void (^)(void))block;
+
++ (void)mar_cancelBlock:(MARCancelBlockToken)block;
 
 @end
 

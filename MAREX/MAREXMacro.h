@@ -68,6 +68,7 @@ blue:((float)(_hex & 0xFF))/255.0 alpha:_alpha]
 #define AppVersion              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define AppBuildVersion         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 #define APPDisplayName          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
+#define APPBundleIdentifier     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
 
 #define DEVICEUUID              [[[UIDevice currentDevice] identifierForVendor] UUIDString]
 

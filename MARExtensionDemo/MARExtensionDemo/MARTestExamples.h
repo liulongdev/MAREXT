@@ -10,4 +10,6 @@
 
 @interface MARTestExamples : NSObject
 
+- (void)testSoundIDS;
+
 @end

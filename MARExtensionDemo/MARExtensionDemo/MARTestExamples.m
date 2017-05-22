@@ -141,10 +141,9 @@
         count = 0;
         return;
     }
-    [MARSystemSound playSystemSound:soundIds[count % (sumCount - 1)]];
-    __weak __typeof(self) weakself = self;
-    [self mar_gcdPerformAfterDelay:2 usingBlock:^{
-        [weakself testSoundIDS];
+    [MARSystemSound playSystemSound:soundIds[count++ % (sumCount - 1)]];
+    [self mar_gcdPerformAfterDelay:2 usingBlock:^(id  _Nonnull objSelf) {
+        [objSelf testSoundIDS];
     }];
 }
 

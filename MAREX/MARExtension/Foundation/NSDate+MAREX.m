@@ -211,8 +211,7 @@
         } else if (intervalInSeconds >= 5 && intervalInSeconds < 10) {
             return [NSString stringWithFormat:MARLocalizedString(@"少于%d分钟", @"less than %d seconds"), 10];
         } else if (intervalInSeconds >= 10 && intervalInSeconds < 20) {
-//            return [NSString stringWithFormat:@"%d 分钟", 20];
-            return @"刚刚";
+            return [NSString stringWithFormat:@"少于%d分钟", 20];
         } else if (intervalInSeconds >= 20 && intervalInSeconds < 40) {
             return MARLocalizedString(@"刚刚", @"half a minute");
         } else if (intervalInSeconds >= 40 && intervalInSeconds < 60) {
