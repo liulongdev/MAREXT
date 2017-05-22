@@ -149,7 +149,7 @@ NS_ASSUME_NONNULL_BEGIN
  and - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay inModes:(NSArray<NSRunLoopMode> *)modes
  Because two funs above not valid on sub thread, reference runloop.
  */
-- (void)mar_gcdPerformBlock:(void (^)(void))block afterDelay:(NSTimeInterval)seconds;
+- (void)mar_gcdPerformAfterDelay:(NSTimeInterval)seconds usingBlock:(void (^)(void))block ;
 
 @end
 

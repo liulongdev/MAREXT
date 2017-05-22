@@ -205,7 +205,7 @@ static const char marobj_kvo_block_key;
 
 @implementation NSObject (MAREX_GCD)
 
-- (void)mar_gcdPerformBlock:(void (^)(void))block afterDelay:(NSTimeInterval)seconds
+- (void)mar_gcdPerformAfterDelay:(NSTimeInterval)seconds usingBlock:(void (^)(void))block
 {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), block);

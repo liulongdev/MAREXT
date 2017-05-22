@@ -422,6 +422,39 @@ NS_ASSUME_NONNULL_BEGIN
                                font:(MARFontName)fontName
                            fontSize:(CGFloat)fontSize;
 
+/**
+ @param imageSize size of image
+ @param colors colors array contains two colors
+ @param startPoint startPoint each item need be [0.0, 1.0]
+ @param endPoint endPoint each item need be [0.0, 1.0]
+ */
++ (UIImage *)mar_linearGradientImageWithSize:(CGSize)imageSize
+                                      colors:(NSArray*)colors
+                                  startPoint:(CGPoint)startPoint
+                                    endPoint:(CGPoint)endPoint;
+
+/**
+ 
+ locations : An optional array of NSNumber objects defining the location of each
+ * gradient stop as a value in the range [0,1]. The values must be
+ * monotonically increasing. If a nil array is given, the stops are
+ * assumed to spread uniformly across the [0,1] range.
+ 
+ @param imageSize size of image
+ @param locations e.g @[@(0.0), @(0.5), @(1.0)]
+ @param colors e.g @[color1, color2, color3]
+ @param startCenter startCenter
+ @param startRadius startRadius
+ @param endCenter endCenter
+ @param endRadius endRadius
+ */
++ (UIImage *)mar_radialGradientimageWithSize:(CGSize)imageSize
+                                   locations:(NSArray *)locations
+                                      colors:(NSArray *)colors
+                                 startCenter:(CGPoint)startCenter
+                                 startRadius:(CGFloat)startRadius
+                                   endCenter:(CGPoint)endCenter
+                                   endRadius:(CGFloat)endRadius;
 
 @end
 

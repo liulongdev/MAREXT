@@ -25,7 +25,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self.btn1 mar_setSoundID:MARAudioIDNewMail forState:<#(UIControlEvents)#>]
 }
+
+
 
 - (void)testTextPath
 {
@@ -92,7 +95,13 @@
 
 - (IBAction)clickTestBtnAction:(id)sender {
     
-//    [MARSystemSound playSystemSoundVibrate];
+//    UIImage * gradientImage = [UIImage mar_linearGradientImageWithSize:self.imageView.frame.size colors:@[[UIColor redColor], [UIColor greenColor]] startPoint:CGPointMake(0.0, 0.0) endPoint:CGPointMake(0.5, 1.0)];
+    [self.imageView mar_setGradientWithColors:@[[UIColor redColor], [UIColor greenColor], [UIColor greenColor]] direction:MARUIViewLinearGradientDirectionVertical];
+    return;
+    UIImage *gradientImage = [UIImage mar_radialGradientimageWithSize:self.imageView.frame.size locations:@[@(0.0),@(0.2), @(1.0)] colors:@[[UIColor redColor],[UIColor blueColor], [UIColor greenColor]] startCenter:CGPointMake(0.2, 0.8) startRadius:0 endCenter:CGPointMake(0.2, 0.8) endRadius:500];
+    
+    self.imageView.image = gradientImage;
+//    [self.imageView mar_setGradientWithColors:@[[UIColor redColor], [UIColor greenColor]] direction:MARUIViewLinearGradientDirectionVertical];
     return;
     
     UIImage* image = [(AppDelegate*)[UIApplication sharedApplication].delegate window].mar_touchImage;

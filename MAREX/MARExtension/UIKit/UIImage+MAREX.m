@@ -881,4 +881,90 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     return image;
 }
 
++ (UIImage *)mar_linearGradientImageWithSize:(CGSize)imageSize
+                                      colors:(NSArray *)colors
+                                  startPoint:(CGPoint)startPoint
+                                    endPoint:(CGPoint)endPoint
+{
+    UIGraphicsBeginImageContext(imageSize);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+//    CGContextTranslateCTM(context, 0.0, rect.size.height);
+//    CGContextScaleCTM(context, 1.0, -1.0);
+    
+//    CGContextClipToMask(context, rect, self.CGImage);
+    
+    const CGFloat *top = CGColorGetComponents(((UIColor*)[colors objectAtIndex:0]).CGColor);
+    const CGFloat *bottom = CGColorGetComponents(((UIColor*)[colors objectAtIndex:1]).CGColor);
+    
+    CGColorSpaceRef _rgb = CGColorSpaceCreateDeviceRGB();
+    size_t _numLocations = 2;
+    CGFloat _locations[2] = { 0.0, 1.0 };
+    CGFloat _colors[8] = { top[0], top[1], top[2], top[3], bottom[0], bottom[1], bottom[2], bottom[3] };
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(_rgb, _colors, _locations, _numLocations);
+    CGColorSpaceRelease(_rgb);
+    
+    CGPoint start = CGPointMake(imageSize.width * startPoint.x, imageSize.height * startPoint.y);
+    CGPoint end = CGPointMake(imageSize.width * endPoint.x, imageSize.height * endPoint.y);
+    
+    CGContextClipToRect(context, CGRectMake(0, 0, imageSize.width, imageSize.height));
+    CGContextDrawLinearGradient(context, gradient, start, end, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    CGGradientRelease(gradient);
+    return image;
+}
+
++ (UIImage *)mar_radialGradientimageWithSize:(CGSize)imageSize locations:(NSArray *)locations colors:(NSArray *)colors startCenter:(CGPoint)startCenter startRadius:(CGFloat)startRadius endCenter:(CGPoint)endCenter endRadius:(CGFloat)endRadius
+{
+    return [self mar_radialGradientimageWithSize:imageSize locations:locations colors:colors startCenter:startCenter startRadius:startRadius endCenter:endCenter endRadius:endRadius count:locations.count];
+}
+
++ (UIImage *)mar_radialGradientimageWithSize:(CGSize)imageSize
+                                   locations:(NSArray *)locations
+                                      colors:(NSArray *)colors
+                                 startCenter:(CGPoint)startCenter
+                                 startRadius:(CGFloat)startRadius
+                                   endCenter:(CGPoint)endCenter
+                                   endRadius:(CGFloat)endRadius
+                                       count:(size_t)count
+{
+    if (!locations) {
+        locations = @[@(0.0), @(1.0)];
+    }
+    UIGraphicsBeginImageContext(imageSize);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+//    CGContextTranslateCTM(context, 0.0, rect.size.height);
+//    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    CGFloat _colors[80] = {0};
+    for (int i = 0; i < colors.count; i++) {
+        const CGFloat *components = CGColorGetComponents(((UIColor*)[colors objectAtIndex:i]).CGColor);
+        _colors[i*4 + 0] = components[0];
+        _colors[i*4 + 1] = components[1];
+        _colors[i*4 + 2] = components[2];
+        _colors[i*4 + 3] = components[3];
+    }
+    CGFloat _locations[20] = {0};
+    for (int i = 0; i < locations.count; i++) {
+        _locations[i] = [locations[i] floatValue];
+    }
+
+    CGColorSpaceRef _rgb = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(_rgb, _colors, _locations, count);
+    CGColorSpaceRelease(_rgb);
+    CGPoint start = CGPointMake(imageSize.width * startCenter.x, imageSize.height * startCenter.y);
+    CGPoint end = CGPointMake(imageSize.width * endCenter.x, imageSize.height * endCenter.y);
+    
+    CGContextClipToRect(context, CGRectMake(0, 0, imageSize.width, imageSize.height));
+    CGContextDrawRadialGradient(context, gradient, start, startRadius, end, endRadius, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    CGGradientRelease(gradient);
+    return image;
+}
+
 @end

@@ -471,5 +471,14 @@ typedef NS_ENUM(NSInteger, MARPasswordStrengthLevel) {
 
 @end
 
+@interface NSString (MAREX_Path)
+
+/**
+ return document directory path of app
+ */
+- (NSString *)mar_documentsDirectoryPath;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

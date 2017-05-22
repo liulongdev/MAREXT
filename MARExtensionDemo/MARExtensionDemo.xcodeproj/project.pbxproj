@@ -15,6 +15,7 @@
 		5B4DC6061ECC99FE0063CF63 /* MARGlobalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC6051ECC99FE0063CF63 /* MARGlobalManager.m */; };
 		5B4DC60B1ECCA0FA0063CF63 /* MARDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60A1ECCA0FA0063CF63 /* MARDebug.m */; };
 		5B4DC60E1ECCA24A0063CF63 /* MARWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */; };
+		5B4DC6111ECF531A0063CF63 /* MARTestExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */; };
 		C1150DD51ECACD8100176F38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1150DD41ECACD8100176F38 /* Foundation.framework */; };
 		C1150DD71ECACD8A00176F38 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1150DD61ECACD8A00176F38 /* libz.tbd */; };
 		C1150DDD1ECACE5B00176F38 /* NSData+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150DDA1ECACE5B00176F38 /* NSData+MAREX.m */; };
@@ -91,6 +92,8 @@
 		5B4DC60A1ECCA0FA0063CF63 /* MARDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARDebug.m; sourceTree = "<group>"; };
 		5B4DC60C1ECCA24A0063CF63 /* MARWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARWeakProxy.h; sourceTree = "<group>"; };
 		5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARWeakProxy.m; sourceTree = "<group>"; };
+		5B4DC60F1ECF531A0063CF63 /* MARTestExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARTestExamples.h; sourceTree = "<group>"; };
+		5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARTestExamples.m; sourceTree = "<group>"; };
 		C1150DBE1ECAC96300176F38 /* MARCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARCategory.h; sourceTree = "<group>"; };
 		C1150DD41ECACD8100176F38 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C1150DD61ECACD8A00176F38 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -270,6 +273,8 @@
 		C1150DD81ECACE5B00176F38 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				C1150E0F1ECBE1D400176F38 /* NSObject+MAREX.h */,
+				C1150E101ECBE1D400176F38 /* NSObject+MAREX.m */,
 				C1150DD91ECACE5B00176F38 /* NSData+MAREX.h */,
 				C1150DDA1ECACE5B00176F38 /* NSData+MAREX.m */,
 				C188C4A31ECE8FCA00A500C9 /* NSData+MAREX_Type.h */,
@@ -280,8 +285,6 @@
 				C1150DEB1ECADC9500176F38 /* NSNumber+MAREX.m */,
 				C1150E0C1ECBD6E400176F38 /* NSDate+MAREX.h */,
 				C1150E0D1ECBD6E400176F38 /* NSDate+MAREX.m */,
-				C1150E0F1ECBE1D400176F38 /* NSObject+MAREX.h */,
-				C1150E101ECBE1D400176F38 /* NSObject+MAREX.m */,
 				C1150E1E1ECC261F00176F38 /* NSNotificationCenter+MAREX.h */,
 				C1150E1F1ECC261F00176F38 /* NSNotificationCenter+MAREX.m */,
 				C1150E371ECD47A700176F38 /* NSMutableArray+MAREX.h */,
@@ -388,6 +391,8 @@
 				C149F9551ECA8D8A00C8B7C8 /* LaunchScreen.storyboard */,
 				C149F9581ECA8D8A00C8B7C8 /* Info.plist */,
 				C149F9471ECA8D8A00C8B7C8 /* Supporting Files */,
+				5B4DC60F1ECF531A0063CF63 /* MARTestExamples.h */,
+				5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */,
 			);
 			path = MARExtensionDemo;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 				C1150DE91ECAD85D00176F38 /* NSString+MAREX.m in Sources */,
 				C1150E511ECDAC7C00176F38 /* UIWindow+MAREX.m in Sources */,
 				C1150E361ECD46C900176F38 /* MARUIButton.m in Sources */,
+				5B4DC6111ECF531A0063CF63 /* MARTestExamples.m in Sources */,
 				C1150E171ECBE87000176F38 /* UIDevice+MAREX.m in Sources */,
 				C1150E331ECD448D00176F38 /* MARUITextView.m in Sources */,
 				5B4DC60E1ECCA24A0063CF63 /* MARWeakProxy.m in Sources */,

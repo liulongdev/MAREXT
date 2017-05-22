@@ -557,3 +557,11 @@
 }
 
 @end
+
+@implementation NSString (MAREX_Path)
+
+- (NSString *)mar_documentsDirectoryPath {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+}
+
+@end
