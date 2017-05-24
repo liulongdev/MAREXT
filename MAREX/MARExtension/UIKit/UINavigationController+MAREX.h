@@ -10,6 +10,23 @@
 
 @interface UINavigationController (MAREX)
 
+/**
+ 如果topVC是viewController的类型则不push
+ 
+ @param viewController 1
+ @param animated 1
+ */
+- (void)mar_pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
+
+/**
+ 如果navi中从栈底开始遍历，发现有vc是class类型的，直接把上面的vc都推出栈
+ 
+ @param clazz 1
+ @param animated 1
+ @return 1
+ */
+- (NSArray<__kindof UIViewController *> *)mar_popToViewControllerClazz:(Class)clazz Animated:(BOOL)animated;
+
 @end
 
 @interface UINavigationBar (MAREX_Translucent)

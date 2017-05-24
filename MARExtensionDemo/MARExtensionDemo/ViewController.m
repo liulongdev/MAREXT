@@ -11,6 +11,23 @@
 #import "AppDelegate.h"
 #import "NSData+MAREX_Type.h"
 #import "MARTestExamples.h"
+#import "NSObject+MAR_Observer.h"
+#import "NSObject+MARModel.h"
+@interface MARTestKVO : NSObject
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) NSInteger age;
+@property (nonatomic, assign) BOOL isMarried;
+
+@end
+
+@implementation  MARTestKVO
+- (NSString *)description
+{
+    return [self mar_modelDescription];
+}
+
+@end
 
 @interface ViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 - (IBAction)clickTestBtnAction:(id)sender;
@@ -25,11 +42,24 @@
 {
     UIImage* chooseImage;
     MARTestExamples *testExamples;
+    MARTestKVO *testKVO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     testExamples = [MARTestExamples new];
 //    [self.btn1 mar_setSoundID:MARAudioIDNewMail forState:<#(UIControlEvents)#>]
+    testKVO = [MARTestKVO new];
+//    [testKVO bk_addObserverForKeyPaths:@[@"name", @"age", @"isMarried"] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionNew task:^(MARTestKVO  *obj, NSString * _Nonnull keyPath, NSDictionary * _Nonnull change) {
+//        NSLog(@"obj : %@, keyPath : %@, change : %@", obj, keyPath, change);
+//    }];
+    [testKVO addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if (object == testKVO) {
+        NSLog(@"obj : %@, keypath : %@, chagne : %@", testKVO, keyPath, change);
+    }
 }
 
 
@@ -98,7 +128,12 @@
 }
 
 - (IBAction)clickTestBtnAction:(id)sender {
+
+    testKVO.name = @"Martin";
+    testKVO.age = 29;
+    testKVO.isMarried = NO;
     
+    return;
 //    UIImage * gradientImage = [UIImage mar_linearGradientImageWithSize:self.imageView.frame.size colors:@[[UIColor redColor], [UIColor greenColor]] startPoint:CGPointMake(0.0, 0.0) endPoint:CGPointMake(0.5, 1.0)];
     [self.imageView mar_setGradientWithColors:@[[UIColor redColor], [UIColor greenColor], [UIColor greenColor]] direction:MARUIViewLinearGradientDirectionVertical];
     return;

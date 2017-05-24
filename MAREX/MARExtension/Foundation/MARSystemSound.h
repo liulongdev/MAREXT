@@ -6,8 +6,8 @@
 //  Copyright © 2017年 MAR. All rights reserved.
 //
 
-@import AudioToolbox;
-@import Foundation;
+#import <AudioToolbox/AudioToolbox.h>
+#import <Foundation/Foundation.h>
 
 /**
  *  Audio IDs enum - http://iphonedevwiki.net/index.php/AudioServices

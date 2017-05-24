@@ -54,6 +54,7 @@
 		C149F9571ECA8D8A00C8B7C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C149F9551ECA8D8A00C8B7C8 /* LaunchScreen.storyboard */; };
 		C149F9621ECA8D8A00C8B7C8 /* MARExtensionDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F9611ECA8D8A00C8B7C8 /* MARExtensionDemoTests.m */; };
 		C149F96D1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F96C1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m */; };
+		C15834241ED5768000338090 /* NSObject+MAR_Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = C15834231ED5768000338090 /* NSObject+MAR_Observer.m */; };
 		C188C4A51ECE8FCA00A500C9 /* NSData+MAREX_Type.m in Sources */ = {isa = PBXBuildFile; fileRef = C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */; };
 		C1C2BD4D1ED27FB70095143D /* MARLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2BD4C1ED27FB70095143D /* MARLabel.m */; };
 /* End PBXBuildFile section */
@@ -170,6 +171,8 @@
 		C149F9681ECA8D8A00C8B7C8 /* MARExtensionDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MARExtensionDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C149F96C1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARExtensionDemoUITests.m; sourceTree = "<group>"; };
 		C149F96E1ECA8D8B00C8B7C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C15834221ED5768000338090 /* NSObject+MAR_Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MAR_Observer.h"; sourceTree = "<group>"; };
+		C15834231ED5768000338090 /* NSObject+MAR_Observer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MAR_Observer.m"; sourceTree = "<group>"; };
 		C188C4A31ECE8FCA00A500C9 /* NSData+MAREX_Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MAREX_Type.h"; sourceTree = "<group>"; };
 		C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MAREX_Type.m"; sourceTree = "<group>"; };
 		C1C2BD4B1ED27FB70095143D /* MARLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARLabel.h; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 				C1150E441ECD806A00176F38 /* NSFileManager+MAREX.m */,
 				C1150E461ECD892200176F38 /* NSProcessInfo+MAREX.h */,
 				C1150E471ECD892200176F38 /* NSProcessInfo+MAREX.m */,
+				C15834221ED5768000338090 /* NSObject+MAR_Observer.h */,
+				C15834231ED5768000338090 /* NSObject+MAR_Observer.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				C1150E0E1ECBD6E400176F38 /* NSDate+MAREX.m in Sources */,
 				C149F94F1ECA8D8A00C8B7C8 /* ViewController.m in Sources */,
 				5B4DC6031ECC8BFD0063CF63 /* NSObject+MARModel.m in Sources */,
+				C15834241ED5768000338090 /* NSObject+MAR_Observer.m in Sources */,
 				C1150E391ECD47A700176F38 /* NSMutableArray+MAREX.m in Sources */,
 				C149F94C1ECA8D8A00C8B7C8 /* AppDelegate.m in Sources */,
 				C1150E1A1ECC20DB00176F38 /* CALayer+MAREX.m in Sources */,

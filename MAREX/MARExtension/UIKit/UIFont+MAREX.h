@@ -6,8 +6,8 @@
 //  Copyright © 2017年 MAR. All rights reserved.
 //
 
-@import Foundation;
-@import UIKit;
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  *  All font family names available from iOS 7.0 to iOS 9.0

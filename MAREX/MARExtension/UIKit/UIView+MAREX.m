@@ -7,6 +7,7 @@
 //
 
 #import "UIView+MAREX.h"
+#import "UIGestureRecognizer+MAREX.h"
 
 @implementation UIView (MAREX)
 
@@ -546,6 +547,45 @@
             }];
         }
     }];
+}
+
+@end
+
+@implementation UIView (MAREX_GestureBlock)
+
+- (void)mar_whenTouches:(NSUInteger)numberOfTouches tapped:(NSUInteger)numberOfTaps handler:(void (^)(void))block
+{
+    if (!block) return;
+    
+    UITapGestureRecognizer *gesture = [UITapGestureRecognizer mar_recognizerWithHandler:^(UIGestureRecognizer * _Nonnull sender, UIGestureRecognizerState state, CGPoint location) {
+            block();
+    }];
+    
+    gesture.numberOfTouchesRequired = numberOfTouches;
+    gesture.numberOfTapsRequired = numberOfTaps;
+    
+    [self.gestureRecognizers enumerateObjectsUsingBlock:^(__kindof UIGestureRecognizer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (![obj isKindOfClass:[UITapGestureRecognizer class]]) return;
+        
+        UITapGestureRecognizer *tap = obj;
+        BOOL rightTouches = (tap.numberOfTouchesRequired == numberOfTouches);
+        BOOL rightTaps = (tap.numberOfTapsRequired == numberOfTaps);
+        if (rightTouches && rightTaps) {
+            [gesture requireGestureRecognizerToFail:tap];
+        }
+    }];
+    
+    [self addGestureRecognizer:gesture];
+}
+
+- (void)mar_whenTapped:(void (^)(void))block
+{
+    [self mar_whenTouches:1 tapped:1 handler:block];
+}
+
+- (void)mar_whenDoubleTapped:(void (^)(void))block
+{
+    [self mar_whenTouches:1 tapped:2 handler:block];
 }
 
 @end

@@ -10,6 +10,56 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define kMARMachieNameIPhone1G      @"iPhone 1G"
+#define kMARMachieNameIPhone3G      @"iPhone 3G"
+#define kMARMachieNameIPhones3GS    @"iPhone 3GS"
+#define kMARMachieNameIPhone4GSM    @"iPhone 4 (GSM)"
+#define kMARMachieNameIPhone4       @"iPhone 4"
+#define kMARMachieNameIPhone4CDMA   @"iPhone 4 (CDMA)"
+#define kMARMachieNameIPhone4S      @"iPhone 4S"
+#define kMARMachieNameIPhone5       @"iPhone 5"
+#define kMARMachieNameIPhone5C      @"iPhone 5c"
+#define kMARMachieNameIPhone5S      @"iPhone 5s"
+#define kMARMachieNameIPhone6Plus   @"iPhone 6 Plus"
+#define kMARMachieNameIPhone6       @"iPhone 6"
+#define kMARMachieNameIPhone6S      @"iPhone 6s"
+#define kMARMachieNameIPhone6SPlus  @"iPhone 6s Plus"
+#define kMARMachieNameIPhoneSE      @"iPhone SE"
+#define kMARMachieNameIPhone7       @"iPhone 7"
+#define kMARMachieNameIPhone7Plus   @"iPhone 7 Plus"
+
+#define kMAROldMachies              (@[kMARMachieNameIPhone1G, \
+kMARMachieNameIPhone3G, \
+kMARMachieNameIPhones3GS,\
+kMARMachieNameIPhone4GSM,\
+kMARMachieNameIPhone4,\
+kMARMachieNameIPhone4CDMA,\
+kMARMachieNameIPhone4S\
+])
+
+#define kMARIphone5SeriesMachies    (@[kMARMachieNameIPhone5, \
+kMARMachieNameIPhone5C, \
+kMARMachieNameIPhone5S,\
+kMARMachieNameIPhoneSE\
+])
+
+#define kMARIphone6SeriesMachies    (@[kMARMachieNameIPhone6, \
+kMARMachieNameIPhone6Plus, \
+kMARMachieNameIPhone6S\
+])
+
+#define kMARIphone7SeriesMachies    (@[kMARMachieNameIPhone6, \
+kMARMachieNameIPhone6Plus, \
+kMARMachieNameIPhone6S\
+])
+
+#define kMARISOldMachie()           ([kMAROldMachies containsObject:[UIDevice currentDevice].MAR_machineModelName])
+#define kMARISIphone5Series()       ([kMARIphone5SeriesMachies containsObject:[UIDevice currentDevice].MAR_machineModelName])
+#define kMARISIphone6Series()       ([kMARIphone6SeriesMachies containsObject:[UIDevice currentDevice].MAR_machineModelName])
+#define kMARISIphone7Series()       ([kMARIphone7SeriesMachies containsObject:[UIDevice currentDevice].MAR_machineModelName])
+
+#define kMARIsIOSLater(_value_)     ([UIDevice currentDevice].systemVersion.doubleValue >= _value_)
+
 @interface UIDevice (MAREX)
 
 #pragma mark - Device Information

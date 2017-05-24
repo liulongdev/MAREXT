@@ -6,8 +6,8 @@
 //  Copyright © 2017年 MAR. All rights reserved.
 //
 
-@import Foundation;
-@import LocalAuthentication;
+#import <Foundation/Foundation.h>
+#import <LocalAuthentication/LocalAuthentication.h>
 
 /**
  *  Touch result enum

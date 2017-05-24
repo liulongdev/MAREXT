@@ -219,7 +219,7 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
         return;
     }
     __block MARReachabilityNetStatus netStatus = MARReachabilityNetStatusNotReachbale;
-    __weak typeof(self) weakSelf = self;
+    __weak MARGlobalManager* weakSelf = self;
     self.reachability.notifyBlock = ^(MARReachability *reachabilityB){
         netStatus = MARReachabilityNetStatusNotReachbale;
         if (reachabilityB.status == MARReachabilityStatusNone) {

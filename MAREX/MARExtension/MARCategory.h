@@ -25,11 +25,12 @@
 #import "MARWeakProxy.h"
 //#import "MARReachability.h"
 
+#import "NSObject+MAREX.h"
 #import "NSData+MAREX.h"
+#import "NSData+MAREX_Type.h"
 #import "NSString+MAREX.h"
 #import "NSNumber+MAREX.h"
 #import "NSDate+MAREX.h"
-#import "NSObject+MAREX.h"
 #import "NSNotificationCenter+MAREX.h"
 #import "NSMutableArray+MAREX.h"
 #import "NSArray+MAREX.h"
@@ -56,5 +57,6 @@
 
 #import "MARUITextView.h"
 #import "MARUIButton.h"
+#import "MARLabel.h"
 
 #endif /* MAREX_h */
