@@ -49,10 +49,10 @@
     testExamples = [MARTestExamples new];
 //    [self.btn1 mar_setSoundID:MARAudioIDNewMail forState:<#(UIControlEvents)#>]
     testKVO = [MARTestKVO new];
-//    [testKVO bk_addObserverForKeyPaths:@[@"name", @"age", @"isMarried"] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionNew task:^(MARTestKVO  *obj, NSString * _Nonnull keyPath, NSDictionary * _Nonnull change) {
-//        NSLog(@"obj : %@, keyPath : %@, change : %@", obj, keyPath, change);
-//    }];
-    [testKVO addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionNew context:nil];
+    [testKVO mar_addObserverForKeyPaths:@[@"name", @"age", @"isMarried"] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionNew task:^(MARTestKVO  *obj, NSString * _Nonnull keyPath, NSDictionary * _Nonnull change) {
+        NSLog(@"obj : %@, keyPath : %@, change : %@", obj, keyPath, change);
+    }];
+//    [testKVO addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -165,7 +165,8 @@
 }
 
 - (IBAction)clickTestBtn2Action:(id)sender {
-    [testExamples testSoundIDS];
+//    [testExamples testSoundIDS];
+    [[MARTestExamples new] testSoundIDS];
     return;
     static NSInteger count = 0;
     
@@ -246,8 +247,6 @@
     
     self.imageView.image = chooseImage;
 }
-
-
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 

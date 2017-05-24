@@ -281,6 +281,8 @@
 			children = (
 				C1150E0F1ECBE1D400176F38 /* NSObject+MAREX.h */,
 				C1150E101ECBE1D400176F38 /* NSObject+MAREX.m */,
+				C15834221ED5768000338090 /* NSObject+MAR_Observer.h */,
+				C15834231ED5768000338090 /* NSObject+MAR_Observer.m */,
 				C1150DD91ECACE5B00176F38 /* NSData+MAREX.h */,
 				C1150DDA1ECACE5B00176F38 /* NSData+MAREX.m */,
 				C188C4A31ECE8FCA00A500C9 /* NSData+MAREX_Type.h */,
@@ -305,8 +307,6 @@
 				C1150E441ECD806A00176F38 /* NSFileManager+MAREX.m */,
 				C1150E461ECD892200176F38 /* NSProcessInfo+MAREX.h */,
 				C1150E471ECD892200176F38 /* NSProcessInfo+MAREX.m */,
-				C15834221ED5768000338090 /* NSObject+MAR_Observer.h */,
-				C15834231ED5768000338090 /* NSObject+MAR_Observer.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";

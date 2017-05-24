@@ -26,6 +26,7 @@
 //#import "MARReachability.h"
 
 #import "NSObject+MAREX.h"
+#import "NSObject+MAR_Observer.h"
 #import "NSData+MAREX.h"
 #import "NSData+MAREX_Type.h"
 #import "NSString+MAREX.h"

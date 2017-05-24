@@ -9,11 +9,13 @@ dependencies: \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Utility/MARUserDefault.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Utility/MARGlobalManager.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Utility/MARWeakProxy.h \
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSObject+MAREX.h \
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSObject+MAR_Observer.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSData+MAREX.h \
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSData+MAREX_Type.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSString+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSNumber+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSDate+MAREX.h \
-  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSObject+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSNotificationCenter+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSMutableArray+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSArray+MAREX.h \
@@ -37,5 +39,6 @@ dependencies: \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/UIWindow+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/CustomViews/MARUITextView.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/CustomViews/MARUIButton.h \
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/CustomViews/MARLabel.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MARExtensionDemo/MARExtensionDemo/AppDelegate.h \
-  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSData+MAREX_Type.h
+  /Users/Martin/Dev/SourceTree/MAREXT/MARExtensionDemo/MARExtensionDemo/MARTestExamples.h

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  observation with removeObserverWithBlockToken:.
  @see addObserverForKeyPath:identifier:options:task:
  */
-- (NSString *)bk_addObserverForKeyPath:(NSString *)keyPath task:(void (^)(id target))task;
+- (NSString *)mar_addObserverForKeyPath:(NSString *)keyPath task:(void (^)(id target))task;
 
 /** Adds an observer to an object conforming to NSKeyValueObserving.
  
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  observation with removeObserverWithBlockToken:.
  @see addObserverForKeyPath:identifier:options:task:
  */
-- (NSString *)bk_addObserverForKeyPaths:(NSArray *)keyPaths task:(void (^)(id obj, NSString *keyPath))task;
+- (NSString *)mar_addObserverForKeyPaths:(NSArray *)keyPaths task:(void (^)(id obj, NSString *keyPath))task;
 
 /** Adds an observer to an object conforming to NSKeyValueObserving.
  
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  observation with removeObserverWithBlockToken:.
  @see addObserverForKeyPath:identifier:options:task:
  */
-- (NSString *)bk_addObserverForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSDictionary *change))task;
+- (NSString *)mar_addObserverForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSDictionary *change))task;
 
 /** Adds an observer to an object conforming to NSKeyValueObserving.
  
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
  observation with removeObserverWithBlockToken:.
  @see addObserverForKeyPath:identifier:options:task:
  */
-- (NSString *)bk_addObserverForKeyPaths:(NSArray *)keyPaths options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSString *keyPath, NSDictionary *change))task;
+- (NSString *)mar_addObserverForKeyPaths:(NSArray *)keyPaths options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSString *keyPath, NSDictionary *change))task;
 
 /** Adds an observer to an object conforming to NSKeyValueObserving.
  
@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
  observation with removeObserverWithBlockToken:.
  @see addObserverForKeyPath:task:
  */
-- (void)bk_addObserverForKeyPath:(NSString *)keyPath identifier:(NSString *)token options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSDictionary *change))task;
+- (void)mar_addObserverForKeyPath:(NSString *)keyPath identifier:(NSString *)token options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSDictionary *change))task;
 
 /** Adds an observer to an object conforming to NSKeyValueObserving.
  
@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
  observation with removeObserversWithIdentifier:.
  @see addObserverForKeyPath:task:
  */
-- (void)bk_addObserverForKeyPaths:(NSArray *)keyPaths identifier:(NSString *)token options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSString *keyPath, NSDictionary *change))task;
+- (void)mar_addObserverForKeyPaths:(NSArray *)keyPaths identifier:(NSString *)token options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSString *keyPath, NSDictionary *change))task;
 
 /** Removes a block observer.
  
@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
  or the identifier given in addObserverForKeyPath:identifier:task:.
  @see removeObserversWithIdentifier:
  */
-- (void)bk_removeObserverForKeyPath:(NSString *)keyPath identifier:(NSString *)token;
+- (void)mar_removeObserverForKeyPath:(NSString *)keyPath identifier:(NSString *)token;
 
 /** Removes multiple block observers with a certain identifier.
  
@@ -113,10 +113,10 @@ NS_ASSUME_NONNULL_BEGIN
  addObserverForKeyPaths:identifier:task:.
  @see removeObserverForKeyPath:identifier:
  */
-- (void)bk_removeObserversWithIdentifier:(NSString *)token;
+- (void)mar_removeObserversWithIdentifier:(NSString *)token;
 
 /** Remove all registered block observers. */
-- (void)bk_removeAllBlockObservers;
+- (void)mar_removeAllBlockObservers;
 
 @end
 

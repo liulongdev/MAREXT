@@ -153,51 +153,51 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
 
 @implementation NSObject (MAR_Observer)
 
-- (NSString *)bk_addObserverForKeyPath:(NSString *)keyPath task:(void (^)(id target))task
+- (NSString *)mar_addObserverForKeyPath:(NSString *)keyPath task:(void (^)(id target))task
 {
     NSString *token = [[NSProcessInfo processInfo] globallyUniqueString];
-    [self bk_addObserverForKeyPaths:@[ keyPath ] identifier:token options:0 context:BKObserverContextKey task:task];
+    [self mar_addObserverForKeyPaths:@[ keyPath ] identifier:token options:0 context:BKObserverContextKey task:task];
     return token;
 }
 
-- (NSString *)bk_addObserverForKeyPaths:(NSArray *)keyPaths task:(void (^)(id obj, NSString *keyPath))task
+- (NSString *)mar_addObserverForKeyPaths:(NSArray *)keyPaths task:(void (^)(id obj, NSString *keyPath))task
 {
     NSString *token = [[NSProcessInfo processInfo] globallyUniqueString];
-    [self bk_addObserverForKeyPaths:keyPaths identifier:token options:0 context:BKObserverContextManyKeys task:task];
+    [self mar_addObserverForKeyPaths:keyPaths identifier:token options:0 context:BKObserverContextManyKeys task:task];
     return token;
 }
 
-- (NSString *)bk_addObserverForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSDictionary *change))task
-{
-    NSString *token = [[NSProcessInfo processInfo] globallyUniqueString];
-    options = options | BKKeyValueObservingOptionWantsChangeDictionary;
-    [self bk_addObserverForKeyPath:keyPath identifier:token options:options task:task];
-    return token;
-}
-
-- (NSString *)bk_addObserverForKeyPaths:(NSArray *)keyPaths options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSString *keyPath, NSDictionary *change))task
+- (NSString *)mar_addObserverForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSDictionary *change))task
 {
     NSString *token = [[NSProcessInfo processInfo] globallyUniqueString];
     options = options | BKKeyValueObservingOptionWantsChangeDictionary;
-    [self bk_addObserverForKeyPaths:keyPaths identifier:token options:options task:task];
+    [self mar_addObserverForKeyPath:keyPath identifier:token options:options task:task];
     return token;
 }
 
-- (void)bk_addObserverForKeyPath:(NSString *)keyPath identifier:(NSString *)identifier options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSDictionary *change))task
+- (NSString *)mar_addObserverForKeyPaths:(NSArray *)keyPaths options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSString *keyPath, NSDictionary *change))task
+{
+    NSString *token = [[NSProcessInfo processInfo] globallyUniqueString];
+    options = options | BKKeyValueObservingOptionWantsChangeDictionary;
+    [self mar_addObserverForKeyPaths:keyPaths identifier:token options:options task:task];
+    return token;
+}
+
+- (void)mar_addObserverForKeyPath:(NSString *)keyPath identifier:(NSString *)identifier options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSDictionary *change))task
 {
     BKObserverContext context = (options == 0) ? BKObserverContextKey : BKObserverContextKeyWithChange;
     options = options & (~BKKeyValueObservingOptionWantsChangeDictionary);
-    [self bk_addObserverForKeyPaths:@[keyPath] identifier:identifier options:options context:context task:task];
+    [self mar_addObserverForKeyPaths:@[keyPath] identifier:identifier options:options context:context task:task];
 }
 
-- (void)bk_addObserverForKeyPaths:(NSArray *)keyPaths identifier:(NSString *)identifier options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSString *keyPath, NSDictionary *change))task
+- (void)mar_addObserverForKeyPaths:(NSArray *)keyPaths identifier:(NSString *)identifier options:(NSKeyValueObservingOptions)options task:(void (^)(id obj, NSString *keyPath, NSDictionary *change))task
 {
     BKObserverContext context = (options == 0) ? BKObserverContextManyKeys : BKObserverContextManyKeysWithChange;
     options = options & (~BKKeyValueObservingOptionWantsChangeDictionary);
-    [self bk_addObserverForKeyPaths:keyPaths identifier:identifier options:options context:context task:task];
+    [self mar_addObserverForKeyPaths:keyPaths identifier:identifier options:options context:context task:task];
 }
 
-- (void)bk_removeObserverForKeyPath:(NSString *)keyPath identifier:(NSString *)token
+- (void)mar_removeObserverForKeyPath:(NSString *)keyPath identifier:(NSString *)token
 {
     NSParameterAssert(keyPath.length);
     NSParameterAssert(token.length);
@@ -205,7 +205,7 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
     NSMutableDictionary *dict;
     
     @synchronized (self) {
-        dict = [self bk_observerBlocks];
+        dict = [self mar_observerBlocks];
         if (!dict) return;
     }
     
@@ -216,17 +216,17 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
         [dict removeObjectForKey:token];
     }
     
-    if (dict.count == 0) [self bk_setObserverBlocks:nil];
+    if (dict.count == 0) [self mar_setObserverBlocks:nil];
 }
 
-- (void)bk_removeObserversWithIdentifier:(NSString *)token
+- (void)mar_removeObserversWithIdentifier:(NSString *)token
 {
     NSParameterAssert(token);
     
     NSMutableDictionary *dict;
     
     @synchronized (self) {
-        dict = [self bk_observerBlocks];
+        dict = [self mar_observerBlocks];
         if (!dict) return;
     }
     
@@ -235,16 +235,16 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
     
     [dict removeObjectForKey:token];
     
-    if (dict.count == 0) [self bk_setObserverBlocks:nil];
+    if (dict.count == 0) [self mar_setObserverBlocks:nil];
 }
 
-- (void)bk_removeAllBlockObservers
+- (void)mar_removeAllBlockObservers
 {
     NSDictionary *dict;
     
     @synchronized (self) {
-        dict = [[self bk_observerBlocks] copy];
-        [self bk_setObserverBlocks:nil];
+        dict = [[self mar_observerBlocks] copy];
+        [self mar_setObserverBlocks:nil];
     }
     
     [dict.allValues enumerateObjectsUsingBlock:^(_BKObserver *trampoline, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -253,7 +253,7 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
 }
 
 #pragma mark - "Private"s
-+ (NSMutableSet *)bk_observedClassesHash
++ (NSMutableSet *)mar_observedClassesHash
 {
     static dispatch_once_t onceToken;
     static NSMutableSet *swizzledClasses = nil;
@@ -264,14 +264,14 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
     return swizzledClasses;
 }
 
-- (void)bk_addObserverForKeyPaths:(NSArray *)keyPaths identifier:(NSString *)identifier options:(NSKeyValueObservingOptions)options context:(BKObserverContext)context task:(id)task
+- (void)mar_addObserverForKeyPaths:(NSArray *)keyPaths identifier:(NSString *)identifier options:(NSKeyValueObservingOptions)options context:(BKObserverContext)context task:(id)task
 {
     NSParameterAssert(keyPaths.count);
     NSParameterAssert(identifier.length);
     NSParameterAssert(task);
     
     Class classToSwizzle = self.class;
-    NSMutableSet *classes = [self.class bk_observedClassesHash];
+    NSMutableSet *classes = [self.class mar_observedClassesHash];
     @synchronized (classes) {
         NSString *className = NSStringFromClass(classToSwizzle);
         if (![classes containsObject:className]) {
@@ -280,7 +280,7 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
             __block void (*originalDealloc)(__unsafe_unretained id, SEL) = NULL;
             
             id newDealloc = ^(__unsafe_unretained id objSelf) {
-                [objSelf bk_removeAllBlockObservers];
+                [objSelf mar_removeAllBlockObservers];
                 
                 if (originalDealloc == NULL) {
                     struct objc_super superInfo = {
@@ -318,11 +318,11 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
     [observer startObservingWithOptions:options];
     
     @synchronized (self) {
-        dict = [self bk_observerBlocks];
+        dict = [self mar_observerBlocks];
         
         if (dict == nil) {
             dict = [NSMutableDictionary dictionary];
-            [self bk_setObserverBlocks:dict];
+            [self mar_setObserverBlocks:dict];
         }
     }
     
@@ -330,12 +330,12 @@ static const NSUInteger BKKeyValueObservingOptionWantsChangeDictionary = 0x1000;
 
 }
 
-- (void)bk_setObserverBlocks:(NSMutableDictionary *)dict
+- (void)mar_setObserverBlocks:(NSMutableDictionary *)dict
 {
     objc_setAssociatedObject(self, BKObserverBlocksKey, dict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSMutableDictionary *)bk_observerBlocks
+- (NSMutableDictionary *)mar_observerBlocks
 {
     return objc_getAssociatedObject(self, BKObserverBlocksKey);
 }
