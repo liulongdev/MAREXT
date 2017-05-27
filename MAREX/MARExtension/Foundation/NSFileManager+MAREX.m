@@ -64,18 +64,33 @@
     return [[NSBundle mainBundle] pathForResource:[fileName stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@".%@", fileExtension] withString:@""] ofType:fileExtension];
 }
 
++ (NSString *)mar_documentsDirectoryPath
+{
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+}
+
 + (NSString * _Nonnull)mar_getDocumentsDirectoryForFile:(NSString * _Nonnull)fileName {
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *documentsDirectory = [self mar_documentsDirectoryPath];
     return [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/", fileName]];
 }
 
++ (NSString *)mar_libraryDirectoryPath
+{
+    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];
+}
+
 + (NSString * _Nonnull)mar_getLibraryDirectoryForFile:(NSString * _Nonnull)fileName {
-    NSString *libraryDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *libraryDirectory = [self mar_libraryDirectoryPath];
     return [libraryDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/", fileName]];
 }
 
++ (NSString *)mar_cacheDirectoryPath
+{
+    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];;
+}
+
 + (NSString * _Nonnull)mar_getCacheDirectoryForFile:(NSString * _Nonnull)fileName {
-    NSString *cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *cacheDirectory = [self mar_cacheDirectoryPath];
     return [cacheDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/", fileName]];
 }
 
@@ -282,6 +297,24 @@
 
 + (BOOL)mar_setAppSettingsForObject:(id _Nonnull)value forKey:(NSString * _Nonnull)objKey {
     return [self mar_setSettings:APPDisplayName object:value forKey:objKey];
+}
+
++ (NSInteger)mar_contentsByteSizeWithDirectoryPath:(NSString * _Nonnull)folderPath
+{
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folderPath error:nil];
+    if (!contents || contents.count == 0) {
+        return 0;
+    }
+    NSEnumerator *contentsEnumurator = [contents objectEnumerator];
+    
+    NSString *file;
+    unsigned long long folderSize = 0;
+    
+    while (file = [contentsEnumurator nextObject]) {
+        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[folderPath stringByAppendingPathComponent:file] error:nil];
+        folderSize += [[fileAttributes objectForKey:NSFileSize] intValue];
+    }
+    return folderSize;
 }
 
 @end
