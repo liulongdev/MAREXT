@@ -137,7 +137,7 @@
 
 - (NSArray *)mar_propertiyInfoList
 {
-    return [self mar_propertiyInfoList];
+    return [self.class mar_propertiyInfoList];
 }
 
 + (NSArray *)mar_propertiyInfoList
@@ -158,6 +158,7 @@
     return propertieArray;
 }
 
+// @see https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
 - (NSDictionary *)p_mar_dictionaryWithProperty:(objc_property_t)property
 {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];

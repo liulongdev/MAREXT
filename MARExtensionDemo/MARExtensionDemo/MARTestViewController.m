@@ -9,11 +9,12 @@
 #import "MARTestViewController.h"
 #import <objc/runtime.h>
 #import "MARCategory.h"
-
+#import "MARClassInfo.h"
+#import "MARTestExamples.h"
 
 @interface MARTestViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *testBtn1;
-
+@property (strong, nonatomic, getter=gethello)  NSString *testStrStr;
 @end
 
 @implementation MARTestViewController
@@ -21,62 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.testBtn1 mar_addActionBlock:^(id sender) {
-        NSArray *array = @[@"MARTestClass1", @"MARTestClass2"];
-        for (NSString *testClassName in array) {
-            Class class = objc_allocateClassPair([NSObject class], [testClassName UTF8String], 0);
-            
-            const char *type = @encode(void *);
-            NSUInteger size , alignment;
-            NSGetSizeAndAlignment(type, &size, &alignment);
-            if (class) {
-                objc_property_attribute_t *cattrs = (objc_property_attribute_t*)calloc(2, sizeof(objc_property_attribute_t));
-                cattrs[0].name = "T";
-                cattrs[0].value = type;
-                
-                cattrs[0].name = "V";
-                cattrs[0].value = "_testIvar";
-                
-//                BOOL addPropertyRet = class_addProperty(class, "_testIvar", cattrs, 2);
-//                if (addPropertyRet) {
-//                    NSLog(@"add ret suc");
-//                    id instance = [[class alloc] init];
-//                    Ivar ivar = class_getInstanceVariable(class, "_testIvar");
-//                    object_setIvar(instance, ivar, @"Hello , Martin");
-//                    NSString *testValue = object_getIvar(instance, ivar);
-////                    [instance setValue:@"hello , martin" forKey:@"testIvar"];
-//                    MARInfoLog(@"class : %@, value : %@", instance, testValue);
-//                }
-//
-                BOOL addIvarRet = class_addIvar(class, [@"testIvar" UTF8String], size, log2(alignment), type);
-                if (addIvarRet) {
-                    NSLog(@"add ret suc");
-                    id instance = [[class alloc] init];
-                    Ivar ivar = class_getInstanceVariable(class, "testIvar");
-                    object_setIvar(instance, ivar, @"Hello , Martin");
-                    NSString *testValue = object_getIvar(instance, ivar);
-                    MARInfoLog(@"class : %@, value : %@", instance, testValue);
+    NSLog(@"ivars : %@ \npropertes : %@\nmehods:%@\nresponsechain:%@", [self.testBtn1 mar_instanceVariableList], [self.testBtn1 mar_propertiyInfoList], [self.testBtn1 mar_methodInfoList], [self.testBtn1 mar_responderChainDescription]);
+    
 
-                }
-                
-                SEL testFunSel = sel_registerName("testFun");
-                
-                id testFunBlock = ^(__unsafe_unretained id objSelf) {
-//                    [objSelf ];
-                    MARInfoLog(@"test fun fun ");
-                    
-                };
-                
-                IMP testFunIMP = imp_implementationWithBlock(testFunBlock);
-                
-                BOOL addMethodRet = class_addMethod(class, testFunSel, testFunIMP, "v@:");
-                if (addMethodRet) {
-                    
-                }
-            }
-            
-            MARInfoLog(@"create class %@ is %@", testClassName, class != nil ? @"success" : @"failure");
-        }
+    [self.testBtn1 mar_addActionBlock:^(id sender) {
+        [[MARTestExamples new] testRuntimeObj];
     } forState:UIControlEventTouchDown];
 }
 

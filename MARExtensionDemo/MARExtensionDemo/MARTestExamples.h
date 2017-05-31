@@ -12,4 +12,6 @@
 
 - (void)testSoundIDS;
 
+- (void)testRuntimeObj;
+
 @end

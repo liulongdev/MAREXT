@@ -301,4 +301,21 @@ static inline void mar_dispatch_sync_on_main_queue(void (^block)()) {
  uint64_t nanos = elapsed * info.numer / info.denom;
  LOG(@"Took %f seconds to %@", (CGFloat)nanos / NSEC_PER_SEC, message);
  }
+ 
+ #pragma clang diagnostic push
+ #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+ #pragma clang diagnostic pop
+ 
+ 
+ -Warc-performSelector-leaks
+ 方法弃用告警
+ -Wdeprecated-declarations
+ 不兼容指针类型
+ -Wincompatible-pointer-types
+ 循环引用
+ -Warc-retain-cycles
+ 未使用变量
+ -Wunused-variable
+ // see orders http://fuckingclangwarnings.com/
+
  */
