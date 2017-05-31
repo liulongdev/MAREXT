@@ -57,6 +57,9 @@
 		C149F96D1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C149F96C1ECA8D8B00C8B7C8 /* MARExtensionDemoUITests.m */; };
 		C15834241ED5768000338090 /* NSObject+MAR_Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = C15834231ED5768000338090 /* NSObject+MAR_Observer.m */; };
 		C188C4A51ECE8FCA00A500C9 /* NSData+MAREX_Type.m in Sources */ = {isa = PBXBuildFile; fileRef = C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */; };
+		C1A7E9E31ED9719D00509424 /* UIApplication+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7E9E21ED9719D00509424 /* UIApplication+MAREX.m */; };
+		C1A7E9E91ED979E200509424 /* UIBarButtonItem+JKBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7E9E81ED979E200509424 /* UIBarButtonItem+JKBadge.m */; };
+		C1A7E9EC1ED9819000509424 /* UIResponder+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7E9EB1ED9819000509424 /* UIResponder+MAREX.m */; };
 		C1C2BD4D1ED27FB70095143D /* MARLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2BD4C1ED27FB70095143D /* MARLabel.m */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +182,12 @@
 		C15834231ED5768000338090 /* NSObject+MAR_Observer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MAR_Observer.m"; sourceTree = "<group>"; };
 		C188C4A31ECE8FCA00A500C9 /* NSData+MAREX_Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MAREX_Type.h"; sourceTree = "<group>"; };
 		C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MAREX_Type.m"; sourceTree = "<group>"; };
+		C1A7E9E11ED9719D00509424 /* UIApplication+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+MAREX.h"; sourceTree = "<group>"; };
+		C1A7E9E21ED9719D00509424 /* UIApplication+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+MAREX.m"; sourceTree = "<group>"; };
+		C1A7E9E71ED979E200509424 /* UIBarButtonItem+JKBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+JKBadge.h"; sourceTree = "<group>"; };
+		C1A7E9E81ED979E200509424 /* UIBarButtonItem+JKBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+JKBadge.m"; sourceTree = "<group>"; };
+		C1A7E9EA1ED9819000509424 /* UIResponder+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+MAREX.h"; sourceTree = "<group>"; };
+		C1A7E9EB1ED9819000509424 /* UIResponder+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+MAREX.m"; sourceTree = "<group>"; };
 		C1C2BD4B1ED27FB70095143D /* MARLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARLabel.h; sourceTree = "<group>"; };
 		C1C2BD4C1ED27FB70095143D /* MARLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -363,6 +372,12 @@
 				C1150E4D1ECD9F9200176F38 /* UIFont+MAREX.m */,
 				C1150E4F1ECDAC7C00176F38 /* UIWindow+MAREX.h */,
 				C1150E501ECDAC7C00176F38 /* UIWindow+MAREX.m */,
+				C1A7E9E11ED9719D00509424 /* UIApplication+MAREX.h */,
+				C1A7E9E21ED9719D00509424 /* UIApplication+MAREX.m */,
+				C1A7E9E71ED979E200509424 /* UIBarButtonItem+JKBadge.h */,
+				C1A7E9E81ED979E200509424 /* UIBarButtonItem+JKBadge.m */,
+				C1A7E9EA1ED9819000509424 /* UIResponder+MAREX.h */,
+				C1A7E9EB1ED9819000509424 /* UIResponder+MAREX.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -591,6 +606,7 @@
 				C149F94C1ECA8D8A00C8B7C8 /* AppDelegate.m in Sources */,
 				C1150E1A1ECC20DB00176F38 /* CALayer+MAREX.m in Sources */,
 				C1150E201ECC261F00176F38 /* NSNotificationCenter+MAREX.m in Sources */,
+				C1A7E9EC1ED9819000509424 /* UIResponder+MAREX.m in Sources */,
 				C1150DDD1ECACE5B00176F38 /* NSData+MAREX.m in Sources */,
 				C1150E2F1ECD2A3300176F38 /* MARReachability.m in Sources */,
 				C1150E481ECD892200176F38 /* NSProcessInfo+MAREX.m in Sources */,
@@ -605,6 +621,7 @@
 				5B4DC6061ECC99FE0063CF63 /* MARGlobalManager.m in Sources */,
 				5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */,
 				C1150E421ECD7AB300176F38 /* MARTouchID.m in Sources */,
+				C1A7E9E91ED979E200509424 /* UIBarButtonItem+JKBadge.m in Sources */,
 				C1150DE91ECAD85D00176F38 /* NSString+MAREX.m in Sources */,
 				C1150E511ECDAC7C00176F38 /* UIWindow+MAREX.m in Sources */,
 				C1150E361ECD46C900176F38 /* MARUIButton.m in Sources */,
@@ -625,6 +642,7 @@
 				C1150DE31ECAD4AE00176F38 /* UIScrollView+MAREX.m in Sources */,
 				C1150E3F1ECD794700176F38 /* MARSystemSound.m in Sources */,
 				C1150DEC1ECADC9500176F38 /* NSNumber+MAREX.m in Sources */,
+				C1A7E9E31ED9719D00509424 /* UIApplication+MAREX.m in Sources */,
 				5B4DC60B1ECCA0FA0063CF63 /* MARDebug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

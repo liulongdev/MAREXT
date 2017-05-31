@@ -87,6 +87,7 @@ typedef NS_ENUM(NSInteger, MARDirectoryType) {
  *  @return Returns the directory as a NSString
  */
 + (NSString * _Nonnull)mar_getDocumentsDirectoryForFile:(NSString * _Nonnull)fileName;
++ (NSString * _Nonnull)mar_documentsDirectoryPath;
 
 /**
  *  Get the Library directory for a filename
@@ -96,6 +97,7 @@ typedef NS_ENUM(NSInteger, MARDirectoryType) {
  *  @return Returns the directory as a NSString
  */
 + (NSString * _Nonnull)mar_getLibraryDirectoryForFile:(NSString * _Nonnull)fileName;
++ (NSString * _Nonnull)mar_libraryDirectoryPath;
 
 /**
  *  Get the Cache directory for a filename
@@ -105,6 +107,7 @@ typedef NS_ENUM(NSInteger, MARDirectoryType) {
  *  @return Returns the directory as a NSString
  */
 + (NSString * _Nonnull)mar_getCacheDirectoryForFile:(NSString * _Nonnull)fileName;
++ (NSString * _Nonnull)mar_cacheDirectoryPath;
 
 /**
  *  Returns the size of the file
@@ -226,5 +229,10 @@ typedef NS_ENUM(NSInteger, MARDirectoryType) {
              object:(id _Nonnull)value
              forKey:(NSString * _Nonnull)objKey;
 
+
+/**
+ return the total byte size of folder
+ */
++ (NSInteger)mar_contentsByteSizeWithDirectoryPath:(NSString * _Nonnull)folderPath;
 
 @end

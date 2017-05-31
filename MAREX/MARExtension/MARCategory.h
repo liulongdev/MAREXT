@@ -55,6 +55,7 @@
 #import "UINavigationController+MAREX.h"
 #import "UIFont+MAREX.h"
 #import "UIWindow+MAREX.h"
+#import "UIApplication+MAREX.h"
 
 #import "MARUITextView.h"
 #import "MARUIButton.h"

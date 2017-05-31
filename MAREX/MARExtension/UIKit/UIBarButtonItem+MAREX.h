@@ -23,4 +23,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+/**
+ @see https://github.com/mikeMTOL/UIBarButtonItem-Badge
+ */
+@interface UIBarButtonItem (MAREX_Badge)
+
+@property (strong, atomic, nullable) UILabel *mar_badge;
+
+// Badge value to be display
+@property (nonatomic) NSString *mar_badgeValue;
+// Badge background color
+@property (nonatomic) UIColor *mar_badgeBGColor;
+// Badge text color
+@property (nonatomic) UIColor *mar_badgeTextColor;
+// Badge font
+@property (nonatomic) UIFont *mar_badgeFont;
+// Padding value for the badge
+@property (nonatomic) CGFloat mar_badgePadding;
+// Minimum size badge to small
+@property (nonatomic) CGFloat mar_badgeMinSize;
+// Values for offseting the badge over the BarButtonItem you picked
+@property (nonatomic) CGFloat mar_badgeOriginX;
+@property (nonatomic) CGFloat mar_badgeOriginY;
+// In case of numbers, remove the badge when reaching zero
+@property BOOL mar_shouldHideBadgeAtZero;
+// Badge has a bounce animation when value changes
+@property BOOL mar_shouldAnimateBadge;
+
+@end
+
 NS_ASSUME_NONNULL_END
