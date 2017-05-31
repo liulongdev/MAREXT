@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-2276" y="25"/>
         </scene>
-        <!--View Controller-->
+        <!--Test View Controller-->
         <scene sceneID="nT9-UX-s3D">
             <objects>
-                <viewController id="OVI-NX-1nF" sceneMemberID="viewController">
+                <viewController id="OVI-NX-1nF" customClass="MARTestViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QsF-Ht-huf"/>
                         <viewControllerLayoutGuide type="bottom" id="14Y-uD-4Tn"/>
@@ -45,6 +45,11 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="Vac-7U-Xf5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kob-cM-oNi">
+                                <rect key="frame" x="32" y="94" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test1"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -53,6 +58,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bGi-YB-AV3"/>
+                    <connections>
+                        <outlet property="testBtn1" destination="kob-cM-oNi" id="NPT-FP-EsF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Jy-Rr-30j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

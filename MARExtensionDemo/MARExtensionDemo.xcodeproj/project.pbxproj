@@ -16,6 +16,7 @@
 		5B4DC60B1ECCA0FA0063CF63 /* MARDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60A1ECCA0FA0063CF63 /* MARDebug.m */; };
 		5B4DC60E1ECCA24A0063CF63 /* MARWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */; };
 		5B4DC6111ECF531A0063CF63 /* MARTestExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */; };
+		5BC32DAF1EDA6A5000E8EB04 /* MARTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC32DAE1EDA6A5000E8EB04 /* MARTestViewController.m */; };
 		C1150DD51ECACD8100176F38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1150DD41ECACD8100176F38 /* Foundation.framework */; };
 		C1150DD71ECACD8A00176F38 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1150DD61ECACD8A00176F38 /* libz.tbd */; };
 		C1150DDD1ECACE5B00176F38 /* NSData+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = C1150DDA1ECACE5B00176F38 /* NSData+MAREX.m */; };
@@ -96,6 +97,9 @@
 		5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARWeakProxy.m; sourceTree = "<group>"; };
 		5B4DC60F1ECF531A0063CF63 /* MARTestExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARTestExamples.h; sourceTree = "<group>"; };
 		5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARTestExamples.m; sourceTree = "<group>"; };
+		5BC32DAC1EDA696000E8EB04 /* MARRunimeOBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARRunimeOBJ.h; sourceTree = "<group>"; };
+		5BC32DAD1EDA6A5000E8EB04 /* MARTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARTestViewController.h; sourceTree = "<group>"; };
+		5BC32DAE1EDA6A5000E8EB04 /* MARTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARTestViewController.m; sourceTree = "<group>"; };
 		C1150DBE1ECAC96300176F38 /* MARCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARCategory.h; sourceTree = "<group>"; };
 		C1150DD41ECACD8100176F38 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C1150DD61ECACD8A00176F38 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -243,6 +247,14 @@
 			path = Debug;
 			sourceTree = "<group>";
 		};
+		5BC32DAB1EDA692100E8EB04 /* RuntimeOBJ */ = {
+			isa = PBXGroup;
+			children = (
+				5BC32DAC1EDA696000E8EB04 /* MARRunimeOBJ.h */,
+			);
+			path = RuntimeOBJ;
+			sourceTree = "<group>";
+		};
 		C1150DBC1ECAC96300176F38 /* MAREX */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +269,7 @@
 		C1150DBD1ECAC96300176F38 /* MARExtension */ = {
 			isa = PBXGroup;
 			children = (
+				5BC32DAB1EDA692100E8EB04 /* RuntimeOBJ */,
 				5B4DC6081ECCA0FA0063CF63 /* Debug */,
 				5B4DC5F61ECC884C0063CF63 /* Utility */,
 				C1150DD81ECACE5B00176F38 /* Foundation */,
@@ -396,6 +409,8 @@
 				C149F94B1ECA8D8A00C8B7C8 /* AppDelegate.m */,
 				C149F94D1ECA8D8A00C8B7C8 /* ViewController.h */,
 				C149F94E1ECA8D8A00C8B7C8 /* ViewController.m */,
+				5BC32DAD1EDA6A5000E8EB04 /* MARTestViewController.h */,
+				5BC32DAE1EDA6A5000E8EB04 /* MARTestViewController.m */,
 				C149F9501ECA8D8A00C8B7C8 /* Main.storyboard */,
 				C149F9531ECA8D8A00C8B7C8 /* Assets.xcassets */,
 				C149F9551ECA8D8A00C8B7C8 /* LaunchScreen.storyboard */,
@@ -568,6 +583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1150E0E1ECBD6E400176F38 /* NSDate+MAREX.m in Sources */,
+				5BC32DAF1EDA6A5000E8EB04 /* MARTestViewController.m in Sources */,
 				C149F94F1ECA8D8A00C8B7C8 /* ViewController.m in Sources */,
 				5B4DC6031ECC8BFD0063CF63 /* NSObject+MARModel.m in Sources */,
 				C15834241ED5768000338090 /* NSObject+MAR_Observer.m in Sources */,
