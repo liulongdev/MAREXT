@@ -14,6 +14,7 @@ dependencies: \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSData+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSData+MAREX_Type.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSString+MAREX.h \
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSString+MAREX_Regex.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSNumber+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSDate+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/Foundation/NSNotificationCenter+MAREX.h \
@@ -37,6 +38,9 @@ dependencies: \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/UIBezierPath+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/UINavigationController+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/UIWindow+MAREX.h \
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/UIApplication+MAREX.h \
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/UIResponder+MAREX.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/CustomViews/MARUITextView.h \
   /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/CustomViews/MARUIButton.h \
-  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/CustomViews/MARLabel.h
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/CustomViews/MARLabel.h \
+  /Users/Martin/Dev/SourceTree/MAREXT/MAREX/MARModel/MARClassInfo.h

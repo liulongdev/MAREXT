@@ -192,14 +192,14 @@ static const char mar_barBtn_block_key;
     UILabel* lbl = objc_getAssociatedObject(self, @selector(mar_badgeValue));
     if(lbl==nil) {
         lbl = [[UILabel alloc] initWithFrame:CGRectMake(self.mar_badgeOriginX, self.mar_badgeOriginY, 20, 20)];
-        [self setmar_badge:lbl];
+        [self setMar_badge:lbl];
         [self mar_badgeInit];
         [self.customView addSubview:lbl];
         lbl.textAlignment = NSTextAlignmentCenter;
     }
     return lbl;
 }
--(void)setmar_badge:(UILabel *)badgeLabel
+-(void)setMar_badge:(UILabel *)badgeLabel
 {
     [self mar_setAssociateValue:badgeLabel withKey:@selector(mar_badgeValue)];
 }

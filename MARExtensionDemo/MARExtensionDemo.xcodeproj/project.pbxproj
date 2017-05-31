@@ -16,6 +16,7 @@
 		5B4DC60B1ECCA0FA0063CF63 /* MARDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60A1ECCA0FA0063CF63 /* MARDebug.m */; };
 		5B4DC60E1ECCA24A0063CF63 /* MARWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */; };
 		5B4DC6111ECF531A0063CF63 /* MARTestExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */; };
+		5B717DC41EDF1E8900E6C861 /* NSString+MAREX_Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B717DC31EDF1E8900E6C861 /* NSString+MAREX_Regex.m */; };
 		5BC32DAF1EDA6A5000E8EB04 /* MARTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC32DAE1EDA6A5000E8EB04 /* MARTestViewController.m */; };
 		C1150DD51ECACD8100176F38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1150DD41ECACD8100176F38 /* Foundation.framework */; };
 		C1150DD71ECACD8A00176F38 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1150DD61ECACD8A00176F38 /* libz.tbd */; };
@@ -100,6 +101,8 @@
 		5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARWeakProxy.m; sourceTree = "<group>"; };
 		5B4DC60F1ECF531A0063CF63 /* MARTestExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARTestExamples.h; sourceTree = "<group>"; };
 		5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARTestExamples.m; sourceTree = "<group>"; };
+		5B717DC21EDF1E8900E6C861 /* NSString+MAREX_Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MAREX_Regex.h"; sourceTree = "<group>"; };
+		5B717DC31EDF1E8900E6C861 /* NSString+MAREX_Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MAREX_Regex.m"; sourceTree = "<group>"; };
 		5BC32DAC1EDA696000E8EB04 /* MARRunimeOBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARRunimeOBJ.h; sourceTree = "<group>"; };
 		5BC32DAD1EDA6A5000E8EB04 /* MARTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARTestViewController.h; sourceTree = "<group>"; };
 		5BC32DAE1EDA6A5000E8EB04 /* MARTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARTestViewController.m; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 				C188C4A41ECE8FCA00A500C9 /* NSData+MAREX_Type.m */,
 				C1150DE71ECAD85D00176F38 /* NSString+MAREX.h */,
 				C1150DE81ECAD85D00176F38 /* NSString+MAREX.m */,
+				5B717DC21EDF1E8900E6C861 /* NSString+MAREX_Regex.h */,
+				5B717DC31EDF1E8900E6C861 /* NSString+MAREX_Regex.m */,
 				C1150DEA1ECADC9500176F38 /* NSNumber+MAREX.h */,
 				C1150DEB1ECADC9500176F38 /* NSNumber+MAREX.m */,
 				C1150E0C1ECBD6E400176F38 /* NSDate+MAREX.h */,
@@ -624,6 +629,7 @@
 				C1A7E9E91ED979E200509424 /* UIBarButtonItem+JKBadge.m in Sources */,
 				C1150DE91ECAD85D00176F38 /* NSString+MAREX.m in Sources */,
 				C1150E511ECDAC7C00176F38 /* UIWindow+MAREX.m in Sources */,
+				5B717DC41EDF1E8900E6C861 /* NSString+MAREX_Regex.m in Sources */,
 				C1150E361ECD46C900176F38 /* MARUIButton.m in Sources */,
 				5B4DC6111ECF531A0063CF63 /* MARTestExamples.m in Sources */,
 				C1150E171ECBE87000176F38 /* UIDevice+MAREX.m in Sources */,

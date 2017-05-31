@@ -160,21 +160,6 @@ static inline void mar_dispatch_sync_on_main_queue(void (^block)()) {
  }
  
  #pragma mark -
- #pragma mark iOS Version
- 
- #define IOS_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
- #define IOS_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
- #define IOS_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
- #define IOS_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
- #define IOS_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
- 
- #pragma mark -
- #pragma mark Syntactic sugar
- 
- #define NOT_ANIMATED NO
- #define ANIMATED YES
- 
- #pragma mark -
  #pragma mark UIColor
  
  // example usage: UIColorFromHex(0x9daa76)

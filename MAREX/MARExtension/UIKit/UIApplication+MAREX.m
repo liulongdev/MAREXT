@@ -26,3 +26,21 @@
 }
 
 @end
+
+
+#import <libkern/OSAtomic.h>
+static volatile int32_t mar_numberOfActiveNetworkConnectionsxxx;
+
+@implementation UIApplication (MAREX_NetworkActivityIndicator)
+
+- (void)mar_startNetworkActivity
+{
+    self.networkActivityIndicatorVisible = OSAtomicAdd32(1, &mar_numberOfActiveNetworkConnectionsxxx) > 0;
+}
+
+- (void)mar_endedNetworkActivity
+{
+    self.networkActivityIndicatorVisible = OSAtomicAdd32(-1, &mar_numberOfActiveNetworkConnectionsxxx) > 0;
+}
+
+@end
