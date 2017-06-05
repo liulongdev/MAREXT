@@ -95,6 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
  Returns the class name in NSString.
  */
 - (NSString *)mar_className;
++ (NSString *)mar_className;
 
 /**
  Returns array contains all the property in the current class
