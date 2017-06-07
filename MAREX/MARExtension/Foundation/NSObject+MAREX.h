@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (id _Nonnull)mar_performSelector:(SEL)aSelector
                    withObjects:(id _Nullable)object, ... NS_REQUIRES_NIL_TERMINATION;
 
+- (id _Nonnull)mar_performHasNoArgsSelector:(SEL)aSelector;
+
 @end
 
 @interface NSObject(MAREX_RUNTIME)
@@ -152,6 +154,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#define MARNotUsedCategoryMAREX_KVO
+#ifndef MARNotUsedCategoryMAREX_KVO
 @interface NSObject (MAREX_KVO)
 
 /**
@@ -185,6 +189,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mar_removeObserverBlocks;
 
 @end
+#endif
 
 typedef __nonnull id <NSObject, NSCopying> MARCancelBlockToken;
 

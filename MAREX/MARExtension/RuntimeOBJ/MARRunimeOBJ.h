@@ -9,5 +9,6 @@
 #ifndef MARRunimeOBJ_h
 #define MARRunimeOBJ_h
 
+#import "MARUnregisteredClass.h"
 
 #endif /* MARRunimeOBJ_h */

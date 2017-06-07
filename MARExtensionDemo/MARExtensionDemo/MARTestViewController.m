@@ -15,6 +15,9 @@
 @interface MARTestViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *testBtn1;
 @property (strong, nonatomic, getter=gethello)  NSString *testStrStr;
+
+
+@property (strong, nonatomic, getter=getMyNameTT)  NSString *myName;
 @end
 
 @implementation MARTestViewController
@@ -29,7 +32,7 @@
     
     NSLog(@"ivars : %@ \npropertes : %@\nmehods:%@\nresponsechain:%@", [self.testBtn1 mar_instanceVariableList], [self.testBtn1 mar_propertiyInfoList], [self.testBtn1 mar_methodInfoList], [self.testBtn1 mar_responderChainDescription]);
     
-    objc_property_t btn1Pro = class_getProperty(self.class, "testBtn1");
+    objc_property_t btn1Pro = class_getProperty(self.class, "myName");
     const char * attrCstring = property_getAttributes(btn1Pro);
     
     NSArray *attrPairs = [[NSString stringWithUTF8String:attrCstring] componentsSeparatedByString:@","];

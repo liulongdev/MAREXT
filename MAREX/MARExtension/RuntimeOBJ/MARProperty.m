@@ -27,7 +27,7 @@
         _name = [name copy];
         if (![name hasPrefix:@"_"]) {
             _iVarName = [NSString stringWithFormat:@"_%@", name];
-            _typeEncoding = [attributes objectForKey:@"T"] ?: [NSString stringWithUTF8String:@encode(id)];
+            _typeEncoding = [attributes objectForKey:@"T"] ? [[attributes objectForKey:@"T"] substringToIndex:1] : [NSString stringWithUTF8String:@encode(id)];
             if (![attributes isKindOfClass:[NSMutableDictionary class]] && [attributes isKindOfClass:[NSDictionary class]]) {
                 attributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
             }
@@ -45,12 +45,8 @@
 
 - (NSString *)ivarName
 {
-    if (!_iVarName && ![_name hasPrefix:@"_"]) {
-        _iVarName = [NSString stringWithFormat:@"_%@", _name];
-    }
-    else
-    {
-        _iVarName = _name;
+    if (!_iVarName && ![_iVarName hasPrefix:@"_"]) {
+        _iVarName = [NSString stringWithFormat:@"_%@", _iVarName];
     }
     return _iVarName;
 }
