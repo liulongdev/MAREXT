@@ -544,7 +544,7 @@
 @end
 
 #pragma mark - KVO EX
-
+#ifndef MARNotUsedCategoryMAREX_KVO
 static const char marobj_kvo_block_key;
 
 @interface _MARNSObjectKVOBlockTarget : NSObject
@@ -587,7 +587,6 @@ static const char marobj_kvo_block_key;
 
 @end
 
-#ifndef MARNotUsedCategoryMAREX_KVO
 @implementation NSObject (MAREX_KVO)
 
 - (void)mar_addObserverBlockForKeyPath:(NSString *)keyPath block:(void (^)(id _Nonnull, id _Nullable, id _Nullable))block
