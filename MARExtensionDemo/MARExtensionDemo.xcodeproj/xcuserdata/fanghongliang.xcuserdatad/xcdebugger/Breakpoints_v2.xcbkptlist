@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MAREX/MARExtension/Foundation/NSObject+MAREX.m"
-            timestampString = "517116861.811305"
+            timestampString = "518513017.225469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "-mar_propertyKeyList"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,7 +186,7 @@
                   moduleName = "MARExtensionDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/fanghongliang/dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/UIView+MAREX.m"
-                  timestampString = "517909896.192185"
+                  timestampString = "518515226.80264"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "560"
@@ -201,7 +201,7 @@
                   moduleName = "MARExtensionDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/fanghongliang/dev/SourceTree/MAREXT/MAREX/MARExtension/UIKit/UIView+MAREX.m"
-                  timestampString = "517909896.195272"
+                  timestampString = "518515226.806338"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "560"
@@ -219,6 +219,38 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MAREX/MARExtension/Foundation/NSObject+MAR_Observer.m"
+            timestampString = "518514960.995104"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "-stopObservingKeyPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MAREX/MARExtension/Foundation/NSObject+MAR_Observer.m"
+            timestampString = "518515203.341846"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-_stopObservingLocked"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

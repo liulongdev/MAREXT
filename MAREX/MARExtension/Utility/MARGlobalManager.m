@@ -7,7 +7,10 @@
 //
 
 #import "MARGlobalManager.h"
-#import <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CoreLocation.h>   // 定位权限用到   authority of location
+#import <AVFoundation/AVFoundation.h>   // 摄像头权限用到 authority of camera
+#import <Photos/Photos.h>               // 相册权限用到   authority of photo album
+#import <AssetsLibrary/AssetsLibrary.h> // 相册权限用到   authority of photo album
 #import "MAREXMacro.h"
 #import "MARReachability.h"
 
@@ -250,7 +253,121 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
             weakSelf.notifyChangeNetStatusBlock(netStatus);
         }
     };
-    
+}
+
+- (BOOL)isCameraServiceOpen
+{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        return NO;
+    }
+    else
+        return YES;
+}
+
+- (void)checkCameraAuthorityCallBack:(void (^)(BOOL allowed))callBack
+{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        if (callBack) {
+            callBack(NO);
+        }
+    }
+    else if (authStatus == AVAuthorizationStatusNotDetermined)
+    {
+        mar_dispatch_async_on_main_queue(^{
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                if (callBack) {
+                    callBack(granted);
+                }
+            }];
+        });
+    }
+    else
+    {
+        if (callBack) {
+            callBack(YES);
+        }
+    }
+}
+
+- (BOOL)isPhotoAlbumServiceOpen
+{
+    return NO;
+}
+
+- (void)checkPhotoAlbumAuthorityCallBack:(void (^)(BOOL allowed))callBack
+{
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
+    PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
+    if (authStatus == PHAuthorizationStatusRestricted || authStatus == PHAuthorizationStatusDenied) {
+        if (callBack) {
+            callBack(NO);
+        }
+    }
+    else if (authStatus == PHAuthorizationStatusNotDetermined)
+    {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            mar_dispatch_async_on_main_queue(^{
+                if (callBack) {
+                    callBack(status == PHAuthorizationStatusAuthorized);
+                }
+            });
+        }];
+    }
+    else
+    {
+        if (callBack) {
+            callBack(YES);
+        }
+    }
+#else
+    if (IS_IOSORLATER(8.0)) {
+        PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
+        if (authStatus == PHAuthorizationStatusRestricted || authStatus == PHAuthorizationStatusDenied) {
+            if (callBack) {
+                callBack(NO);
+            }
+        }
+        else if (authStatus == PHAuthorizationStatusNotDetermined)
+        {
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                mar_dispatch_async_on_main_queue(^{
+                    if (callBack) {
+                        callBack(status == PHAuthorizationStatusAuthorized);
+                    }
+                });
+            }];
+        }
+        else
+        {
+            if (callBack) {
+                callBack(YES);
+            }
+        }
+    }
+    else
+    {
+        ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
+        if (authStatus == ALAuthorizationStatusRestricted || authStatus == ALAuthorizationStatusDenied) {
+            if (callBack) {
+                callBack(NO);
+            }
+        }
+        else if (authStatus == ALAuthorizationStatusNotDetermined)
+        {
+            if (callBack) {
+                callBack(NO);
+            }
+        }
+        else
+        {
+            if (callBack) {
+                callBack(YES);
+            }
+        }
+    }
+#endif
 }
 
 @end

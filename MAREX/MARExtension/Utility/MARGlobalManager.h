@@ -75,23 +75,62 @@ typedef NS_OPTIONS(NSUInteger, MARReachabilityNetStatus) {
 - (BOOL)isFirstStartForCurrentVersion;
 + (BOOL)isFirstStartForCurrentVersion;
 
-/*
- 简单封装 NSUserDefaults
- **/
+/**
+ wrapper NSUserDefaults simply
+ */
 - (void) userDefaultSetObject:(id)obj forKey:(NSString*)key;
 - (id) userDefaultObjectForKey:(NSString*)key;
 - (NSString*) userDefaultStringForKey:(NSString*)key;
 
+
+/**
+ Authority(permission) of location service
+ */
 - (BOOL)isLocationServiceOpen;
 
+/**
+ Go system setting to set Authority(permission) of location service
+ */
 - (void)gotoLocationSystemSetting;
 
+/**
+ Authority(permission) of remote notification service
+ */
 - (BOOL)isMessageNotificationServiceOpen;
 
+/**
+ Go system setting to set Authority(permission) of remote notification service
+ */
 - (void)gotoMessageNotificationServiceSystemSetting;
 
+/**
+ Return the result indicte wherther network is available
+ */
 - (BOOL)isNetworkAvailable;
 
+/**
+ When status of network change, will callback
+ */
 - (void)setNotifyChangeNetStatusBlock:(void (^)(MARReachabilityNetStatus netStatus))notifyChangeNetStatusBlock;
+
+/**
+ Authority(permission) of camera service
+ */
+- (BOOL)isCameraServiceOpen;
+
+/**
+ Check authority(permission) of camera, and will callback. If not be setted yet, will request and still callback
+ */
+- (void)checkCameraAuthorityCallBack:(void (^)(BOOL allowed))callBack;
+
+/**
+ Authority(permission) of photo album service
+ */
+- (BOOL)isPhotoAlbumServiceOpen;
+
+/**
+ Check authority(permission) of photoalbum, and will callback. (ios8 or later)If not be setted yet, will request and still callback
+ */
+- (void)checkPhotoAlbumAuthorityCallBack:(void (^)(BOOL allowed))callBack;
 
 @end

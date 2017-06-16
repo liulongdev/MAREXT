@@ -15,6 +15,9 @@
 @interface MARTestViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *testBtn1;
 @property (strong, nonatomic, getter=gethello)  NSString *testStrStr;
+
+
+@property (strong, nonatomic, getter=getMyNameTT)  NSString *myName;
 @end
 
 @implementation MARTestViewController
@@ -22,8 +25,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    NSString *testStr = @"N";
+    
+    NSLog(@"1.%@ 2.%@", [testStr substringToIndex:1], [testStr substringFromIndex:1]);
+    
     NSLog(@"ivars : %@ \npropertes : %@\nmehods:%@\nresponsechain:%@", [self.testBtn1 mar_instanceVariableList], [self.testBtn1 mar_propertiyInfoList], [self.testBtn1 mar_methodInfoList], [self.testBtn1 mar_responderChainDescription]);
     
+    objc_property_t btn1Pro = class_getProperty(self.class, "myName");
+    const char * attrCstring = property_getAttributes(btn1Pro);
+    
+    NSArray *attrPairs = [[NSString stringWithUTF8String:attrCstring] componentsSeparatedByString:@","];
+    NSMutableDictionary *_attrs = [[NSMutableDictionary alloc] initWithCapacity:[attrPairs count]];
+    for(NSString *attrPair in attrPairs)
+        [_attrs setObject:[attrPair substringFromIndex:1] forKey:[attrPair substringToIndex:1]];
+    NSLog(@"cString : %s \nDic : %@", attrCstring, _attrs);
 
     [self.testBtn1 mar_addActionBlock:^(id sender) {
         [[MARTestExamples new] testRuntimeObj];

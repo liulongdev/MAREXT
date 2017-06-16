@@ -9,6 +9,7 @@
 #import "MARTestExamples.h"
 #import "MARCategory.h"
 #import "MARClassInfo.h"
+#import "MARRunimeOBJ.h"
 @implementation MARTestExamples
 
 - (void)testSoundIDS
@@ -150,6 +151,48 @@
 
 - (void)testRuntimeObj
 {
+    NSString *addPropertyName = @"myNameTest";
+    Class myNewClass = NSClassFromString(@"MARTestClass");
+    if (!myNewClass) {
+        MARUnregisteredClass *addedClass = [MARUnregisteredClass unregisteredClassWithName:@"MARTestClass" superClass:[NSObject class]];
+        MARProperty *property = [MARProperty propertyWithName:addPropertyName attributes:@{@"T":@"@\"NSString\"",
+                                                                                           @"&":@"",
+                                                                                           @"N":@"",
+                                                                                           @"V":@"_myNameTest"}];
+        BOOL addpropertyret = [addedClass addProperty:property autoSetterAndGetter:YES];
+        if (addpropertyret) {
+            myNewClass = [addedClass registerClass];
+        }
+        
+    }
+    if(myNewClass)
+    {
+        MARProperty *objProperty = [MARProperty propertyWithObjCProperty:class_getProperty(myNewClass, [addPropertyName UTF8String])];
+        SEL getterSEL = [objProperty getterSEL];
+        SEL setterSEL = [objProperty setterSEL];
+        id instance = [[myNewClass alloc] init];
+        
+//        [instance mar_addObserverBlockForKeyPath:addPropertyName block:^(id  _Nonnull obj, id  _Nullable oldVal, id  _Nullable newVal) {
+//            NSLog(@"observer -> obj : %@, oldValue : %@ , newValue : %@", obj, oldVal, newVal);
+//        }];
+        [instance mar_addObserverForKeyPath:addPropertyName options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld task:^(id  _Nonnull obj, NSDictionary * _Nonnull change) {
+            NSLog(@"observer -> obj : %@, change : %@", obj, change);
+        }];
+        
+        NSLog(@"1. valueForKey : %@", [instance valueForKey:addPropertyName]);
+        [instance setValue:@"Martin" forKey:addPropertyName];
+        NSLog(@"2. valueForKey : %@", [instance valueForKey:addPropertyName]);
+        NSLog(@"3. valueForKey : %@", [instance mar_performHasNoArgsSelector:getterSEL]);
+        [instance mar_performSelector:setterSEL withObjects:@"What a good day!", nil];
+        NSLog(@"4. valueForKey : %@", [instance valueForKey:addPropertyName]);
+        NSLog(@"5. valueForKey : %@", [instance mar_performHasNoArgsSelector:getterSEL]);
+    }
+    else
+    {
+        NSLog(@"test add property failure >>>>>>  !!");
+    }
+    
+    return;
     NSString *classStr = @"MARTestClass";
     Class class = NSClassFromString(classStr);
     if (!class) {

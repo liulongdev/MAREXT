@@ -14,6 +14,28 @@
 - (BOOL)mar_isValid {
     return !(self == nil || [self isKindOfClass:[NSNull class]]);
 }
+
+- (id)mar_performHasNoArgsSelector:(SEL)aSelector
+{
+    NSMethodSignature *signagure = [self methodSignatureForSelector:aSelector];
+    if (signagure) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signagure];
+        if (signagure.numberOfArguments == 2) {
+            [invocation setTarget:self];
+            [invocation setSelector:aSelector];
+            
+            [invocation invoke];
+            if (signagure.methodReturnLength) {
+                id objRet = nil;
+                [invocation getReturnValue:&objRet];
+                return objRet;
+            }
+            return nil;
+        }
+    }
+    return nil;
+}
+
 - (id)mar_performSelector:(SEL)aSelector withObjects:(id)object, ...
 {
     NSMethodSignature *signature = [self methodSignatureForSelector:aSelector];
@@ -522,7 +544,7 @@
 @end
 
 #pragma mark - KVO EX
-
+#ifndef MARNotUsedCategoryMAREX_KVO
 static const char marobj_kvo_block_key;
 
 @interface _MARNSObjectKVOBlockTarget : NSObject
@@ -615,6 +637,7 @@ static const char marobj_kvo_block_key;
 }
 
 @end
+#endif
 
 #if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= __MAC_10_10)
 #define DISPATCH_CANCELBLOCK_SUPPORTED 1
