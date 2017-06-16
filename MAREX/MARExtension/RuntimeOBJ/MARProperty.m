@@ -308,6 +308,12 @@
     return MAREncodingTypeUnknown;
 }
 
+- (NSString *)typeEncoding
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
 - (SEL)setterSEL
 {
     [self doesNotRecognizeSelector:_cmd];
