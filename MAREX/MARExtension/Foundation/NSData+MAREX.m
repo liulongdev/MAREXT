@@ -7,6 +7,7 @@
 //
 
 #import "NSData+MAREX.h"
+#import <UIKit/UIKit.h>
 #include <CommonCrypto/CommonCrypto.h>
 #include <zlib.h>
 
@@ -642,5 +643,21 @@ static const short mar_base64DecodingTable[256] = {
     return data;
 }
 
++ (NSData *)mar_compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size
+{
+    NSData * data = UIImageJPEGRepresentation(image, 1.0);
+    if (!data) {
+        data = UIImagePNGRepresentation(image);
+        return data;
+    }
+    CGFloat dataKBytes = data.length/1000.0;
+    CGFloat maxQuality = 0.9f;
+    while (dataKBytes > size && maxQuality > 0.01f) {
+        maxQuality = maxQuality - 0.1f;
+        data = UIImageJPEGRepresentation(image, maxQuality);
+        dataKBytes = data.length / 1000.0;
+    }
+    return data;
+}
 
 @end

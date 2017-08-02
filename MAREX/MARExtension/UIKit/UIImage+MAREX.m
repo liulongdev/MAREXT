@@ -967,4 +967,20 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     return image;
 }
 
++ (UIImage *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size
+{
+    NSData * data = UIImageJPEGRepresentation(image, 1.0);
+    if (!data) {
+        return image;
+    }
+    CGFloat dataKBytes = data.length/1000.0;
+    CGFloat maxQuality = 0.9f;
+    while (dataKBytes > size && maxQuality > 0.01f) {
+        maxQuality = maxQuality - 0.1f;
+        data = UIImageJPEGRepresentation(image, maxQuality);
+        dataKBytes = data.length / 1000.0;
+    }
+    return [UIImage imageWithData:data];
+}
+
 @end

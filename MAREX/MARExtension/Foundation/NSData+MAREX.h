@@ -6,7 +6,8 @@
 //  Copyright © 2017年 MAR. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+//#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -294,6 +295,15 @@ NS_ASSUME_NONNULL_BEGIN
  @return A new data create from the file.
  */
 + (nullable NSData *)mar_dataNamed:(NSString *)name;
+
+/**
+ Compress image and convert to type of NSData.
+
+ @param image orignal image
+ @param size max kbytes
+ @return image binary
+ */
++ (NSData *)mar_compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size;
 
 @end
 
