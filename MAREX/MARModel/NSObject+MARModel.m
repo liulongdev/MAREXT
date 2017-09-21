@@ -1789,10 +1789,10 @@ static NSString *ModelDescription(NSObject *model) {
         arr = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:NULL];
         if (![arr isKindOfClass:[NSArray class]]) arr = nil;
     }
-    return [self modelArrayWithClass:cls array:arr];
+    return [self mar_modelArrayWithClass:cls array:arr];
 }
 
-+ (NSArray *)modelArrayWithClass:(Class)cls array:(NSArray *)arr {
++ (NSArray *)mar_modelArrayWithClass:(Class)cls array:(NSArray *)arr {
     if (!cls || !arr) return nil;
     NSMutableArray *result = [NSMutableArray new];
     for (NSDictionary *dic in arr) {
