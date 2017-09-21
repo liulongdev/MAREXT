@@ -456,6 +456,15 @@ NS_ASSUME_NONNULL_BEGIN
                                    endCenter:(CGPoint)endCenter
                                    endRadius:(CGFloat)endRadius;
 
+/**
+ Compress image
+ 
+ @param image orignal image
+ @param size max kbytes
+ @return destination image
+ */
++ (UIImage *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size;
+
 @end
 
 NS_ASSUME_NONNULL_END
