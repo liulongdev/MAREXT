@@ -655,7 +655,7 @@ static force_inline id MARValueForMultiKeys(__unsafe_unretained NSDictionary *di
  @param meta  Should not be nil, meta.isCNumber should be YES, meta.getter should not be nil.
  @return A number object, or nil if failed.
  */
-static force_inline NSNumber *ModelCreateNumberFromProperty(__unsafe_unretained id model,
+static force_inline NSNumber *MARModelCreateNumberFromProperty(__unsafe_unretained id model,
                                                             __unsafe_unretained _MARModelPropertyMeta *meta) {
     switch (meta->_type & MAREncodingTypeMask) {
         case MAREncodingTypeBool: {
@@ -711,7 +711,7 @@ static force_inline NSNumber *ModelCreateNumberFromProperty(__unsafe_unretained 
  @param num   Can be nil.
  @param meta  Should not be nil, meta.isCNumber should be YES, meta.setter should not be nil.
  */
-static force_inline void ModelSetNumberToProperty(__unsafe_unretained id model,
+static force_inline void MARModelSetNumberToProperty(__unsafe_unretained id model,
                                                   __unsafe_unretained NSNumber *num,
                                                   __unsafe_unretained _MARModelPropertyMeta *meta) {
     switch (meta->_type & MAREncodingTypeMask) {
@@ -778,12 +778,12 @@ static force_inline void ModelSetNumberToProperty(__unsafe_unretained id model,
  @param value Should not be nil, but can be NSNull.
  @param meta  Should not be nil, and meta->_setter should not be nil.
  */
-static void ModelSetValueForProperty(__unsafe_unretained id model,
+static void MARModelSetValueForProperty(__unsafe_unretained id model,
                                      __unsafe_unretained id value,
                                      __unsafe_unretained _MARModelPropertyMeta *meta) {
     if (meta->_isCNumber) {
         NSNumber *num = MARNSNumberCreateFromID(value);
-        ModelSetNumberToProperty(model, num, meta);
+        MARModelSetNumberToProperty(model, num, meta);
         if (num) [num class]; // hold the number
     } else if (meta->_nsType) {
         if (value == (id)kCFNull) {
@@ -1100,7 +1100,7 @@ typedef struct {
     void *modelMeta;  ///< _MARModelMeta
     void *model;      ///< id (self)
     void *dictionary; ///< NSDictionary (json)
-} ModelSetContext;
+} MARModelSetContext;
 
 /**
  Apply function for dictionary, to set the key-value pair to model.
@@ -1110,13 +1110,13 @@ typedef struct {
  @param _context _context.modelMeta and _context.model should not be nil.
  */
 static void ModelSetWithDictionaryFunction(const void *_key, const void *_value, void *_context) {
-    ModelSetContext *context = _context;
+    MARModelSetContext *context = _context;
     __unsafe_unretained _MARModelMeta *meta = (__bridge _MARModelMeta *)(context->modelMeta);
     __unsafe_unretained _MARModelPropertyMeta *propertyMeta = [meta->_mapper objectForKey:(__bridge id)(_key)];
     __unsafe_unretained id model = (__bridge id)(context->model);
     while (propertyMeta) {
         if (propertyMeta->_setter) {
-            ModelSetValueForProperty(model, (__bridge __unsafe_unretained id)_value, propertyMeta);
+            MARModelSetValueForProperty(model, (__bridge __unsafe_unretained id)_value, propertyMeta);
         }
         propertyMeta = propertyMeta->_next;
     };
@@ -1128,8 +1128,8 @@ static void ModelSetWithDictionaryFunction(const void *_key, const void *_value,
  @param _propertyMeta should not be nil, _MARModelPropertyMeta.
  @param _context      _context.model and _context.dictionary should not be nil.
  */
-static void ModelSetWithPropertyMetaArrayFunction(const void *_propertyMeta, void *_context) {
-    ModelSetContext *context = _context;
+static void MARModelSetWithPropertyMetaArrayFunction(const void *_propertyMeta, void *_context) {
+    MARModelSetContext *context = _context;
     __unsafe_unretained NSDictionary *dictionary = (__bridge NSDictionary *)(context->dictionary);
     __unsafe_unretained _MARModelPropertyMeta *propertyMeta = (__bridge _MARModelPropertyMeta *)(_propertyMeta);
     if (!propertyMeta->_setter) return;
@@ -1145,7 +1145,7 @@ static void ModelSetWithPropertyMetaArrayFunction(const void *_propertyMeta, voi
     
     if (value) {
         __unsafe_unretained id model = (__bridge id)(context->model);
-        ModelSetValueForProperty(model, value, propertyMeta);
+        MARModelSetValueForProperty(model, value, propertyMeta);
     }
 }
 
@@ -1156,7 +1156,7 @@ static void ModelSetWithPropertyMetaArrayFunction(const void *_propertyMeta, voi
  @param model Model, can be nil.
  @return JSON object, nil if an error occurs.
  */
-static id ModelToJSONObjectRecursive(NSObject *model) {
+static id MARModelToJSONObjectRecursive(NSObject *model) {
     if (!model || model == (id)kCFNull) return model;
     if ([model isKindOfClass:[NSString class]]) return model;
     if ([model isKindOfClass:[NSNumber class]]) return model;
@@ -1166,7 +1166,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
         [((NSDictionary *)model) enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
             NSString *stringKey = [key isKindOfClass:[NSString class]] ? key : key.description;
             if (!stringKey) return;
-            id jsonObj = ModelToJSONObjectRecursive(obj);
+            id jsonObj = MARModelToJSONObjectRecursive(obj);
             if (!jsonObj) jsonObj = (id)kCFNull;
             newDic[stringKey] = jsonObj;
         }];
@@ -1180,7 +1180,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
             if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]]) {
                 [newArray addObject:obj];
             } else {
-                id jsonObj = ModelToJSONObjectRecursive(obj);
+                id jsonObj = MARModelToJSONObjectRecursive(obj);
                 if (jsonObj && jsonObj != (id)kCFNull) [newArray addObject:jsonObj];
             }
         }
@@ -1193,7 +1193,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
             if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]]) {
                 [newArray addObject:obj];
             } else {
-                id jsonObj = ModelToJSONObjectRecursive(obj);
+                id jsonObj = MARModelToJSONObjectRecursive(obj);
                 if (jsonObj && jsonObj != (id)kCFNull) [newArray addObject:jsonObj];
             }
         }
@@ -1214,15 +1214,15 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
         
         id value = nil;
         if (propertyMeta->_isCNumber) {
-            value = ModelCreateNumberFromProperty(model, propertyMeta);
+            value = MARModelCreateNumberFromProperty(model, propertyMeta);
         } else if (propertyMeta->_nsType) {
             id v = ((id (*)(id, SEL))(void *) objc_msgSend)((id)model, propertyMeta->_getter);
-            value = ModelToJSONObjectRecursive(v);
+            value = MARModelToJSONObjectRecursive(v);
         } else {
             switch (propertyMeta->_type & MAREncodingTypeMask) {
                 case MAREncodingTypeObject: {
                     id v = ((id (*)(id, SEL))(void *) objc_msgSend)((id)model, propertyMeta->_getter);
-                    value = ModelToJSONObjectRecursive(v);
+                    value = MARModelToJSONObjectRecursive(v);
                     if (value == (id)kCFNull) value = nil;
                 } break;
                 case MAREncodingTypeClass: {
@@ -1278,7 +1278,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
 }
 
 /// Add indent to string (exclude first line)
-static NSMutableString *ModelDescriptionAddIndent(NSMutableString *desc, NSUInteger indent) {
+static NSMutableString *MARModelDescriptionAddIndent(NSMutableString *desc, NSUInteger indent) {
     for (NSUInteger i = 0, max = desc.length; i < max; i++) {
         unichar c = [desc characterAtIndex:i];
         if (c == '\n') {
@@ -1293,7 +1293,7 @@ static NSMutableString *ModelDescriptionAddIndent(NSMutableString *desc, NSUInte
 }
 
 /// Generaate a description string
-static NSString *ModelDescription(NSObject *model) {
+static NSString *MARModelDescription(NSObject *model) {
     static const int kDescMaxLength = 100;
     if (!model) return @"<nil>";
     if (model == (id)kCFNull) return @"<null>";
@@ -1337,7 +1337,7 @@ static NSString *ModelDescription(NSObject *model) {
                 for (NSUInteger i = 0, max = array.count; i < max; i++) {
                     NSObject *obj = array[i];
                     [desc appendString:@"    "];
-                    [desc appendString:ModelDescriptionAddIndent(ModelDescription(obj).mutableCopy, 1)];
+                    [desc appendString:MARModelDescriptionAddIndent(MARModelDescription(obj).mutableCopy, 1)];
                     [desc appendString:(i + 1 == max) ? @"\n" : @";\n"];
                 }
                 [desc appendString:@"]"];
@@ -1357,7 +1357,7 @@ static NSString *ModelDescription(NSObject *model) {
                     NSString *key = keys[i];
                     NSObject *value = dic[key];
                     [desc appendString:@"    "];
-                    [desc appendFormat:@"%@ = %@",key, ModelDescriptionAddIndent(ModelDescription(value).mutableCopy, 1)];
+                    [desc appendFormat:@"%@ = %@",key, MARModelDescriptionAddIndent(MARModelDescription(value).mutableCopy, 1)];
                     [desc appendString:(i + 1 == max) ? @"\n" : @";\n"];
                 }
                 [desc appendString:@"}"];
@@ -1381,13 +1381,13 @@ static NSString *ModelDescription(NSObject *model) {
                 _MARModelPropertyMeta *property = properties[i];
                 NSString *propertyDesc;
                 if (property->_isCNumber) {
-                    NSNumber *num = ModelCreateNumberFromProperty(model, property);
+                    NSNumber *num = MARModelCreateNumberFromProperty(model, property);
                     propertyDesc = num.stringValue;
                 } else {
                     switch (property->_type & MAREncodingTypeMask) {
                         case MAREncodingTypeObject: {
                             id v = ((id (*)(id, SEL))(void *) objc_msgSend)((id)model, property->_getter);
-                            propertyDesc = ModelDescription(v);
+                            propertyDesc = MARModelDescription(v);
                             if (!propertyDesc) propertyDesc = @"<nil>";
                         } break;
                         case MAREncodingTypeClass: {
@@ -1416,7 +1416,7 @@ static NSString *ModelDescription(NSObject *model) {
                     }
                 }
                 
-                propertyDesc = ModelDescriptionAddIndent(propertyDesc.mutableCopy, 1);
+                propertyDesc = MARModelDescriptionAddIndent(propertyDesc.mutableCopy, 1);
                 [desc appendFormat:@"    %@ = %@",property->_name, propertyDesc];
                 [desc appendString:(i + 1 == max) ? @"\n" : @";\n"];
             }
@@ -1489,7 +1489,7 @@ static NSString *ModelDescription(NSObject *model) {
         if (![dic isKindOfClass:[NSDictionary class]]) return NO;
     }
     
-    ModelSetContext context = {0};
+    MARModelSetContext context = {0};
     context.modelMeta = (__bridge void *)(modelMeta);
     context.model = (__bridge void *)(self);
     context.dictionary = (__bridge void *)(dic);
@@ -1499,19 +1499,19 @@ static NSString *ModelDescription(NSObject *model) {
         if (modelMeta->_keyPathPropertyMetas) {
             CFArrayApplyFunction((CFArrayRef)modelMeta->_keyPathPropertyMetas,
                                  CFRangeMake(0, CFArrayGetCount((CFArrayRef)modelMeta->_keyPathPropertyMetas)),
-                                 ModelSetWithPropertyMetaArrayFunction,
+                                 MARModelSetWithPropertyMetaArrayFunction,
                                  &context);
         }
         if (modelMeta->_multiKeysPropertyMetas) {
             CFArrayApplyFunction((CFArrayRef)modelMeta->_multiKeysPropertyMetas,
                                  CFRangeMake(0, CFArrayGetCount((CFArrayRef)modelMeta->_multiKeysPropertyMetas)),
-                                 ModelSetWithPropertyMetaArrayFunction,
+                                 MARModelSetWithPropertyMetaArrayFunction,
                                  &context);
         }
     } else {
         CFArrayApplyFunction((CFArrayRef)modelMeta->_allPropertyMetas,
                              CFRangeMake(0, modelMeta->_keyMappedCount),
-                             ModelSetWithPropertyMetaArrayFunction,
+                             MARModelSetWithPropertyMetaArrayFunction,
                              &context);
     }
     
@@ -1529,7 +1529,7 @@ static NSString *ModelDescription(NSObject *model) {
      All dictionary keys are instances of NSString.
      Numbers are not NaN or infinity.
      */
-    id jsonObject = ModelToJSONObjectRecursive(self);
+    id jsonObject = MARModelToJSONObjectRecursive(self);
     if ([jsonObject isKindOfClass:[NSArray class]]) return jsonObject;
     if ([jsonObject isKindOfClass:[NSDictionary class]]) return jsonObject;
     return nil;
@@ -1643,7 +1643,7 @@ static NSString *ModelDescription(NSObject *model) {
         if (!propertyMeta->_getter) return;
         
         if (propertyMeta->_isCNumber) {
-            NSNumber *value = ModelCreateNumberFromProperty(self, propertyMeta);
+            NSNumber *value = MARModelCreateNumberFromProperty(self, propertyMeta);
             if (value) [aCoder encodeObject:value forKey:propertyMeta->_name];
         } else {
             switch (propertyMeta->_type & MAREncodingTypeMask) {
@@ -1695,7 +1695,7 @@ static NSString *ModelDescription(NSObject *model) {
         if (propertyMeta->_isCNumber) {
             NSNumber *value = [aDecoder decodeObjectForKey:propertyMeta->_name];
             if ([value isKindOfClass:[NSNumber class]]) {
-                ModelSetNumberToProperty(self, value, propertyMeta);
+                MARModelSetNumberToProperty(self, value, propertyMeta);
                 [value class];
             }
         } else {
@@ -1765,7 +1765,7 @@ static NSString *ModelDescription(NSObject *model) {
 }
 
 - (NSString *)mar_modelDescription {
-    return ModelDescription(self);
+    return MARModelDescription(self);
 }
 
 @end

@@ -12,6 +12,19 @@
 #import "MARClassInfo.h"
 #import "MARTestExamples.h"
 
+@interface MARTestModel : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSDate *createTime;
+@end
+
+@implementation MARTestModel
+- (NSString *)description
+{
+    return [self mar_modelDescription];
+    
+}
+@end
+
 @interface MARTestViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *testBtn1;
 @property (strong, nonatomic, getter=gethello)  NSString *testStrStr;
@@ -60,5 +73,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)clickTestBtnAction:(id)sender {
+    MARTestModel *model = [MARTestModel mar_modelWithJSON:@{@"name":@"hello", @"createTime":@"2017-09-22 01:49:39.000"}];
+    NSLog(@">>>>> model : %@", model);
+}
 
 @end
