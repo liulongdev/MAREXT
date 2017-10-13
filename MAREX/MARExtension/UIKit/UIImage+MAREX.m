@@ -983,4 +983,45 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     return [UIImage imageWithData:data];
 }
 
++ (UIImage *)mar_qrImageWithString:(NSString *)qrValue size:(CGFloat)size
+{
+    if (![qrValue isKindOfClass:[NSString class]] || qrValue.length == 0) {
+        return nil;
+    }
+    size = size <= 0 ? 30 : size;
+    
+    //QR Code filter
+    CIFilter *qrImageFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    
+    //config fileter default pros
+    [qrImageFilter setDefaults];
+    
+    // need convert to binary
+    NSData *qrImageData = [qrValue dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // set data for filter
+    [qrImageFilter setValue:qrImageData forKey:@"inputMessage"];
+    
+    //get QR Code Image
+    CIImage *qrImage = [qrImageFilter outputImage];
+    
+    CGRect extent = CGRectIntegral(qrImage.extent);
+    CGFloat scale = MIN(size/CGRectGetWidth(extent), size/CGRectGetHeight(extent));
+    // create bitmap context;
+    size_t width = CGRectGetWidth(extent) * scale;
+    size_t height = CGRectGetHeight(extent) * scale;
+    CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();
+    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, cs, (CGBitmapInfo)kCGImageAlphaNone);
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef bitmapImage = [context createCGImage:qrImage fromRect:extent];
+    CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);
+    CGContextScaleCTM(bitmapRef, scale, scale);
+    CGContextDrawImage(bitmapRef, extent, bitmapImage);
+    // save bitmap into context
+    CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
+    CGContextRelease(bitmapRef);
+    CGImageRelease(bitmapImage);
+    return [UIImage imageWithCGImage:scaledImage];
+}
+
 @end

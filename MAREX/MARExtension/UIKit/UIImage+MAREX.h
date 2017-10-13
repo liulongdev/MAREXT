@@ -465,6 +465,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIImage *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size;
 
+/**
+ create QR Code Image
+
+ @param qrValue QR Code Value
+ @param size image size
+ @return QR Code Image
+ */
++ (UIImage *)mar_qrImageWithString:(NSString *)qrValue size:(CGFloat)size;
 @end
 
 NS_ASSUME_NONNULL_END
