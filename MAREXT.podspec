@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MAREXT"
-  s.version      = "0.0.5"
+  s.version      = "0.0.7"
   s.summary      = "Some category and light tool."
   s.description  = <<-DESC
     Some category and light tool, and performace.
