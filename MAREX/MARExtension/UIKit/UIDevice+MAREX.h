@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 #define kMARMachieNameIPhoneSE      @"iPhone SE"
 #define kMARMachieNameIPhone7       @"iPhone 7"
 #define kMARMachieNameIPhone7Plus   @"iPhone 7 Plus"
+#define kMARMachieNameIPhone8       @"iPhone 8"
+#define kMARMachieNameIPhone8Plus   @"iPhone 8 Plus"
+#define kMARMachieNameIPhoneX       @"iPhone X"
 
 #define kMAROldMachies              (@[kMARMachieNameIPhone1G, \
 kMARMachieNameIPhone3G, \
