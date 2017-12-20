@@ -22,17 +22,6 @@
 }
 #endif
 
-
-- (void)mxr_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    if (![self.topViewController isKindOfClass:[viewController class]]) {
-        NSArray* vcs = [self mar_popToViewControllerClazz:[viewController class] Animated:animated];
-        if (!vcs || vcs.count <= 0 ) {
-            [self pushViewController:viewController animated:animated];
-        }
-    }
-}
-
 - (NSArray<UIViewController *> *)mar_popToViewControllerClazz:(Class)clazz Animated:(BOOL)animated
 {
     NSArray* vcArray = self.viewControllers;

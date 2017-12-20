@@ -39,11 +39,16 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
 
 - (NSDateFormatter *)dataFormatter
 {
-    if (!_dataFormatter) {
-        _dataFormatter = [[NSDateFormatter alloc] init];
-        _dataFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    return self.dateFormatter;
+}
+
+- (NSDateFormatter *)dateFormatter
+{
+    if (!_dateFormatter) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
     }
-    return _dataFormatter;
+    return _dateFormatter;
 }
 
 - (MARReachability *)reachability

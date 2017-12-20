@@ -27,7 +27,8 @@ typedef NS_OPTIONS(NSUInteger, MARReachabilityNetStatus) {
 
 @interface MARGlobalManager : NSObject
 
-@property (nonatomic, strong) NSDateFormatter *dataFormatter;
+@property (nonatomic, strong) NSDateFormatter *dataFormatter __deprecated_msg("use `dateFormatter`");
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 + (instancetype)sharedInstance;
 
