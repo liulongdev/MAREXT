@@ -8,7 +8,7 @@
 
 #import "UIApplication+MAREX.h"
 #import "NSFileManager+MAREX.h"
-
+#import "MAREXMacro.h"
 @implementation UIApplication (MAREX)
 
 + (NSInteger)mar_applicationByteSize
@@ -35,12 +35,16 @@ static volatile int32_t mar_numberOfActiveNetworkConnectionsxxx;
 
 - (void)mar_startNetworkActivity
 {
-    self.networkActivityIndicatorVisible = OSAtomicAdd32(1, &mar_numberOfActiveNetworkConnectionsxxx) > 0;
+    mar_dispatch_async_on_main_queue(^{
+        self.networkActivityIndicatorVisible = OSAtomicAdd32(1, &mar_numberOfActiveNetworkConnectionsxxx) > 0;
+    });
 }
 
 - (void)mar_endedNetworkActivity
 {
-    self.networkActivityIndicatorVisible = OSAtomicAdd32(-1, &mar_numberOfActiveNetworkConnectionsxxx) > 0;
+    mar_dispatch_async_on_main_queue(^{
+        self.networkActivityIndicatorVisible = OSAtomicAdd32(-1, &mar_numberOfActiveNetworkConnectionsxxx) > 0;
+    });
 }
 
 @end

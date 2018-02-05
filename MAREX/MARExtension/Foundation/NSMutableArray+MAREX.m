@@ -12,10 +12,12 @@
 
 - (void)mar_shuffle
 {
-    @synchronized (self) {
-        for (uint32_t i = (uint32_t)[self count] - 1; i > 0; i--) {
-            [self exchangeObjectAtIndex:arc4random_uniform(i + 1)
-                      withObjectAtIndex:i];
+    if (self.count > 0) {
+        @synchronized (self) {
+            for (uint32_t i = (uint32_t)[self count] - 1; i > 0; i--) {
+                [self exchangeObjectAtIndex:arc4random_uniform(i + 1)
+                          withObjectAtIndex:i];
+            }
         }
     }
 }
