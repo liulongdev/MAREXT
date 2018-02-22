@@ -8,7 +8,7 @@
 
 #import "UIView+MAREX.h"
 #import "UIGestureRecognizer+MAREX.h"
-
+#import "UIImage+MAREX.h"
 @implementation UIView (MAREX)
 
 - (UIImage *)mar_snapshotImage
@@ -26,8 +26,16 @@
 
 - (UIImage *)mar_saveSnapshotImage
 {
-    UIImage *image = [self mar_saveSnapshotImage];
+    UIImage *image = [self mar_snapshotImage];
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    
+    return image;
+}
+
+- (UIImage *)mar_saveSnapshotImageSuccess:(void (^)(void))success failure:(void (^)(void))failure
+{
+    UIImage *image = [self mar_snapshotImage];
+    [image mar_saveToPhotoLibrarySuccess:success failure:failure];
     
     return image;
 }

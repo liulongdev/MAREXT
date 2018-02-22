@@ -52,6 +52,18 @@ typedef NS_ENUM(NSInteger, MARUIViewLinearGradientDirection) {
  */
 - (UIImage * _Nonnull)mar_saveSnapshotImage;
 
+
+/**
+ Take a screenshot of the current view an saving to the saved photos album and call back the result
+
+ @param success save success block
+ @param failure save failure block
+ @return Returns screenshot as UIImage
+ */
+- (UIImage * _Nonnull)mar_saveSnapshotImageSuccess:(nullable void (^)(void))success
+                                           failure:(nullable void (^)(void))failure;
+
+
 /**
  Create a snapshot image of the complete view hierarchy.
  @discussion It's faster than "snapshotImage", but may cause screen updates.

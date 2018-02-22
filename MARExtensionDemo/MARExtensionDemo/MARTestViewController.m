@@ -54,9 +54,9 @@
         [_attrs setObject:[attrPair substringFromIndex:1] forKey:[attrPair substringToIndex:1]];
     NSLog(@"cString : %s \nDic : %@", attrCstring, _attrs);
 
-    [self.testBtn1 mar_addActionBlock:^(id sender) {
-        [[MARTestExamples new] testRuntimeObj];
-    } forState:UIControlEventTouchDown];
+//    [self.testBtn1 mar_addActionBlock:^(id sender) {
+//        [[MARTestExamples new] testRuntimeObj];
+//    } forState:UIControlEventTouchDown];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,6 +76,13 @@
 - (IBAction)clickTestBtnAction:(id)sender {
     MARTestModel *model = [MARTestModel mar_modelWithJSON:@{@"name":@"hello", @"createTime":@"2017-09-22 01:49:39.000"}];
     NSLog(@">>>>> model : %@", model);
+    
+    [self.view mar_saveSnapshotImageSuccess:^{
+        NSLog(@">>>>>>>  success");
+    } failure:^{
+        NSLog(@">>>>>>> failure");
+    }];
+    
 }
 
 @end

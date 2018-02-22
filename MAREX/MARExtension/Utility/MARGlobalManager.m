@@ -112,8 +112,8 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
 - (BOOL)isFirstStart
 {
     NSUserDefaults* user = [NSUserDefaults standardUserDefaults];
-    BOOL isAPPFirstOpenFlag = [user boolForKey:MARHasBeenOpened];
-    return isAPPFirstOpenFlag;
+    BOOL hasAPPFirstOpened = [user boolForKey:MARHasBeenOpened];
+    return !hasAPPFirstOpened;
 }
 
 + (BOOL)isFirstStart
@@ -126,7 +126,7 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
     MARHasBeenOpenedForCurrentVersion = [NSString stringWithFormat:@"%@%@", MARHasBeenOpened, AppVersion];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL hasBeenOpenedForCurrentVersion = [defaults boolForKey:MARHasBeenOpenedForCurrentVersion];
-    return hasBeenOpenedForCurrentVersion;
+    return !hasBeenOpenedForCurrentVersion;
 }
 
 + (BOOL)isFirstStartForCurrentVersion

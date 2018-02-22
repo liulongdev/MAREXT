@@ -14,6 +14,10 @@
 #import <CoreText/CoreText.h>
 #import <objc/runtime.h>
 #import "MARCGUtilities.h"
+#import "NSObject+MAREX.h"
+
+static char MARSaveImageSuccessBlockKey;
+static char MARSaveImageFailureBlockKey;
 
 #ifndef MAR_SWAP // swap two value
 #define MAR_SWAP(_a_, _b_)  do { __typeof__(_a_) _tmp_ = (_a_); (_a_) = (_b_); (_b_) = _tmp_; } while (0)
@@ -1022,6 +1026,37 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     CGContextRelease(bitmapRef);
     CGImageRelease(bitmapImage);
     return [UIImage imageWithCGImage:scaledImage];
+}
+
+- (void)mar_saveToPhotoLibrarySuccess:(void (^)(void))success
+                              failure:(void (^)(void))failure
+{
+    __weak __typeof(self) weakSelf = self;
+    UIImageWriteToSavedPhotosAlbum(self, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    if (success) {
+        [self mar_setAssociateValue:success withKey:&MARSaveImageSuccessBlockKey];
+    }
+    if (failure) {
+        [self mar_setAssociateValue:failure withKey:&MARSaveImageFailureBlockKey];
+    }
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if (error) {
+        void (^FailureBlock)(void) = [self mar_getAssociatedValueForKey:&MARSaveImageFailureBlockKey];
+        if (FailureBlock) {
+            FailureBlock();
+            [self mar_setAssociateValue:nil withKey:&MARSaveImageFailureBlockKey];
+        }
+    }
+    else
+    {
+        void (^SuccessBlock)(void) = [self mar_getAssociatedValueForKey:&MARSaveImageSuccessBlockKey];
+        if (SuccessBlock) {
+            SuccessBlock();
+            [self mar_setAssociateValue:nil withKey:&MARSaveImageSuccessBlockKey];
+        }
+    }
 }
 
 @end

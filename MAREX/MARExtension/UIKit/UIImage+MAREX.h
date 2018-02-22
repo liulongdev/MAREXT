@@ -473,6 +473,17 @@ NS_ASSUME_NONNULL_BEGIN
  @return QR Code Image
  */
 + (UIImage *)mar_qrImageWithString:(NSString *)qrValue size:(CGFloat)size;
+
+
+/**
+ save image to phone PhotoLibrary
+
+ @param success save success callback
+ @param failure save failure callback
+ */
+- (void)mar_saveToPhotoLibrarySuccess:(nullable void (^)(void))success
+                                failure:(nullable void (^)(void))failure;
+
 @end
 
 NS_ASSUME_NONNULL_END
