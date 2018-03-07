@@ -30,6 +30,8 @@ typedef NS_OPTIONS(NSUInteger, MARReachabilityNetStatus) {
 @property (nonatomic, strong) NSDateFormatter *dataFormatter __deprecated_msg("use `dateFormatter`");
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
+@property (nonatomic, strong) NSByteCountFormatter *byteFormatter;
+
 + (instancetype)sharedInstance;
 
 /**

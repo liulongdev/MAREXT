@@ -51,6 +51,14 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
     return _dateFormatter;
 }
 
+- (NSByteCountFormatter *)byteFormatter
+{
+    if (!_byteFormatter) {
+        _byteFormatter = [[NSByteCountFormatter alloc] init];
+    }
+    return _byteFormatter;
+}
+
 - (MARReachability *)reachability
 {
     if (!_reachability) {
