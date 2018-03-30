@@ -8,7 +8,6 @@
 
 #import "MARCGUtilities.h"
 #import <Accelerate/Accelerate.h>
-#import "UIView+MAREX.h"
 
 CGContextRef MARCGContextCreateARGBBitmapContext(CGSize size, BOOL opaque, CGFloat scale) {
     size_t width = ceil(size.width * scale);
@@ -133,6 +132,28 @@ CGAffineTransform MARCGAffineTransformGetFromPoints(CGPoint before[3], CGPoint a
     return transform;
 }
 
+CGPoint __MAR_convertPoint(CGPoint point,UIView *fromView, UIView *toView)
+{
+    if (!toView) {
+        if ([fromView isKindOfClass:[UIWindow class]]) {
+            return [((UIWindow *)fromView ) convertPoint:point toWindow:nil];
+        }
+        else
+        {
+            return [fromView convertPoint:point toView:nil];
+        }
+    }
+    
+    UIWindow *from = [fromView isKindOfClass:[UIWindow class]] ? (id)fromView : fromView.window;
+    UIWindow *to = [toView isKindOfClass:[UIWindow class]] ? (id)toView : toView.window;
+    if ((!from || !to) || (from == to)) return [fromView convertPoint:point toView:toView];
+    point = [fromView convertPoint:point toView:from];
+    point = [to convertPoint:point fromWindow:from];
+    point = [toView convertPoint:point fromView:from];
+    point = [toView convertPoint:point fromView:to];
+    return point;
+}
+
 CGAffineTransform MARCGAffineTransformGetFromViews(UIView *from, UIView *to) {
     if (!from || !to) return CGAffineTransformIdentity;
     
@@ -140,9 +161,12 @@ CGAffineTransform MARCGAffineTransformGetFromViews(UIView *from, UIView *to) {
     before[0] = CGPointMake(0, 0);
     before[1] = CGPointMake(0, 1);
     before[2] = CGPointMake(1, 0);
-    after[0] = [from mar_convertPoint:before[0] toViewOrWindow:to];
-    after[1] = [from mar_convertPoint:before[1] toViewOrWindow:to];
-    after[2] = [from mar_convertPoint:before[2] toViewOrWindow:to];
+    after[0] = __MAR_convertPoint(before[0], from, to);
+    after[1] = __MAR_convertPoint(before[1], from, to);
+    after[2] = __MAR_convertPoint(before[2], from, to);
+//    after[0] = [from mar_convertPoint:before[0] toViewOrWindow:to];
+//    after[1] = [from mar_convertPoint:before[1] toViewOrWindow:to];
+//    after[2] = [from mar_convertPoint:before[2] toViewOrWindow:to];
     
     return MARCGAffineTransformGetFromPoints(before, after);
 }

@@ -18,11 +18,11 @@
 }
 
 + (NSTimer *)mar_scheduledTimerWithTimeInterval:(NSTimeInterval)seconds block:(void (^)(NSTimer *timer))block repeats:(BOOL)repeats {
-    return [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(_yy_ExecBlock:) userInfo:[block copy] repeats:repeats];
+    return [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(_mar_ExecBlock:) userInfo:[block copy] repeats:repeats];
 }
 
 + (NSTimer *)mar_timerWithTimeInterval:(NSTimeInterval)seconds block:(void (^)(NSTimer *timer))block repeats:(BOOL)repeats {
-    return [NSTimer timerWithTimeInterval:seconds target:self selector:@selector(_yy_ExecBlock:) userInfo:[block copy] repeats:repeats];
+    return [NSTimer timerWithTimeInterval:seconds target:self selector:@selector(_mar_ExecBlock:) userInfo:[block copy] repeats:repeats];
 }
 
 @end

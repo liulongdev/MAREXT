@@ -15,8 +15,6 @@
 - (NSUInteger)hash { return [self mar_modelHash]; } \
 - (BOOL)isEqual:(id)object { return [self mar_modelIsEqual:object]; }
 
-#define YYModelSynthCoderAndHash MARModelSynthCoderAndHash
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**

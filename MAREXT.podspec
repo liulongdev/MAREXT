@@ -15,42 +15,57 @@ Pod::Spec.new do |s|
   #s.source_files = "MAREX/**/*.{h,m}"
   s.requires_arc = true
 
-  s.source_files = 'MAREX/MARExtension/MARCategory.h'
-  s.public_header_files = 'MAREX/MARExtension/MARCategory.h'
+  s.source_files = 'MAREX/MARCategory.h'
+  s.public_header_files = 'MAREX/MARCategory.h'
+  
   s.subspec 'MARModel' do |ss|
-      ss.source_files = 'MAREX/MARExtension/MARModel/**/*.{h,m}'
-      ss.public_header_files = 'MAREX/MARExtension/MARModel/**/*.h'
+      ss.source_files = 'MAREX/MARModel/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/MARModel/**/*.h'
   end
  
   s.subspec 'RuntimeOBJ' do |ss|
-      ss.source_files = 'MAREX/MARExtension/RuntimeOBJ/**/*.{h,m}'
-      ss.public_header_files = 'MAREX/MARExtension/RuntimeOBJ/**/*.h'
+      ss.source_files = 'MAREX/RuntimeOBJ/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/RuntimeOBJ/**/*.h'
+      ss.dependency 'MAREXT/MARModel'
   end
  
   s.subspec 'Debug' do |ss|
-      ss.source_files = 'MAREX/MARExtension/Debug/**/*.{h,m}'
-      ss.public_header_files = 'MAREX/MARExtension/Debug/**/*.h'
+      ss.source_files = 'MAREX/Debug/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/Debug/**/*.h'
+      ss.dependency 'MAREXT/Utility'
   end
   
   s.subspec 'Utility' do |ss|
-      ss.source_files = 'MAREX/MARExtension/Utility/**/*.{h,m}'
-      ss.public_header_files = 'MAREX/MARExtension/Utility/**/*.h'
+      ss.source_files = 'MAREX/Utility/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/Utility/**/*.h'
   end
  
   s.subspec 'Foundation' do |ss|
-      ss.source_files = 'MAREX/MARExtension/Foundation/**/*.{h,m}'
-      ss.public_header_files = 'MAREX/MARExtension/Foundation/**/*.h'
+      ss.source_files = 'MAREX/Foundation/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/Foundation/**/*.h'
+      ss.dependency 'MAREXT/Utility'
   end
   
   s.subspec 'Quartz' do |ss|
-      ss.source_files = 'MAREX/MARExtension/Quartz/**/*.{h,m}'
-      ss.public_header_files = 'MAREX/MARExtension/Quartz/**/*.h'
+      ss.source_files = 'MAREX/Quartz/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/Quartz/**/*.h'
+      ss.dependency 'MAREXT/Utility'
   end
   
   s.subspec 'UIKit' do |ss|
-      ss.source_files = 'MAREX/MARExtension/UIKit/**/*.{h,m}'
-      ss.public_header_files = 'MAREX/MARExtension/UIKit/**/*.h'
+      ss.source_files = 'MAREX/UIKit/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/UIKit/**/*.h'
+      ss.dependency 'MAREXT/Utility'
+      ss.dependency 'MAREXT/Foundation'
+      ss.dependency 'MAREXT/Quartz'
   end
+  
+  s.subspec 'ColorArt' do |ss|
+      ss.source_files = 'MAREX/ColorArt/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/ColorArt/**/*.h'
+      ss.dependency 'MAREXT/UIKit'
+  end
+  
   
   s.library   = "z"
   # s.libraries = "z", "z"

@@ -263,8 +263,6 @@
 				5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */,
 				C1150E2D1ECD2A3300176F38 /* MARReachability.h */,
 				C1150E2E1ECD2A3300176F38 /* MARReachability.m */,
-				5BEAE8CC206CFA0B00A15477 /* MARColorArt.h */,
-				5BEAE8CD206CFA0B00A15477 /* MARColorArt.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -305,19 +303,20 @@
 			path = RuntimeOBJ;
 			sourceTree = "<group>";
 		};
+		5BEAE8DA206E2F4E00A15477 /* ColorArt */ = {
+			isa = PBXGroup;
+			children = (
+				5BEAE8CC206CFA0B00A15477 /* MARColorArt.h */,
+				5BEAE8CD206CFA0B00A15477 /* MARColorArt.m */,
+			);
+			path = ColorArt;
+			sourceTree = "<group>";
+		};
 		C1150DBC1ECAC96300176F38 /* MAREX */ = {
 			isa = PBXGroup;
 			children = (
+				5BEAE8DA206E2F4E00A15477 /* ColorArt */,
 				5B4DC5FD1ECC8BFD0063CF63 /* MARModel */,
-				C1150DBD1ECAC96300176F38 /* MARExtension */,
-			);
-			name = MAREX;
-			path = ../../MAREX;
-			sourceTree = "<group>";
-		};
-		C1150DBD1ECAC96300176F38 /* MARExtension */ = {
-			isa = PBXGroup;
-			children = (
 				5BC32DAB1EDA692100E8EB04 /* RuntimeOBJ */,
 				5B4DC6081ECCA0FA0063CF63 /* Debug */,
 				5B4DC5F61ECC884C0063CF63 /* Utility */,
@@ -326,7 +325,8 @@
 				C1150DDC1ECACE5B00176F38 /* UIKit */,
 				C1150DBE1ECAC96300176F38 /* MARCategory.h */,
 			);
-			path = MARExtension;
+			name = MAREX;
+			path = ../../MAREX;
 			sourceTree = "<group>";
 		};
 		C1150DD31ECACD8100176F38 /* Frameworks */ = {
