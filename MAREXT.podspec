@@ -10,33 +10,46 @@ Pod::Spec.new do |s|
   s.author       = { "liulongdev" => "305708612@qq.com" }
   s.platform     = :ios, "7.0"
   s.ios.deployment_target = "7.0"
-  #s.source       = { :git => "https://github.com/liulongdev/MAREXT.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/liulongdev/MAREXT.git", :tag => "#{s.version}" }
+  
   #s.source_files = "MAREX/**/*.{h,m}"
   s.requires_arc = true
 
+  s.source_files = 'MAREX/MARExtension/MARCategory.h'
   s.public_header_files = 'MAREX/MARExtension/MARCategory.h'
-  s.subspec 'MARModel' do |MARModel|
-      MARModel.source_files = 'MAREX/MARModel/**/*'
+  s.subspec 'MARModel' do |ss|
+      ss.source_files = 'MAREX/MARExtension/MARModel/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/MARExtension/MARModel/**/*.h'
   end
  
-  s.subspec 'RuntimeOBJ' do |RuntimeOBJ|
-      RuntimeOBJ.source_files = 'MAREX/MARExtension/RuntimeOBJ/**/*'
+  s.subspec 'RuntimeOBJ' do |ss|
+      ss.source_files = 'MAREX/MARExtension/RuntimeOBJ/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/MARExtension/RuntimeOBJ/**/*.h'
   end
  
-  s.subspec 'Debug' do |Debug|
-      Debug.source_files = 'MAREX/MARExtension/Debug/**/*'
-  end
- 
-  s.subspec 'Foundation' do |Foundation|
-      Foundation.source_files = 'MAREX/MARExtension/Foundation/**/*'
+  s.subspec 'Debug' do |ss|
+      ss.source_files = 'MAREX/MARExtension/Debug/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/MARExtension/Debug/**/*.h'
   end
   
-  s.subspec 'Quartz' do |Quartz|
-      Quartz.source_files = 'MAREX/MARExtension/Quartz/**/*'
+  s.subspec 'Utility' do |ss|
+      ss.source_files = 'MAREX/MARExtension/Utility/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/MARExtension/Utility/**/*.h'
+  end
+ 
+  s.subspec 'Foundation' do |ss|
+      ss.source_files = 'MAREX/MARExtension/Foundation/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/MARExtension/Foundation/**/*.h'
   end
   
-  s.subspec 'UIKit' do |UIKit|
-      UIKit.source_files = 'MAREX/MARExtension/UIKit/**/*'
+  s.subspec 'Quartz' do |ss|
+      ss.source_files = 'MAREX/MARExtension/Quartz/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/MARExtension/Quartz/**/*.h'
+  end
+  
+  s.subspec 'UIKit' do |ss|
+      ss.source_files = 'MAREX/MARExtension/UIKit/**/*.{h,m}'
+      ss.public_header_files = 'MAREX/MARExtension/UIKit/**/*.h'
   end
   
   s.library   = "z"
