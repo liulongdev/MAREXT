@@ -127,6 +127,11 @@ typedef NS_OPTIONS(NSUInteger, MARReachabilityNetStatus) {
 - (void)checkCameraAuthorityCallBack:(void (^)(BOOL allowed))callBack;
 
 /**
+ Check authority(permission) of camera, and will callback. If not be setted yet, will request and still callback
+ */
+- (void)checkCameraAuthorityWithDeniedAlert:(BOOL)isAlert callBack:(void (^)(BOOL allowed))callBack;
+
+/**
  Authority(permission) of photo album service
  */
 - (BOOL)isPhotoAlbumServiceOpen;

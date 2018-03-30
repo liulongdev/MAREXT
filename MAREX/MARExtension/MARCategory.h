@@ -57,6 +57,7 @@
 #import "UIWindow+MAREX.h"
 #import "UIApplication+MAREX.h"
 #import "UIResponder+MAREX.h"
+#import "UIColor+MAREX.h"
 
 #import "MARUITextView.h"
 #import "MARUIButton.h"

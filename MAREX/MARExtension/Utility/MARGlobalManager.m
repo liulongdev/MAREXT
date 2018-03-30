@@ -176,7 +176,6 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
 #else
     if (IS_IOSORLATER(8.0)) {
         url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        
     } else {
         url = [NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
     }
@@ -282,6 +281,42 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
 {
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        if (callBack) {
+            callBack(NO);
+        }
+    }
+    else if (authStatus == AVAuthorizationStatusNotDetermined)
+    {
+        mar_dispatch_async_on_main_queue(^{
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                if (callBack) {
+                    callBack(granted);
+                }
+            }];
+        });
+    }
+    else
+    {
+        if (callBack) {
+            callBack(YES);
+        }
+    }
+}
+
+- (void)checkCameraAuthorityWithDeniedAlert:(BOOL)isAlert callBack:(void (^)(BOOL))callBack
+{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        if (isAlert && authStatus == AVAuthorizationStatusDenied) {
+            NSString *msg = @"您的摄像头功能被关闭了。开启请到APP{设置}-{隐私}-{摄像头}中开启摄像头功能";
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:msg
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"好的"
+                                                      otherButtonTitles: nil];
+
+            [alertView show];
+        }
         if (callBack) {
             callBack(NO);
         }
