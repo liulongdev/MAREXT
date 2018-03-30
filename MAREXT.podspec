@@ -10,13 +10,11 @@ Pod::Spec.new do |s|
   s.author       = { "liulongdev" => "305708612@qq.com" }
   s.platform     = :ios, "7.0"
   s.ios.deployment_target = "7.0"
-  s.source       = { :git => "https://github.com/liulongdev/MAREXT.git", :tag => "#{s.version}" }
-  s.source_files = "MAREX/**/*.{h,m}"
-  s.public_header_files = 'MAREX/MARExtension/MAREXMacro.h'
+  #s.source       = { :git => "https://github.com/liulongdev/MAREXT.git", :tag => "#{s.version}" }
+  #s.source_files = "MAREX/**/*.{h,m}"
   s.requires_arc = true
-  s.library   = "z"
-  # s.libraries = "z", "z"
-  
+
+  s.public_header_files = 'MAREX/MARExtension/MARCategory.h'
   s.subspec 'MARModel' do |MARModel|
       MARModel.source_files = 'MAREX/MARModel/**/*'
   end
@@ -40,5 +38,8 @@ Pod::Spec.new do |s|
   s.subspec 'UIKit' do |UIKit|
       UIKit.source_files = 'MAREX/MARExtension/UIKit/**/*'
   end
+  
+  s.library   = "z"
+  # s.libraries = "z", "z"
   
 end

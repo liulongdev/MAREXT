@@ -252,6 +252,7 @@
 		5B4DC5F61ECC884C0063CF63 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				5B4DC5F21ECC85170063CF63 /* MAREXMacro.h */,
 				5B4DC5F71ECC885E0063CF63 /* SVProgressHUD+MAREX.h */,
 				5B4DC5F81ECC885E0063CF63 /* SVProgressHUD+MAREX.m */,
 				5B4DC5FA1ECC8B820063CF63 /* MARUserDefault.h */,
@@ -309,7 +310,6 @@
 			children = (
 				5B4DC5FD1ECC8BFD0063CF63 /* MARModel */,
 				C1150DBD1ECAC96300176F38 /* MARExtension */,
-				5B4DC5F21ECC85170063CF63 /* MAREXMacro.h */,
 			);
 			name = MAREX;
 			path = ../../MAREX;
