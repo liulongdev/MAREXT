@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MAREXT"
-  s.version      = "0.0.7"
+  s.version      = "0.0.9"
   s.summary      = "Some category and light tool."
   s.description  = <<-DESC
     Some category and light tool, and performace.
@@ -12,7 +12,33 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "7.0"
   s.source       = { :git => "https://github.com/liulongdev/MAREXT.git", :tag => "#{s.version}" }
   s.source_files = "MAREX/**/*.{h,m}"
+  s.public_header_files = 'MAREX/MARExtension/MAREXMacro.h'
   s.requires_arc = true
   s.library   = "z"
   # s.libraries = "z", "z"
+  
+  s.subspec 'MARModel' do |MARModel|
+      MARModel.source_files = 'MAREX/MARModel/**/*'
+  end
+ 
+  s.subspec 'RuntimeOBJ' do |RuntimeOBJ|
+      RuntimeOBJ.source_files = 'MAREX/MARExtension/RuntimeOBJ/**/*'
+  end
+ 
+  s.subspec 'Debug' do |Debug|
+      Debug.source_files = 'MAREX/MARExtension/Debug/**/*'
+  end
+ 
+  s.subspec 'Foundation' do |Foundation|
+      Foundation.source_files = 'MAREX/MARExtension/Foundation/**/*'
+  end
+  
+  s.subspec 'Quartz' do |Quartz|
+      Quartz.source_files = 'MAREX/MARExtension/Quartz/**/*'
+  end
+  
+  s.subspec 'UIKit' do |UIKit|
+      UIKit.source_files = 'MAREX/MARExtension/UIKit/**/*'
+  end
+  
 end
