@@ -123,7 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (unsigned char)mar_unsignedCharValueForKey:(NSString *)key default:(unsigned char)def;
 
 - (short)mar_shortValueForKey:(NSString *)key default:(short)def;
-- (unsigned short)unsignedShortValueForKey:(NSString *)key default:(unsigned short)def;
+- (unsigned short)mar_unsignedShortValueForKey:(NSString *)key default:(unsigned short)def;
 
 - (int)mar_intValueForKey:(NSString *)key default:(int)def;
 - (unsigned int)mar_unsignedIntValueForKey:(NSString *)key default:(unsigned int)def;

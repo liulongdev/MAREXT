@@ -596,4 +596,13 @@
     [self mar_whenTouches:1 tapped:2 handler:block];
 }
 
+- (void)mar_removeTapGestureWithNumberOfTapsRequired:(NSInteger)numberOfTap
+{
+    for (UITapGestureRecognizer *tapGesture in self.gestureRecognizers) {
+        if ([tapGesture isKindOfClass:[UITapGestureRecognizer class]] && tapGesture.numberOfTapsRequired == numberOfTap) {
+            [self removeGestureRecognizer:tapGesture];
+        }
+    }
+}
+
 @end

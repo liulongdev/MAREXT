@@ -337,4 +337,6 @@ typedef NS_ENUM(NSInteger, MARUIViewAnimationTranslationDirection) {
  */
 - (void)mar_whenDoubleTapped:(nullable void (^)(void))block;
 
+- (void)mar_removeTapGestureWithNumberOfTapsRequired:(NSInteger)numberOfTap;
+
 @end

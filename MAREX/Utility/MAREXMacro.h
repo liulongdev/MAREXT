@@ -65,7 +65,7 @@ blue:((float)(_hex & 0xFF))/255.0 alpha:_alpha]
 #define IS_IPHONE_47Size()      (IS_IPHONE() && kScreenMAXLENGTH == 667.0)
 #define IS_IPHONE_55Size()      (IS_IPHONE() && kScreenMAXLENGTH >= 736.0)
 
-#define IS_iPhoneX_Device ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IS_iPhoneX_Device() ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 #define MARiPhoneX_BottomMargin (IS_iPhoneX_Device && UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation) ? 34 : 0)
 #define MARiPhoneX_LeftMargin (IS_iPhoneX_Device && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 44 : 0)
