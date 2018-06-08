@@ -1059,4 +1059,27 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     }
 }
 
++ (UIImage *)mar_screenShotWithScrollView:(UIScrollView *)scrollView
+{
+    UIImage* image;
+    UIGraphicsBeginImageContextWithOptions(scrollView.contentSize, NO, [UIScreen mainScreen].scale);
+    {
+        CGPoint savedContentOffset = scrollView.contentOffset;
+        CGRect savedFrame = scrollView.frame;
+        scrollView.contentOffset = CGPointZero;
+        scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
+        [scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        scrollView.contentOffset = savedContentOffset;
+        scrollView.frame = savedFrame;
+    }
+    UIGraphicsEndImageContext();
+    
+    if (image != nil)
+    {
+        return image;
+    }
+    return nil;
+}
+
 @end

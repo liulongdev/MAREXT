@@ -484,6 +484,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mar_saveToPhotoLibrarySuccess:(nullable void (^)(void))success
                                 failure:(nullable void (^)(void))failure;
 
+
+/**
+ SnapScreen for scrollView without WKWebView's scrollView
+
+ @param scrollView UITableView
+ @return UIImage
+ */
++ (UIImage *)mar_screenShotWithScrollView:(UIScrollView *)scrollView;
+
 @end
 
 NS_ASSUME_NONNULL_END
