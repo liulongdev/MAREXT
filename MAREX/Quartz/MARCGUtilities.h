@@ -25,20 +25,20 @@ CGContextRef _Nullable MARCGContextCreateGrayBitmapContext(CGSize size, CGFloat 
 
 
 /// Get main screen's scale.
-CGFloat MARScreenScale();
+CGFloat MARScreenScale(void);
 
 /// Get main screen's size. Height is always larger than width.
-CGSize MARScreenSize();
+CGSize MARScreenSize(void);
 
 
 
 /// Convert degrees to radians.
-static inline CGFloat DegreesToRadians(CGFloat degrees) {
+static inline CGFloat MARDegreesToRadians(CGFloat degrees) {
     return degrees * M_PI / 180;
 }
 
 /// Convert radians to degrees.
-static inline CGFloat RadiansToDegrees(CGFloat radians) {
+static inline CGFloat MARRadiansToDegrees(CGFloat radians) {
     return radians * 180 / M_PI;
 }
 
@@ -46,27 +46,27 @@ static inline CGFloat RadiansToDegrees(CGFloat radians) {
 
 /// Get the transform rotation.
 /// @return the rotation in radians [-PI,PI] ([-180°,180°])
-static inline CGFloat CGAffineTransformGetRotation(CGAffineTransform transform) {
+static inline CGFloat MARCGAffineTransformGetRotation(CGAffineTransform transform) {
     return atan2(transform.b, transform.a);
 }
 
 /// Get the transform's scale.x
-static inline CGFloat CGAffineTransformGetScaleX(CGAffineTransform transform) {
+static inline CGFloat MARCGAffineTransformGetScaleX(CGAffineTransform transform) {
     return  sqrt(transform.a * transform.a + transform.c * transform.c);
 }
 
 /// Get the transform's scale.y
-static inline CGFloat CGAffineTransformGetScaleY(CGAffineTransform transform) {
+static inline CGFloat MARCGAffineTransformGetScaleY(CGAffineTransform transform) {
     return sqrt(transform.b * transform.b + transform.d * transform.d);
 }
 
 /// Get the transform's translate.x
-static inline CGFloat CGAffineTransformGetTranslateX(CGAffineTransform transform) {
+static inline CGFloat MARCGAffineTransformGetTranslateX(CGAffineTransform transform) {
     return transform.tx;
 }
 
 /// Get the transform's translate.y
-static inline CGFloat CGAffineTransformGetTranslateY(CGAffineTransform transform) {
+static inline CGFloat MARCGAffineTransformGetTranslateY(CGAffineTransform transform) {
     return transform.ty;
 }
 
@@ -85,7 +85,7 @@ CGAffineTransform MARCGAffineTransformGetFromPoints(CGPoint before[3], CGPoint a
 CGAffineTransform MARCGAffineTransformGetFromViews(UIView *from, UIView *to);
 
 /// Create a skew transform.
-static inline CGAffineTransform CGAffineTransformMakeSkew(CGFloat x, CGFloat y){
+static inline CGAffineTransform MARCGAffineTransformMakeSkew(CGFloat x, CGFloat y){
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform.c = -x;
     transform.b = y;
@@ -93,7 +93,7 @@ static inline CGAffineTransform CGAffineTransformMakeSkew(CGFloat x, CGFloat y){
 }
 
 /// Negates/inverts a UIEdgeInsets.
-static inline UIEdgeInsets UIEdgeInsetsInvert(UIEdgeInsets insets) {
+static inline UIEdgeInsets MARUIEdgeInsetsInvert(UIEdgeInsets insets) {
     return UIEdgeInsetsMake(-insets.top, -insets.left, -insets.bottom, -insets.right);
 }
 
@@ -117,24 +117,24 @@ NSString *MARUIViewContentModeToCAGravity(UIViewContentMode contentMode);
 CGRect MARCGRectFitWithContentMode(CGRect rect, CGSize size, UIViewContentMode mode);
 
 /// Returns the center for the rectangle.
-static inline CGPoint CGRectGetCenter(CGRect rect) {
+static inline CGPoint MARCGRectGetCenter(CGRect rect) {
     return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
 }
 
 /// Returns the area of the rectangle.
-static inline CGFloat CGRectGetArea(CGRect rect) {
+static inline CGFloat MARCGRectGetArea(CGRect rect) {
     if (CGRectIsNull(rect)) return 0;
     rect = CGRectStandardize(rect);
     return rect.size.width * rect.size.height;
 }
 
 /// Returns the distance between two points.
-static inline CGFloat CGPointGetDistanceToPoint(CGPoint p1, CGPoint p2) {
+static inline CGFloat MARCGPointGetDistanceToPoint(CGPoint p1, CGPoint p2) {
     return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
 }
 
 /// Returns the minmium distance between a point to a rectangle.
-static inline CGFloat CGPointGetDistanceToRect(CGPoint p, CGRect r) {
+static inline CGFloat MARCGPointGetDistanceToRect(CGPoint p, CGRect r) {
     r = CGRectStandardize(r);
     if (CGRectContainsPoint(r, p)) return 0;
     CGFloat distV, distH;
@@ -154,37 +154,37 @@ static inline CGFloat CGPointGetDistanceToRect(CGPoint p, CGRect r) {
 
 
 /// Convert point to pixel.
-static inline CGFloat CGFloatToPixel(CGFloat value) {
+static inline CGFloat MARCGFloatToPixel(CGFloat value) {
     return value * MARScreenScale();
 }
 
 /// Convert pixel to point.
-static inline CGFloat CGFloatFromPixel(CGFloat value) {
+static inline CGFloat MARCGFloatFromPixel(CGFloat value) {
     return value / MARScreenScale();
 }
 
 
 
 /// floor point value for pixel-aligned
-static inline CGFloat CGFloatPixelFloor(CGFloat value) {
+static inline CGFloat MARCGFloatPixelFloor(CGFloat value) {
     CGFloat scale = MARScreenScale();
     return floor(value * scale) / scale;
 }
 
 /// round point value for pixel-aligned
-static inline CGFloat CGFloatPixelRound(CGFloat value) {
+static inline CGFloat MARCGFloatPixelRound(CGFloat value) {
     CGFloat scale = MARScreenScale();
     return round(value * scale) / scale;
 }
 
 /// ceil point value for pixel-aligned
-static inline CGFloat CGFloatPixelCeil(CGFloat value) {
+static inline CGFloat MARCGFloatPixelCeil(CGFloat value) {
     CGFloat scale = MARScreenScale();
     return ceil(value * scale) / scale;
 }
 
 /// round point value to .5 pixel for path stroke (odd pixel line width pixel-aligned)
-static inline CGFloat CGFloatPixelHalf(CGFloat value) {
+static inline CGFloat MARCGFloatPixelHalf(CGFloat value) {
     CGFloat scale = MARScreenScale();
     return (floor(value * scale) + 0.5) / scale;
 }
@@ -192,28 +192,28 @@ static inline CGFloat CGFloatPixelHalf(CGFloat value) {
 
 
 /// floor point value for pixel-aligned
-static inline CGPoint CGPointPixelFloor(CGPoint point) {
+static inline CGPoint MARCGPointPixelFloor(CGPoint point) {
     CGFloat scale = MARScreenScale();
     return CGPointMake(floor(point.x * scale) / scale,
                        floor(point.y * scale) / scale);
 }
 
 /// round point value for pixel-aligned
-static inline CGPoint CGPointPixelRound(CGPoint point) {
+static inline CGPoint MARCGPointPixelRound(CGPoint point) {
     CGFloat scale = MARScreenScale();
     return CGPointMake(round(point.x * scale) / scale,
                        round(point.y * scale) / scale);
 }
 
 /// ceil point value for pixel-aligned
-static inline CGPoint CGPointPixelCeil(CGPoint point) {
+static inline CGPoint MARCGPointPixelCeil(CGPoint point) {
     CGFloat scale = MARScreenScale();
     return CGPointMake(ceil(point.x * scale) / scale,
                        ceil(point.y * scale) / scale);
 }
 
 /// round point value to .5 pixel for path stroke (odd pixel line width pixel-aligned)
-static inline CGPoint CGPointPixelHalf(CGPoint point) {
+static inline CGPoint MARCGPointPixelHalf(CGPoint point) {
     CGFloat scale = MARScreenScale();
     return CGPointMake((floor(point.x * scale) + 0.5) / scale,
                        (floor(point.y * scale) + 0.5) / scale);
@@ -222,28 +222,28 @@ static inline CGPoint CGPointPixelHalf(CGPoint point) {
 
 
 /// floor point value for pixel-aligned
-static inline CGSize CGSizePixelFloor(CGSize size) {
+static inline CGSize MARCGSizePixelFloor(CGSize size) {
     CGFloat scale = MARScreenScale();
     return CGSizeMake(floor(size.width * scale) / scale,
                       floor(size.height * scale) / scale);
 }
 
 /// round point value for pixel-aligned
-static inline CGSize CGSizePixelRound(CGSize size) {
+static inline CGSize MARCGSizePixelRound(CGSize size) {
     CGFloat scale = MARScreenScale();
     return CGSizeMake(round(size.width * scale) / scale,
                       round(size.height * scale) / scale);
 }
 
 /// ceil point value for pixel-aligned
-static inline CGSize CGSizePixelCeil(CGSize size) {
+static inline CGSize MARCGSizePixelCeil(CGSize size) {
     CGFloat scale = MARScreenScale();
     return CGSizeMake(ceil(size.width * scale) / scale,
                       ceil(size.height * scale) / scale);
 }
 
 /// round point value to .5 pixel for path stroke (odd pixel line width pixel-aligned)
-static inline CGSize CGSizePixelHalf(CGSize size) {
+static inline CGSize MARCGSizePixelHalf(CGSize size) {
     CGFloat scale = MARScreenScale();
     return CGSizeMake((floor(size.width * scale) + 0.5) / scale,
                       (floor(size.height * scale) + 0.5) / scale);
@@ -252,9 +252,9 @@ static inline CGSize CGSizePixelHalf(CGSize size) {
 
 
 /// floor point value for pixel-aligned
-static inline CGRect CGRectPixelFloor(CGRect rect) {
-    CGPoint origin = CGPointPixelCeil(rect.origin);
-    CGPoint corner = CGPointPixelFloor(CGPointMake(rect.origin.x + rect.size.width,
+static inline CGRect MARCGRectPixelFloor(CGRect rect) {
+    CGPoint origin = MARCGPointPixelCeil(rect.origin);
+    CGPoint corner = MARCGPointPixelFloor(CGPointMake(rect.origin.x + rect.size.width,
                                                    rect.origin.y + rect.size.height));
     CGRect ret = CGRectMake(origin.x, origin.y, corner.x - origin.x, corner.y - origin.y);
     if (ret.size.width < 0) ret.size.width = 0;
@@ -263,25 +263,25 @@ static inline CGRect CGRectPixelFloor(CGRect rect) {
 }
 
 /// round point value for pixel-aligned
-static inline CGRect CGRectPixelRound(CGRect rect) {
-    CGPoint origin = CGPointPixelRound(rect.origin);
-    CGPoint corner = CGPointPixelRound(CGPointMake(rect.origin.x + rect.size.width,
+static inline CGRect MARCGRectPixelRound(CGRect rect) {
+    CGPoint origin = MARCGPointPixelRound(rect.origin);
+    CGPoint corner = MARCGPointPixelRound(CGPointMake(rect.origin.x + rect.size.width,
                                                    rect.origin.y + rect.size.height));
     return CGRectMake(origin.x, origin.y, corner.x - origin.x, corner.y - origin.y);
 }
 
 /// ceil point value for pixel-aligned
-static inline CGRect CGRectPixelCeil(CGRect rect) {
-    CGPoint origin = CGPointPixelFloor(rect.origin);
-    CGPoint corner = CGPointPixelCeil(CGPointMake(rect.origin.x + rect.size.width,
+static inline CGRect MARCGRectPixelCeil(CGRect rect) {
+    CGPoint origin = MARCGPointPixelFloor(rect.origin);
+    CGPoint corner = MARCGPointPixelCeil(CGPointMake(rect.origin.x + rect.size.width,
                                                   rect.origin.y + rect.size.height));
     return CGRectMake(origin.x, origin.y, corner.x - origin.x, corner.y - origin.y);
 }
 
 /// round point value to .5 pixel for path stroke (odd pixel line width pixel-aligned)
-static inline CGRect CGRectPixelHalf(CGRect rect) {
-    CGPoint origin = CGPointPixelHalf(rect.origin);
-    CGPoint corner = CGPointPixelHalf(CGPointMake(rect.origin.x + rect.size.width,
+static inline CGRect MARCGRectPixelHalf(CGRect rect) {
+    CGPoint origin = MARCGPointPixelHalf(rect.origin);
+    CGPoint corner = MARCGPointPixelHalf(CGPointMake(rect.origin.x + rect.size.width,
                                                   rect.origin.y + rect.size.height));
     return CGRectMake(origin.x, origin.y, corner.x - origin.x, corner.y - origin.y);
 }
@@ -289,20 +289,20 @@ static inline CGRect CGRectPixelHalf(CGRect rect) {
 
 
 /// floor UIEdgeInset for pixel-aligned
-static inline UIEdgeInsets UIEdgeInsetPixelFloor(UIEdgeInsets insets) {
-    insets.top = CGFloatPixelFloor(insets.top);
-    insets.left = CGFloatPixelFloor(insets.left);
-    insets.bottom = CGFloatPixelFloor(insets.bottom);
-    insets.right = CGFloatPixelFloor(insets.right);
+static inline UIEdgeInsets MARUIEdgeInsetPixelFloor(UIEdgeInsets insets) {
+    insets.top = MARCGFloatPixelFloor(insets.top);
+    insets.left = MARCGFloatPixelFloor(insets.left);
+    insets.bottom = MARCGFloatPixelFloor(insets.bottom);
+    insets.right = MARCGFloatPixelFloor(insets.right);
     return insets;
 }
 
 /// ceil UIEdgeInset for pixel-aligned
-static inline UIEdgeInsets UIEdgeInsetPixelCeil(UIEdgeInsets insets) {
-    insets.top = CGFloatPixelCeil(insets.top);
-    insets.left = CGFloatPixelCeil(insets.left);
-    insets.bottom = CGFloatPixelCeil(insets.bottom);
-    insets.right = CGFloatPixelCeil(insets.right);
+static inline UIEdgeInsets MARUIEdgeInsetPixelCeil(UIEdgeInsets insets) {
+    insets.top = MARCGFloatPixelCeil(insets.top);
+    insets.left = MARCGFloatPixelCeil(insets.left);
+    insets.bottom = MARCGFloatPixelCeil(insets.bottom);
+    insets.right = MARCGFloatPixelCeil(insets.right);
     return insets;
 }
 
