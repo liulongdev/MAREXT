@@ -24,17 +24,39 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
 @interface MARGlobalManager()
 
 @property (nonatomic, strong) MARReachability *reachability;
-@property (nonatomic, copy) void (^notifyChangeNetStatusBlock)(MARReachabilityNetStatus reachabilityNetStatus);
+@property (nonatomic, strong) NSMutableDictionary<NSString *, MARNotifyChangeNetStatusBlock> *notifyNetStatusBlockDic;
+
+#ifdef MXRMonitorShakeOn
+#define MXRMonitorLock dispatch_semaphore_wait(_motionLock, dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC));
+#define MXRMonitorUnLock dispatch_semaphore_signal(_motionLock);
+@property (nonatomic, strong) NSMutableDictionary<NSString *, MARShakeCompleteHandler> *monitorShakeHandlerDic;
+@property (strong,nonatomic) CMMotionManager *motionManager;
+#endif
 
 @end
 
 @implementation MARGlobalManager
+{
+#ifdef MXRMonitorShakeOn
+    dispatch_semaphore_t _motionLock;
+#endif
+}
 
 + (instancetype)sharedInstance
 {
     MARSINGLE_INSTANCE_USING_BLOCK(^{
         return [[self alloc] init];
     });
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+#ifdef MXRMonitorShakeOn
+        _motionLock = dispatch_semaphore_create(1);
+#endif
+    }
+    return self;
 }
 
 - (NSDateFormatter *)dataFormatter
@@ -219,52 +241,80 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
     
 }
 
+- (NSMutableDictionary<NSString *,MARNotifyChangeNetStatusBlock> *)notifyNetStatusBlockDic
+{
+    if (!_notifyNetStatusBlockDic) {
+        _notifyNetStatusBlockDic = [NSMutableDictionary dictionaryWithCapacity:1 << 4];
+    }
+    return _notifyNetStatusBlockDic;
+}
+
 - (BOOL)isNetworkAvailable
 {
     return self.reachability.isReachable;
-//    return [GLobalRealReachability currentReachabilityStatus] != RealStatusNotReachable;
+}
+
+- (BOOL)isNetworkWifi
+{
+    return self.reachability.status == MARReachabilityStatusWiFi;
+}
+
+- (BOOL)isNetworkWWAN
+{
+    return self.reachability.status == MARReachabilityStatusWWAN;
+}
+
+- (void)setNotifyChangeNetStatusForKey:(NSString *)key block:(MARNotifyChangeNetStatusBlock)notifyChangeNetStatusBlock
+{
+    if (notifyChangeNetStatusBlock) {
+        [self.notifyNetStatusBlockDic setObject:notifyChangeNetStatusBlock forKey:key];
+    }
+    else
+        [self.notifyNetStatusBlockDic removeObjectForKey:key];
+    
+    if (!self.reachability.notifyBlock) {
+        __block MARReachabilityNetStatus netStatus = MARReachabilityNetStatusNotReachbale;
+        __weak MARGlobalManager* weakSelf = self;
+        self.reachability.notifyBlock = ^(MARReachability *reachabilityB){
+            __strong __typeof(self) strongSelf = weakSelf;
+            if (!strongSelf) return;
+            netStatus = MARReachabilityNetStatusNotReachbale;
+            if (reachabilityB.status == MARReachabilityStatusNone) {
+                netStatus = MARReachabilityNetStatusNotReachbale;
+            }
+            else if (reachabilityB.status == MARReachabilityStatusWWAN)
+            {
+                switch (reachabilityB.wwanStatus) {
+                    case MARReachabilityWWANStatusNone:
+                    case MARReachabilityWWANStatusNG:
+                        netStatus = MARReachabilityNetStatusNotReachbale;
+                        break;
+                    case MARReachabilityWWANStatus2G:
+                        netStatus = MARReachabilityNetStatusWAN2G;
+                        break;
+                    case MARReachabilityWWANStatus3G:
+                        netStatus = MARReachabilityNetStatusWAN3G;
+                        break;
+                    case MARReachabilityWWANStatus4G:
+                        netStatus = MARReachabilityNetStatusWAN4G;
+                        break;
+                }
+            }
+            else if (reachabilityB.status == MARReachabilityStatusWiFi)
+            {
+                netStatus = MARReachabilityNetStatusWIFI;
+            }
+            for (NSString *key in strongSelf.notifyNetStatusBlockDic) {
+                MARNotifyChangeNetStatusBlock block =strongSelf.notifyNetStatusBlockDic[key];
+                block(netStatus);
+            }
+        };
+    }
 }
 
 - (void)setNotifyChangeNetStatusBlock:(void (^)(MARReachabilityNetStatus))notifyChangeNetStatusBlock
 {
-    _notifyChangeNetStatusBlock = nil;
-    _notifyChangeNetStatusBlock = [notifyChangeNetStatusBlock copy];
-    if (notifyChangeNetStatusBlock == nil) {
-        self.reachability = nil;
-        return;
-    }
-    __block MARReachabilityNetStatus netStatus = MARReachabilityNetStatusNotReachbale;
-    __weak MARGlobalManager* weakSelf = self;
-    self.reachability.notifyBlock = ^(MARReachability *reachabilityB){
-        netStatus = MARReachabilityNetStatusNotReachbale;
-        if (reachabilityB.status == MARReachabilityStatusNone) {
-            netStatus = MARReachabilityNetStatusNotReachbale;
-        }
-        else if (reachabilityB.status == MARReachabilityStatusWWAN)
-        {
-            switch (reachabilityB.wwanStatus) {
-                case MARReachabilityWWANStatusNone:
-                    netStatus = MARReachabilityNetStatusNotReachbale;
-                    break;
-                case MARReachabilityWWANStatus2G:
-                    netStatus = MARReachabilityNetStatusWAN2G;
-                    break;
-                case MARReachabilityWWANStatus3G:
-                    netStatus = MARReachabilityNetStatusWAN3G;
-                    break;
-                case MARReachabilityWWANStatus4G:
-                    netStatus = MARReachabilityNetStatusWAN4G;
-                    break;
-            }
-        }
-        else if (reachabilityB.status == MARReachabilityStatusWiFi)
-        {
-            netStatus = MARReachabilityNetStatusWIFI;
-        }
-        if (weakSelf.notifyChangeNetStatusBlock) {
-            weakSelf.notifyChangeNetStatusBlock(netStatus);
-        }
-    };
+    [self setNotifyChangeNetStatusForKey:@"defaultKey" block:notifyChangeNetStatusBlock];
 }
 
 - (BOOL)isCameraServiceOpen
@@ -417,5 +467,87 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
     }
 #endif
 }
+
+#ifdef MXRMonitorShakeOn
+- (CMMotionManager *)motionManager
+{
+    if (!_motionManager) {
+        _motionManager = [[CMMotionManager alloc] init];
+        self.motionManager.accelerometerUpdateInterval = .1;//加速仪更新频率，以秒为单位
+    }
+    return _motionManager;
+}
+
+- (NSMutableDictionary<NSString *,MARShakeCompleteHandler> *)monitorShakeHandlerDic
+{
+    if (!_monitorShakeHandlerDic) {
+        _monitorShakeHandlerDic = [NSMutableDictionary dictionaryWithCapacity:1 << 4];
+    }
+    return _monitorShakeHandlerDic;
+}
+
+- (void)startMontitorShakeForKey:(NSString *)key completeHandler:(void (^)(void))completeHandler
+{
+    if (completeHandler)
+    {
+        MXRMonitorLock
+        [self.monitorShakeHandlerDic setObject:completeHandler forKey:key];
+        MXRMonitorUnLock
+    }
+    else
+    {
+        [self stopMontitorShakeForKey:key];
+    }
+    
+    if (!self.motionManager.isAccelerometerActive && self.motionManager.isAccelerometerAvailable) {
+        __weak __typeof(self) weakSelf = self;
+        
+        [self.motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) {
+            __strong __typeof(self) strongSelf = weakSelf;
+            if (error) {
+                NSLog(@"Global motion error:%@",error);
+                return;
+            }
+            BOOL isShake = [strongSelf isShakeForHandleAcceleration:accelerometerData.acceleration];
+            if (isShake) {
+                mar_dispatch_async_on_main_queue(^{
+                    [strongSelf p_notifyShake];
+                });
+            }
+        }];
+    }
+}
+
+- (void)p_notifyShake
+{
+    MXRMonitorLock
+    for (NSString *key in self.monitorShakeHandlerDic) {
+        MARShakeCompleteHandler block = self.monitorShakeHandlerDic[key];
+        block();
+    }
+    MXRMonitorUnLock
+}
+
+- (BOOL)isShakeForHandleAcceleration:(CMAcceleration)acceleration
+{
+    double accelerameter =sqrt( pow( acceleration.x , 2 ) + pow( acceleration.y , 2 )
+                               + pow( acceleration.z , 2) );
+    //当综合加速度大于2.3时，就激活效果（此数值根据需求可以调整，数据越小，用户摇动的动作就越小，越容易激活，反之加大难度，但不容易误触发）!
+    if (accelerameter>1.8f) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)stopMontitorShakeForKey:(NSString *)key
+{
+    MXRMonitorLock
+    [self.monitorShakeHandlerDic removeObjectForKey:key];
+    if (self.monitorShakeHandlerDic.count == 0 && _motionManager.isAccelerometerActive) {
+        [_motionManager stopAccelerometerUpdates];
+    }
+    MXRMonitorUnLock
+}
+#endif
 
 @end

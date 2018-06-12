@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SVProgressHUD+MAREX.h"
+#if __has_include(<CoreMotion/CoreMotion.h>)
+#import <CoreMotion/CoreMotion.h>
+#define MXRMonitorShakeOn
+#ifdef MXRMonitorShakeOn
+typedef void (^MARShakeCompleteHandler)(void);
+#endif
+#endif
 
 #define MARGLOBALMANAGER [MARGlobalManager sharedInstance]
 
@@ -24,6 +31,8 @@ typedef NS_OPTIONS(NSUInteger, MARReachabilityNetStatus) {
     MARReachabilityNetStatusWAN4G           = 1 << 2,
     MARReachabilityNetStatusWIFI            = 1 << 4,
 };
+
+typedef void (^MARNotifyChangeNetStatusBlock)(MARReachabilityNetStatus reachabilityNetStatus);
 
 @interface MARGlobalManager : NSObject
 
@@ -111,11 +120,22 @@ typedef NS_OPTIONS(NSUInteger, MARReachabilityNetStatus) {
  */
 - (BOOL)isNetworkAvailable;
 
+- (BOOL)isNetworkWifi;
+
+- (BOOL)isNetworkWWAN;
+
 /**
  When status of network change, will callback
  */
-- (void)setNotifyChangeNetStatusBlock:(void (^)(MARReachabilityNetStatus netStatus))notifyChangeNetStatusBlock;
+- (void)setNotifyChangeNetStatusBlock:(MARNotifyChangeNetStatusBlock)notifyChangeNetStatusBlock __deprecated_msg("use `setNotifyChangeNetStatusForKey:block:`");
 
+/**
+ need set nil for key when not use
+ 
+ @param key identifier
+ @param notifyChangeNetStatusBlock block
+ */
+- (void)setNotifyChangeNetStatusForKey:(NSString *)key block:(MARNotifyChangeNetStatusBlock)notifyChangeNetStatusBlock;
 /**
  Authority(permission) of camera service
  */
@@ -140,5 +160,17 @@ typedef NS_OPTIONS(NSUInteger, MARReachabilityNetStatus) {
  Check authority(permission) of photoalbum, and will callback. (ios8 or later)If not be setted yet, will request and still callback
  */
 - (void)checkPhotoAlbumAuthorityCallBack:(void (^)(BOOL allowed))callBack;
+
+#ifdef MXRMonitorShakeOn
+
+/**
+ monitor whether shake with key
+ */
+- (void)startMontitorShakeForKey:(NSString *)key completeHandler:(MARShakeCompleteHandler)completeHandler;
+/**
+ stop monitor shake with key
+ */
+- (void)stopMontitorShakeForKey:(NSString *)key;
+#endif
 
 @end

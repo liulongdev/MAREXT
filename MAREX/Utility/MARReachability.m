@@ -131,7 +131,7 @@ static void MARReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
     });
     NSNumber *num = dic[status];
     if (num) return num.unsignedIntegerValue;
-    else return MARReachabilityWWANStatusNone;
+    else return MARReachabilityWWANStatusNG;
 }
 
 - (BOOL)isReachable {
