@@ -8,18 +8,18 @@
 #import <objc/runtime.h>
 #import "UIBarButtonItem+JKBadge.h"
 
-NSString const *jk_UIBarButtonItem_badgeKey = @"jk_UIBarButtonItem_badgeKey";
+NSString * const jk_UIBarButtonItem_badgeKey = @"jk_UIBarButtonItem_badgeKey";
 
-NSString const *jk_UIBarButtonItem_badgeBGColorKey = @"jk_UIBarButtonItem_badgeBGColorKey";
-NSString const *jk_UIBarButtonItem_badgeTextColorKey = @"jk_UIBarButtonItem_badgeTextColorKey";
-NSString const *jk_UIBarButtonItem_badgeFontKey = @"jk_UIBarButtonItem_badgeFontKey";
-NSString const *jk_UIBarButtonItem_badgePaddingKey = @"jk_UIBarButtonItem_badgePaddingKey";
-NSString const *jk_UIBarButtonItem_badgeMinSizeKey = @"jk_UIBarButtonItem_badgeMinSizeKey";
-NSString const *jk_UIBarButtonItem_badgeOriginXKey = @"jk_UIBarButtonItem_badgeOriginXKey";
-NSString const *jk_UIBarButtonItem_badgeOriginYKey = @"jk_UIBarButtonItem_badgeOriginYKey";
-NSString const *jk_UIBarButtonItem_shouldHideBadgeAtZeroKey = @"jk_UIBarButtonItem_shouldHideBadgeAtZeroKey";
-NSString const *jk_UIBarButtonItem_shouldAnimateBadgeKey = @"jk_UIBarButtonItem_shouldAnimateBadgeKey";
-NSString const *jk_UIBarButtonItem_badgeValueKey = @"jk_UIBarButtonItem_badgeValueKey";
+NSString * const jk_UIBarButtonItem_badgeBGColorKey = @"jk_UIBarButtonItem_badgeBGColorKey";
+NSString * const jk_UIBarButtonItem_badgeTextColorKey = @"jk_UIBarButtonItem_badgeTextColorKey";
+NSString * const jk_UIBarButtonItem_badgeFontKey = @"jk_UIBarButtonItem_badgeFontKey";
+NSString * const jk_UIBarButtonItem_badgePaddingKey = @"jk_UIBarButtonItem_badgePaddingKey";
+NSString * const jk_UIBarButtonItem_badgeMinSizeKey = @"jk_UIBarButtonItem_badgeMinSizeKey";
+NSString * const jk_UIBarButtonItem_badgeOriginXKey = @"jk_UIBarButtonItem_badgeOriginXKey";
+NSString * const jk_UIBarButtonItem_badgeOriginYKey = @"jk_UIBarButtonItem_badgeOriginYKey";
+NSString * const jk_UIBarButtonItem_shouldHideBadgeAtZeroKey = @"jk_UIBarButtonItem_shouldHideBadgeAtZeroKey";
+NSString * const jk_UIBarButtonItem_shouldAnimateBadgeKey = @"jk_UIBarButtonItem_shouldAnimateBadgeKey";
+NSString * const jk_UIBarButtonItem_badgeValueKey = @"jk_UIBarButtonItem_badgeValueKey";
 
 @implementation UIBarButtonItem (JKBadge)
 

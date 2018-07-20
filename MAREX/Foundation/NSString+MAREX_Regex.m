@@ -232,9 +232,9 @@
             if(numberofMatch >0) {
                 int S = ([value substringWithRange:NSMakeRange(0,1)].intValue + [value substringWithRange:NSMakeRange(10,1)].intValue) *7 + ([value substringWithRange:NSMakeRange(1,1)].intValue + [value substringWithRange:NSMakeRange(11,1)].intValue) *9 + ([value substringWithRange:NSMakeRange(2,1)].intValue + [value substringWithRange:NSMakeRange(12,1)].intValue) *10 + ([value substringWithRange:NSMakeRange(3,1)].intValue + [value substringWithRange:NSMakeRange(13,1)].intValue) *5 + ([value substringWithRange:NSMakeRange(4,1)].intValue + [value substringWithRange:NSMakeRange(14,1)].intValue) *8 + ([value substringWithRange:NSMakeRange(5,1)].intValue + [value substringWithRange:NSMakeRange(15,1)].intValue) *4 + ([value substringWithRange:NSMakeRange(6,1)].intValue + [value substringWithRange:NSMakeRange(16,1)].intValue) *2 + [value substringWithRange:NSMakeRange(7,1)].intValue *1 + [value substringWithRange:NSMakeRange(8,1)].intValue *6 + [value substringWithRange:NSMakeRange(9,1)].intValue *3;
                 int Y = S %11;
-                NSString *M =@"F";
+//                NSString *M =@"F";
                 NSString *JYM =@"10X98765432";
-                M = [JYM substringWithRange:NSMakeRange(Y,1)];// 判断校验位
+                NSString *M = [JYM substringWithRange:NSMakeRange(Y,1)];// 判断校验位
                 NSString *test = [value substringWithRange:NSMakeRange(17,1)];
                 if ([[M lowercaseString] isEqualToString:[test lowercaseString]]) {
                     return YES;// 检测ID的校验位

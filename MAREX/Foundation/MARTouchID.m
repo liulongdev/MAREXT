@@ -13,13 +13,13 @@
 
 + (void)showTouchIDAuthenticationWithReason:(NSString * _Nonnull)reason completion:(void (^ _Nullable)(MARTouchIDResult result))completion {
     [self showTouchIDAuthenticationWithReason:reason fallbackTitle:nil completion:^(MARTouchIDResult result) {
-        completion(result);
+        if (completion) completion(result);
     }];
 }
 
 + (void)showTouchIDAuthenticationWithReason:(NSString * _Nonnull)reason fallbackTitle:(NSString * _Nullable)fallbackTitle completion:(void (^ _Nullable)(MARTouchIDResult))completion {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
-        completion(MARTouchIDResultNotAvailable);
+        if (completion) completion(MARTouchIDResultNotAvailable);
         return;
     }
     
@@ -31,23 +31,23 @@
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:reason reply:^(BOOL success, NSError *error) {
             if (success) {
-                completion(MARTouchIDResultSuccess);
+                if (completion) completion(MARTouchIDResultSuccess);
             } else {
                 switch (error.code) {
                     case LAErrorAuthenticationFailed:
-                        completion(MARTouchIDResultAuthenticationFailed);
+                        if (completion) completion(MARTouchIDResultAuthenticationFailed);
                         break;
                     case LAErrorUserCancel:
-                        completion(MARTouchIDResultUserCancel);
+                        if (completion) completion(MARTouchIDResultUserCancel);
                         break;
                     case LAErrorUserFallback:
-                        completion(MARTouchIDResultUserFallback);
+                        if (completion) completion(MARTouchIDResultUserFallback);
                         break;
                     case LAErrorSystemCancel:
-                        completion(MARTouchIDResultSystemCancel);
+                        if (completion) completion(MARTouchIDResultSystemCancel);
                         break;
                     default:
-                        completion(MARTouchIDResultError);
+                        if (completion) completion(MARTouchIDResultError);
                         break;
                 }            }
 
@@ -55,16 +55,16 @@
     } else {
         switch (error.code) {
             case LAErrorPasscodeNotSet:
-                completion(MARTouchIDResultPasscodeNotSet);
+                if (completion) completion(MARTouchIDResultPasscodeNotSet);
                 break;
             case LAErrorTouchIDNotAvailable:
-                completion(MARTouchIDResultNotAvailable);
+                if (completion) completion(MARTouchIDResultNotAvailable);
                 break;
             case LAErrorTouchIDNotEnrolled:
-                completion(MARTouchIDResultNotEnrolled);
+                if (completion) completion(MARTouchIDResultNotEnrolled);
                 break;
             default:
-                completion(MARTouchIDResultError);
+                if (completion) completion(MARTouchIDResultError);
                 break;
         }
     }

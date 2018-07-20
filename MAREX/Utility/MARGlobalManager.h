@@ -162,7 +162,6 @@ typedef void (^MARNotifyChangeNetStatusBlock)(MARReachabilityNetStatus reachabil
 - (void)checkPhotoAlbumAuthorityCallBack:(void (^)(BOOL allowed))callBack;
 
 #ifdef MXRMonitorShakeOn
-
 /**
  monitor whether shake with key
  */

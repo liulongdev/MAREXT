@@ -73,6 +73,7 @@
     for (NSString *attrKey in _attrs) {
         cattrs[attrIndex].name = [attrKey UTF8String];
         cattrs[attrIndex].value = [_attrs[attrKey] UTF8String];
+        attrIndex++;    // added
     }
     
     BOOL result = class_addProperty(clazz,
@@ -105,6 +106,7 @@
 {
     if (!property) return nil;
     self = [super init];
+    if (!self) return nil;
     _property = property;
     const char *name = property_getName(property);
     if (name) {

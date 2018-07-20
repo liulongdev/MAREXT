@@ -265,7 +265,6 @@
     
     cattrs[index].name = "V";
     cattrs[index].value = [ivarName UTF8String];
-    index ++;
     
     BOOL addPropertyRet = class_addProperty(clazz, [ivarName UTF8String], cattrs, (unsigned int )attrCount + (isRetain ? 1 : 0));
     if (!addPropertyRet) {

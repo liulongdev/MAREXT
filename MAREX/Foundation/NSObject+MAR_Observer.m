@@ -54,23 +54,22 @@ static void *BKBlockObservationContext = &BKBlockObservationContext;
             case BKObserverContextKey:
             {
                 void (^task)(id) = self.task;
-                task(object);
+                if (task) task(object);
                 break;
             }
             case BKObserverContextKeyWithChange: {
                 void (^task)(id, NSDictionary *) = self.task;
-                task(object, change);
+                if (task) task(object, change);
                 break;
             }
             case BKObserverContextManyKeys: {
                 void (^task)(id, NSString *) = self.task;
-                task(object, keyPath);
+                if (task) task(object, keyPath);
                 break;
             }
             case BKObserverContextManyKeysWithChange: {
                 void (^task)(id, NSString *, NSDictionary *) = self.task;
-                task(object, keyPath, change);
-                
+                if (task) task(object, keyPath, change);
             }
         }
     }

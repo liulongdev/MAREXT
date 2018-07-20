@@ -1463,7 +1463,7 @@ static NSString *MARModelDescription(NSObject *model) {
     
     Class cls = [self class];
     _MARModelMeta *modelMeta = [_MARModelMeta metaWithClass:cls];
-    if (modelMeta->_hasCustomClassFromDictionary) {
+    if (modelMeta && modelMeta->_hasCustomClassFromDictionary) {
         cls = [cls mar_modelCustomClassForDictionary:dictionary] ?: cls;
     }
     
@@ -1482,7 +1482,7 @@ static NSString *MARModelDescription(NSObject *model) {
     if (![dic isKindOfClass:[NSDictionary class]]) return NO;
     
     _MARModelMeta *modelMeta = [_MARModelMeta metaWithClass:object_getClass(self)];
-    if (modelMeta->_keyMappedCount == 0) return NO;
+    if (modelMeta && modelMeta->_keyMappedCount == 0) return NO;
     
     if (modelMeta->_hasCustomWillTransformFromDictionary) {
         dic = [((id<MARModelDelegate>)self) mar_modelCustomWillTransformFromDictionary:dic];

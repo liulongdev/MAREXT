@@ -113,7 +113,7 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
         [user synchronize];
     }
     
-    block(!hasBeenOpened);
+    if (block) block(!hasBeenOpened);
 }
 
 + (void)onFirstStart:(void (^)(BOOL))block
@@ -131,7 +131,7 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
         [defaults synchronize];
     }
     
-    block(!hasBeenOpenedForCurrentVersion);
+    if (block) block(!hasBeenOpenedForCurrentVersion);
 }
 
 + (void)onFirstStartForCurrentVersion:(void (^)(BOOL))block

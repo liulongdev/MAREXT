@@ -113,7 +113,7 @@
                 break;
         }
         
-        if ([[NSFileManager defaultManager] fileExistsAtPath:fileName]) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
             NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fileName error:nil];
             if (fileAttributes) {
                 return [fileAttributes objectForKey:NSFileSize];

@@ -91,6 +91,7 @@ MAREncodingType MAREncodingGetType(const char *typeEncoding) {
 - (instancetype)initWithIvar:(Ivar)ivar {
     if (!ivar) return nil;
     self = [super init];
+    if (!self) return nil;
     _ivar = ivar;
     const char *name = ivar_getName(ivar);
     if (name) {
@@ -112,6 +113,7 @@ MAREncodingType MAREncodingGetType(const char *typeEncoding) {
 - (instancetype)initWithMethod:(Method)method {
     if (!method) return nil;
     self = [super init];
+    if (!self) return nil;
     _method = method;
     _sel = method_getName(method);
     _imp = method_getImplementation(method);
@@ -149,6 +151,7 @@ MAREncodingType MAREncodingGetType(const char *typeEncoding) {
 - (instancetype)initWithProperty:(objc_property_t)property {
     if (!property) return nil;
     self = [super init];
+    if (!self) return nil;
     _property = property;
     const char *name = property_getName(property);
     if (name) {
@@ -253,6 +256,7 @@ MAREncodingType MAREncodingGetType(const char *typeEncoding) {
 - (instancetype)initWithClass:(Class)cls {
     if (!cls) return nil;
     self = [super init];
+    if (!self) return nil;
     _cls = cls;
     _superCls = class_getSuperclass(cls);
     _isMeta = class_isMetaClass(cls);

@@ -157,6 +157,9 @@
 
 - (NSString *)pMar_hmacStringUsingAlg:(CCHmacAlgorithm)alg withKey:(NSString *)key
 {
+    if (![key isKindOfClass:[NSString class]] || key.length == 0) {
+        return nil;
+    }
     size_t size;
     switch (alg) {
         case kCCHmacAlgMD5:     size = CC_MD5_DIGEST_LENGTH;    break;

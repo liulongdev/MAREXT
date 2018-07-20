@@ -1016,6 +1016,7 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     size_t height = CGRectGetHeight(extent) * scale;
     CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();
     CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, cs, (CGBitmapInfo)kCGImageAlphaNone);
+    CGColorSpaceRelease(cs);
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef bitmapImage = [context createCGImage:qrImage fromRect:extent];
     CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);
@@ -1025,7 +1026,9 @@ static void _mar_cleanupBuffer(void *userData, void *buf_data) {
     CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
     CGContextRelease(bitmapRef);
     CGImageRelease(bitmapImage);
-    return [UIImage imageWithCGImage:scaledImage];
+    UIImage *qrImageRet = [UIImage imageWithCGImage:scaledImage];
+    CGImageRelease(scaledImage);
+    return qrImageRet;
 }
 
 - (void)mar_saveToPhotoLibrarySuccess:(void (^)(void))success
