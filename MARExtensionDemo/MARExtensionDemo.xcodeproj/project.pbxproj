@@ -17,6 +17,8 @@
 		5B4DC60B1ECCA0FA0063CF63 /* MARDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60A1ECCA0FA0063CF63 /* MARDebug.m */; };
 		5B4DC60E1ECCA24A0063CF63 /* MARWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */; };
 		5B4DC6111ECF531A0063CF63 /* MARTestExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */; };
+		5B58D221211C4EBB00E2865F /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5B58D220211C4EBB00E2865F /* config.xml */; };
+		5B58D224211C507700E2865F /* MXRBookConfigInformationM.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B58D223211C507700E2865F /* MXRBookConfigInformationM.m */; };
 		5B717DC41EDF1E8900E6C861 /* NSString+MAREX_Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B717DC31EDF1E8900E6C861 /* NSString+MAREX_Regex.m */; };
 		5BC32DAF1EDA6A5000E8EB04 /* MARTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC32DAE1EDA6A5000E8EB04 /* MARTestViewController.m */; };
 		5BEAE8CE206CFA0B00A15477 /* MARColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAE8CD206CFA0B00A15477 /* MARColorArt.m */; };
@@ -113,6 +115,9 @@
 		5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARWeakProxy.m; sourceTree = "<group>"; };
 		5B4DC60F1ECF531A0063CF63 /* MARTestExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARTestExamples.h; sourceTree = "<group>"; };
 		5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARTestExamples.m; sourceTree = "<group>"; };
+		5B58D220211C4EBB00E2865F /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		5B58D222211C507700E2865F /* MXRBookConfigInformationM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXRBookConfigInformationM.h; sourceTree = "<group>"; };
+		5B58D223211C507700E2865F /* MXRBookConfigInformationM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXRBookConfigInformationM.m; sourceTree = "<group>"; };
 		5B717DC21EDF1E8900E6C861 /* NSString+MAREX_Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MAREX_Regex.h"; sourceTree = "<group>"; };
 		5B717DC31EDF1E8900E6C861 /* NSString+MAREX_Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MAREX_Regex.m"; sourceTree = "<group>"; };
 		5BC32DAC1EDA696000E8EB04 /* MARRunimeOBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARRunimeOBJ.h; sourceTree = "<group>"; };
@@ -481,6 +486,7 @@
 				C149F94E1ECA8D8A00C8B7C8 /* ViewController.m */,
 				5BC32DAD1EDA6A5000E8EB04 /* MARTestViewController.h */,
 				5BC32DAE1EDA6A5000E8EB04 /* MARTestViewController.m */,
+				5B58D220211C4EBB00E2865F /* config.xml */,
 				C149F9501ECA8D8A00C8B7C8 /* Main.storyboard */,
 				C149F9531ECA8D8A00C8B7C8 /* Assets.xcassets */,
 				C149F9551ECA8D8A00C8B7C8 /* LaunchScreen.storyboard */,
@@ -488,6 +494,8 @@
 				C149F9471ECA8D8A00C8B7C8 /* Supporting Files */,
 				5B4DC60F1ECF531A0063CF63 /* MARTestExamples.h */,
 				5B4DC6101ECF531A0063CF63 /* MARTestExamples.m */,
+				5B58D222211C507700E2865F /* MXRBookConfigInformationM.h */,
+				5B58D223211C507700E2865F /* MXRBookConfigInformationM.m */,
 			);
 			path = MARExtensionDemo;
 			sourceTree = "<group>";
@@ -628,6 +636,7 @@
 				C149F9571ECA8D8A00C8B7C8 /* LaunchScreen.storyboard in Resources */,
 				C149F9541ECA8D8A00C8B7C8 /* Assets.xcassets in Resources */,
 				C149F9521ECA8D8A00C8B7C8 /* Main.storyboard in Resources */,
+				5B58D221211C4EBB00E2865F /* config.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +688,7 @@
 				C149F9491ECA8D8A00C8B7C8 /* main.m in Sources */,
 				C1150E111ECBE1D400176F38 /* NSObject+MAREX.m in Sources */,
 				C1163E921EE5479B0061A0E6 /* MARMethod.m in Sources */,
+				5B58D224211C507700E2865F /* MXRBookConfigInformationM.m in Sources */,
 				5B4DC6061ECC99FE0063CF63 /* MARGlobalManager.m in Sources */,
 				5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */,
 				C1150E421ECD7AB300176F38 /* MARTouchID.m in Sources */,

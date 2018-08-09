@@ -43,7 +43,7 @@ do {                                                    \
 if (MARDebugCouldLogWarn()) {                       \
 NSString *s = MARDebugMethodMsg(                \
 self, _cmd, __FILE__, __LINE__,                 \
-[NSString stringWithFormat: format, ##args]);   \
+[NSString stringWithFormat: format, ##  ]);   \
 NSLog(@"[warn]%@", s);                          \
 }                                                   \
 } while (0)

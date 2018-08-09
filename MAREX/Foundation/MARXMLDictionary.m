@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSMutableArray *stack;
 @property (nonatomic, strong) NSMutableString *text;
 
+@property (nonatomic, strong) NSArray *useArrayNodeLabelArray;
+
 @end
 
 @implementation MARXMLDictionaryParser
@@ -25,6 +27,13 @@
     dispatch_once(&onceToken, ^{
         instance = [[self.class alloc] init];
     });
+    return instance;
+}
+
++ (instancetype)useArrayWithNodeLabelArray:(NSArray<NSString *> *)array
+{
+    MARXMLDictionaryParser *instance = [self sharedInstance];
+    instance->_useArrayNodeLabelArray = [array copy];
     return instance;
 }
 
@@ -235,7 +244,7 @@
         {
             top[elementName] = [@[existing, node] mutableCopy];
         }
-        else if (_alwaysUseArrays)
+        else if (_alwaysUseArrays || [_useArrayNodeLabelArray containsObject:elementName])
         {
             top[elementName] = [NSMutableArray arrayWithObject:node];
         }
@@ -513,7 +522,7 @@
 
 @implementation NSString (XMLDictionary)
 
-- (NSString *)XMLEncodedString
+- (NSString *)mar_XMLEncodedString
 {
     return [[[[[self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"]
                stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"]

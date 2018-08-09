@@ -11,6 +11,8 @@
 #import "MARCategory.h"
 #import "MARClassInfo.h"
 #import "MARTestExamples.h"
+#import "MARXMLDictionary.h"
+#import "MXRBookConfigInformationM.h"
 
 @interface MARTestModel : NSObject
 @property (nonatomic, strong) NSString *name;
@@ -74,6 +76,15 @@
 }
 */
 - (IBAction)clickTestBtnAction:(id)sender {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"xml"];
+    NSString *xml = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSDictionary *dic = [[MARXMLDictionaryParser useArrayWithNodeLabelArray:@[@"course", @"page", @"event", @"group", @"action"]] dictionaryWithString:xml];
+//    NSDictionary *dic = [NSDictionary mar_dictionaryWithXMLString:xml];
+    
+    MXRBookConfigCM *test = [MXRBookConfigCM mar_modelWithJSON:dic];
+    NSDictionary *testDic = [test mar_modelToJSONObject];
+    NSString *testXML = [testDic mar_XMLString];
+    return;
     MARTestModel *model = [MARTestModel mar_modelWithJSON:@{@"name":@"hello", @"createTime":@"2017-09-22 01:49:39.000"}];
     NSLog(@">>>>> model : %@", model);
     
