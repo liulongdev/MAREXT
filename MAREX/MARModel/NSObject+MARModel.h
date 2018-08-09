@@ -30,14 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
  Sample Code:
  
  ********************** json convertor *********************
- @interface MARAuthor : NSObject
+ at!interface MARAuthor : NSObject
  @property (nonatomic, strong) NSString *name;
  @property (nonatomic, assign) NSDate *birthday;
  @end
  @implementation MARAuthor
  @end
  
- @interface MARBook : NSObject
+ at!interface MARBook : NSObject
  @property (nonatomic, copy) NSString *name;
  @property (nonatomic, assign) NSUInteger pages;
  @property (nonatomic, strong) MARAuthor *author;
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
  }
  
  ********************** Coding/Copying/hash/equal *********************
- @interface MARShadow :NSObject <NSCoding, NSCopying>
+ at!interface MARShadow :NSObject <NSCoding, NSCopying>
  @property (nonatomic, copy) NSString *name;
  @property (nonatomic, assign) CGSize size;
  @end
@@ -286,7 +286,7 @@ NS_ASSUME_NONNULL_BEGIN
  }
  
  model:
- @interface MARBook : NSObject
+ at!interface MARBook : NSObject
  @property NSString *name;
  @property NSInteger page;
  @property NSString *desc;
@@ -314,9 +314,9 @@ NS_ASSUME_NONNULL_BEGIN
  object will be add to the array/set/dictionary.
  
  Example:
- @class MARShadow, MARBorder, MARAttachment;
+ at!class MARShadow, MARBorder, MARAttachment;
  
- @interface MARAttributes
+ at!interface MARAttributes
  @property NSString *name;
  @property NSArray *shadows;
  @property NSSet *borders;
@@ -344,7 +344,7 @@ NS_ASSUME_NONNULL_BEGIN
  (both singular and containers via `+mar_modelContainerPropertyGenericClass`).
  
  Example:
- @class MARCircle, MARRectangle, MARLine;
+ at!class MARCircle, MARRectangle, MARLine;
  
  @implementation MARShape
  

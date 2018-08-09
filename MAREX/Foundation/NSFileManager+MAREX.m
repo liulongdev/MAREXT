@@ -314,7 +314,7 @@
         NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[folderPath stringByAppendingPathComponent:file] error:nil];
         folderSize += [[fileAttributes objectForKey:NSFileSize] intValue];
     }
-    return folderSize;
+    return (NSInteger)folderSize;
 }
 
 @end

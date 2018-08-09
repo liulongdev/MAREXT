@@ -31,7 +31,7 @@ static void MARReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
     MARReachability *self = ((__bridge MARReachability *)info);
     if (self.notifyBlock) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.notifyBlock(self);
+            if (self.notifyBlock) self.notifyBlock(self);
         });
     }
 }

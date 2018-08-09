@@ -521,7 +521,7 @@
 
 - (void)mar_translateAroundTheView:(UIView *)topView duration:(CGFloat)duration direction:(MARUIViewAnimationTranslationDirection)direction repeat:(BOOL)repeat startFromEdge:(BOOL)startFromEdge
 {
-    CGFloat startPosition = self.center.x, endPosition;
+    CGFloat startPosition, endPosition;
     switch (direction) {
         case MARUIViewAnimationTranslationDirectionFromLeftToRight: {
             startPosition = self.frame.size.width / 2;

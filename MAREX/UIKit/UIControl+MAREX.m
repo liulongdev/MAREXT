@@ -22,7 +22,7 @@ static const char block_key;
 
 @implementation _MARUIControlBlockTarget
 
-- (id)initWithBlock:(void (^)(id sender))block events:(UIControlEvents)events {
+- (id)initWithBlock:(void (^)(id))block events:(UIControlEvents)events {
     self = [super init];
     if (self) {
         _block = [block copy];
@@ -60,7 +60,7 @@ static const char block_key;
 }
 
 - (void)mar_addBlockForControlEvents:(UIControlEvents)controlEvents
-                           block:(void (^)(id sender))block {
+                           block:(void (^)(id))block {
     if (!controlEvents) return;
     _MARUIControlBlockTarget *target = [[_MARUIControlBlockTarget alloc]
                                        initWithBlock:block events:controlEvents];
@@ -70,7 +70,7 @@ static const char block_key;
 }
 
 - (void)mar_setBlockForControlEvents:(UIControlEvents)controlEvents
-                           block:(void (^)(id sender))block {
+                           block:(void (^)(id))block {
     [self mar_removeAllBlocksForControlEvents:UIControlEventAllEvents];
     [self mar_addBlockForControlEvents:controlEvents block:block];
 }

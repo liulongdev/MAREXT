@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B2D7AB7211C073800BE6808 /* MARXMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */; };
 		5B4DC5F51ECC86400063CF63 /* UINavigationController+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5F41ECC86400063CF63 /* UINavigationController+MAREX.m */; };
 		5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5F81ECC885E0063CF63 /* SVProgressHUD+MAREX.m */; };
 		5B4DC5FC1ECC8B820063CF63 /* MARUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5FB1ECC8B820063CF63 /* MARUserDefault.m */; };
@@ -91,6 +92,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B2D7AB5211C073800BE6808 /* MARXMLDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MARXMLDictionary.h; sourceTree = "<group>"; };
+		5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARXMLDictionary.m; sourceTree = "<group>"; };
 		5B4DC5F21ECC85170063CF63 /* MAREXMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAREXMacro.h; sourceTree = "<group>"; };
 		5B4DC5F31ECC86400063CF63 /* UINavigationController+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MAREX.h"; sourceTree = "<group>"; };
 		5B4DC5F41ECC86400063CF63 /* UINavigationController+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MAREX.m"; sourceTree = "<group>"; };
@@ -375,6 +378,8 @@
 				5BEAE8D0206D07B100A15477 /* NSTimer+MAREX.m */,
 				5BEAE8D2206DD17300A15477 /* NSDictionary+MAREX.h */,
 				5BEAE8D3206DD17300A15477 /* NSDictionary+MAREX.m */,
+				5B2D7AB5211C073800BE6808 /* MARXMLDictionary.h */,
+				5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -649,6 +654,7 @@
 			files = (
 				C1150E0E1ECBD6E400176F38 /* NSDate+MAREX.m in Sources */,
 				5BC32DAF1EDA6A5000E8EB04 /* MARTestViewController.m in Sources */,
+				5B2D7AB7211C073800BE6808 /* MARXMLDictionary.m in Sources */,
 				C149F94F1ECA8D8A00C8B7C8 /* ViewController.m in Sources */,
 				5B4DC6031ECC8BFD0063CF63 /* NSObject+MARModel.m in Sources */,
 				C15834241ED5768000338090 /* NSObject+MAR_Observer.m in Sources */,

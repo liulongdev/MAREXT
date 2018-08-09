@@ -23,7 +23,7 @@ static const char mar_barBtn_block_key;
 
 @implementation _MARUIBarButtonItemBlockTarget
 
-- (id)initWithBlock:(void (^)(id sender))block{
+- (id)initWithBlock:(void (^)(id))block{
     self = [super init];
     if (self) {
         _block = [block copy];
@@ -40,7 +40,7 @@ static const char mar_barBtn_block_key;
 
 @implementation UIBarButtonItem (MAREX)
 
-- (void)setMar_actionBlock:(void (^)(id sender))block {
+- (void)setMar_actionBlock:(void (^)(id))block {
     _MARUIBarButtonItemBlockTarget *target = [[_MARUIBarButtonItemBlockTarget alloc] initWithBlock:block];
     objc_setAssociatedObject(self, &mar_barBtn_block_key, target, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     

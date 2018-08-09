@@ -130,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Escape common HTML to Entity.
- Example: "a<b" will be escape to "a&lt;b".
+ Example: "a'<'b" will be escape to "a&lt;b".
  */
 - (NSString *)mar_stringByEscapingHTML;
 
