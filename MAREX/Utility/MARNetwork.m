@@ -7,7 +7,6 @@
 //
 
 #import "MARNetwork.h"
-#import "UIApplication+MAREX.h"
 #import "MARReachability.h"
 @interface MARNetwork ()
 
@@ -113,11 +112,9 @@
     switch (type) {
         case MARNetworkRequestTypeGet:
         {
-            [[UIApplication sharedApplication] mar_startNetworkActivity];
             task = [self GET:urlString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
                 if (progress) progress(downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                [[UIApplication sharedApplication] mar_endedNetworkActivity];
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
                 if (!strongSelf) return;
                 if (success) {
@@ -126,7 +123,6 @@
                     //                    success(task, responce);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                [[UIApplication sharedApplication] mar_endedNetworkActivity];
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
                 if (!strongSelf) return;
                 if (failure) {
@@ -137,11 +133,9 @@
             break;
         case MARNetworkRequestTypePost:
         {
-            [[UIApplication sharedApplication] mar_startNetworkActivity];
             task = [self POST:urlString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
                 if (progress) progress(uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                [[UIApplication sharedApplication] mar_endedNetworkActivity];
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
                 if (!strongSelf) return;
                 if (success) {
@@ -150,7 +144,6 @@
                     //                    success(task, responce);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                [[UIApplication sharedApplication] mar_endedNetworkActivity];
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
                 if (!strongSelf) return;
                 if (failure) {
@@ -161,9 +154,7 @@
             break;
         case MARNetworkRequestTypeDelete:
         {
-            [[UIApplication sharedApplication] mar_startNetworkActivity];
             task = [self DELETE:urlString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                [[UIApplication sharedApplication] mar_endedNetworkActivity];
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
                 if (!strongSelf) return;
                 if (success) {
@@ -172,7 +163,6 @@
                     //                    success(task, responce);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                [[UIApplication sharedApplication] mar_endedNetworkActivity];
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
                 if (!strongSelf) return;
                 if (failure) {
@@ -402,7 +392,6 @@
 #ifdef AFNetworkingEnabel
     __weak __typeof(self) weakSelf = self;
     datatask = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        [[UIApplication sharedApplication] mar_endedNetworkActivity];
         if (error) {
             __strong __typeof(weakSelf) strongSelf = weakSelf;
             if (!strongSelf) return;
@@ -419,7 +408,6 @@
             }
         }
     }];
-    [[UIApplication sharedApplication] mar_startNetworkActivity];
     [datatask resume];
 #endif
     return datatask;
