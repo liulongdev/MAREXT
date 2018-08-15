@@ -35,8 +35,8 @@ static NSString * const MARXMLDictionaryAttributePrefix = @"_";
 @interface MARXMLDictionaryParser : NSObject<NSCopying>
 
 + (instancetype)sharedInstance;
-+ (instancetype)useArrayWithNodeLabelArray:(NSArray<NSString *> *)array;
 
++ (instancetype)useArrayWithNodeLabelArray:(NSArray<NSString *> *)array;
 
 @property (nonatomic, assign) BOOL collapseTextNodes; // defaults to YES
 @property (nonatomic, assign) BOOL stripEmptyNodes;   // defaults to YES

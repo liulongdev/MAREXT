@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B160DCC2123F99C006878FE /* MARNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B160DCB2123F99C006878FE /* MARNetwork.m */; };
 		5B2D7AB7211C073800BE6808 /* MARXMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */; };
 		5B4DC5F51ECC86400063CF63 /* UINavigationController+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5F41ECC86400063CF63 /* UINavigationController+MAREX.m */; };
 		5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5F81ECC885E0063CF63 /* SVProgressHUD+MAREX.m */; };
@@ -94,6 +95,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B160DCA2123F99C006878FE /* MARNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MARNetwork.h; sourceTree = "<group>"; };
+		5B160DCB2123F99C006878FE /* MARNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARNetwork.m; sourceTree = "<group>"; };
 		5B2D7AB5211C073800BE6808 /* MARXMLDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MARXMLDictionary.h; sourceTree = "<group>"; };
 		5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARXMLDictionary.m; sourceTree = "<group>"; };
 		5B4DC5F21ECC85170063CF63 /* MAREXMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAREXMacro.h; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 				5B4DC60D1ECCA24A0063CF63 /* MARWeakProxy.m */,
 				C1150E2D1ECD2A3300176F38 /* MARReachability.h */,
 				C1150E2E1ECD2A3300176F38 /* MARReachability.m */,
+				5B160DCA2123F99C006878FE /* MARNetwork.h */,
+				5B160DCB2123F99C006878FE /* MARNetwork.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				C1150E2C1ECC484D00176F38 /* UIBezierPath+MAREX.m in Sources */,
 				C1150E141ECBE84D00176F38 /* UIImage+MAREX.m in Sources */,
 				C1150E291ECC44BB00176F38 /* UIGestureRecognizer+MAREX.m in Sources */,
+				5B160DCC2123F99C006878FE /* MARNetwork.m in Sources */,
 				C1150DE61ECAD5E400176F38 /* UITextField+MAREX.m in Sources */,
 				5B4DC5F51ECC86400063CF63 /* UINavigationController+MAREX.m in Sources */,
 				5BEAE8D4206DD17300A15477 /* NSDictionary+MAREX.m in Sources */,

@@ -52,8 +52,8 @@ blue:((float)(_hex & 0xFF))/255.0 alpha:_alpha]
 #define kScreenHEIGHT           ([UIScreen mainScreen].bounds.size.height)
 #define kScreenMAXLENGTH        (MAX(kScreenWIDTH, kScreenHEIGHT))
 #define kScreenMINLENGTH        (MIN(kScreenWIDTH, kScreenHEIGHT))
-#define NeedScaleValue()        (kScreenWIDTH != 350)
-#define kSCALE(value)           (value * (kScreenWIDTH/350.0f))
+#define NeedScaleValue()        (kScreenWIDTH != 375)
+#define kSCALE(value)           (value * (kScreenWIDTH/375.0f))
 #define kFontSCALE(value)       [UIFont systemFontOfSize:kSCALE(value)]
 
 #define IS_IPAD()               (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
