@@ -190,21 +190,21 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
         return YES;
 }
 
-- (void)gotoLocationSystemSetting
+- (BOOL)gotoLocationSystemSetting
 {
     NSURL *url = nil;
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
     url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 #else
-    if (IS_IOSORLATER(8.0)) {
+    if (@available(iOS 8.0, *)) {
         url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-    } else {
-        url = [NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
     }
 #endif
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+    if (url && [[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
+        return YES;
     }
+    return NO;
 }
 
 - (BOOL)isMessageNotificationServiceOpen
@@ -223,22 +223,21 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
 #endif
 }
 
-- (void)gotoMessageNotificationServiceSystemSetting
+- (BOOL)gotoMessageNotificationServiceSystemSetting
 {
     NSURL *url = nil;
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
     url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 #else
-    if (IS_IOSORLATER(8.0)) {
+    if (@available(iOS 8.0, *)) {
         url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-    } else {
-        url = [NSURL URLWithString:@"prefs:root=NOTIFICATIONS_ID"];
     }
 #endif
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+    if (url && [[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
+        return YES;
     }
-    
+    return NO;
 }
 
 - (NSMutableDictionary<NSString *,MARNotifyChangeNetStatusBlock> *)notifyNetStatusBlockDic

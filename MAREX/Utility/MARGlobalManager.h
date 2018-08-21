@@ -103,7 +103,7 @@ typedef void (^MARNotifyChangeNetStatusBlock)(MARReachabilityNetStatus reachabil
 /**
  Go system setting to set Authority(permission) of location service
  */
-- (void)gotoLocationSystemSetting;
+- (BOOL)gotoLocationSystemSetting;
 
 /**
  Authority(permission) of remote notification service
@@ -113,7 +113,7 @@ typedef void (^MARNotifyChangeNetStatusBlock)(MARReachabilityNetStatus reachabil
 /**
  Go system setting to set Authority(permission) of remote notification service
  */
-- (void)gotoMessageNotificationServiceSystemSetting;
+- (BOOL)gotoMessageNotificationServiceSystemSetting;
 
 /**
  Return the result indicte wherther network is available

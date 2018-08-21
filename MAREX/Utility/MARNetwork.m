@@ -61,33 +61,6 @@
     
     self.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithObjects:@"GET", @"HEAD", nil];
     
-    // post 对paramter进行加密，加工放入request的httpbody前的string格式
-    [self.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
-        if ([parameters isKindOfClass:[NSString class]]) {
-            return parameters;
-        }
-        
-        if ([[request.HTTPMethod uppercaseString] isEqualToString:@"POST"]||[[request.HTTPMethod uppercaseString] isEqualToString:@"DELETE"])
-        {
-            NSString *paramString = [parameters mar_modelToJSONString];
-            //            NSString *decodeParamString = [MXRBase64 encodeBase64WithString:paramString];
-            //            return decodeParamString;
-            return paramString;
-        }else if([[request.HTTPMethod uppercaseString] isEqualToString:@"GET"] ){
-            if ([parameters isKindOfClass:[NSDictionary class]]) {
-                return AFQueryStringFromParameters(parameters);
-            }
-            return AFQueryStringFromParameters([parameters mar_modelToJSONObject]);
-        }else {
-            if ([parameters isKindOfClass:[NSDictionary class]]) {
-                return AFQueryStringFromParameters(parameters);
-            }
-            return AFQueryStringFromParameters([parameters mar_modelToJSONObject]);
-        }
-        
-        return parameters;
-    }];
-    
     /**设置接受的类型*/
     [self.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/plain",@"application/json",@"text/json",@"text/javascript",@"text/html", nil]];
 #else
@@ -119,8 +92,6 @@
                 if (!strongSelf) return;
                 if (success) {
                     success(task, responseObject);
-                    //                    MARNetworkResponse *responce = [MARNetworkResponse mar_modelWithDictionary:responseObject];
-                    //                    success(task, responce);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
@@ -140,8 +111,6 @@
                 if (!strongSelf) return;
                 if (success) {
                     success(task, responseObject);
-                    //                    MARNetworkResponse *responce = [MARNetworkResponse mar_modelWithDictionary:responseObject];
-                    //                    success(task, responce);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
@@ -159,8 +128,6 @@
                 if (!strongSelf) return;
                 if (success) {
                     success(task, responseObject);
-                    //                    MARNetworkResponse *responce = [MARNetworkResponse mar_modelWithDictionary:responseObject];
-                    //                    success(task, responce);
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 __strong __typeof(weakSelf) strongSelf = weakSelf;
