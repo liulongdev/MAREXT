@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B160DCC2123F99C006878FE /* MARNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B160DCB2123F99C006878FE /* MARNetwork.m */; };
+		5B1FBE49213001100056B5EC /* MARKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1FBE48213001100056B5EC /* MARKeychain.m */; };
 		5B2D7AB7211C073800BE6808 /* MARXMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */; };
 		5B4DC5F51ECC86400063CF63 /* UINavigationController+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5F41ECC86400063CF63 /* UINavigationController+MAREX.m */; };
 		5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5F81ECC885E0063CF63 /* SVProgressHUD+MAREX.m */; };
@@ -97,6 +98,8 @@
 /* Begin PBXFileReference section */
 		5B160DCA2123F99C006878FE /* MARNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MARNetwork.h; sourceTree = "<group>"; };
 		5B160DCB2123F99C006878FE /* MARNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARNetwork.m; sourceTree = "<group>"; };
+		5B1FBE47213001100056B5EC /* MARKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MARKeychain.h; sourceTree = "<group>"; };
+		5B1FBE48213001100056B5EC /* MARKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARKeychain.m; sourceTree = "<group>"; };
 		5B2D7AB5211C073800BE6808 /* MARXMLDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MARXMLDictionary.h; sourceTree = "<group>"; };
 		5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARXMLDictionary.m; sourceTree = "<group>"; };
 		5B4DC5F21ECC85170063CF63 /* MAREXMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAREXMacro.h; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 				C1150E2E1ECD2A3300176F38 /* MARReachability.m */,
 				5B160DCA2123F99C006878FE /* MARNetwork.h */,
 				5B160DCB2123F99C006878FE /* MARNetwork.m */,
+				5B1FBE47213001100056B5EC /* MARKeychain.h */,
+				5B1FBE48213001100056B5EC /* MARKeychain.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 				C15834241ED5768000338090 /* NSObject+MAR_Observer.m in Sources */,
 				C1AA07201EDFA64200CD5D59 /* MARProperty.m in Sources */,
 				C1150E391ECD47A700176F38 /* NSMutableArray+MAREX.m in Sources */,
+				5B1FBE49213001100056B5EC /* MARKeychain.m in Sources */,
 				5BEAE8D1206D07B100A15477 /* NSTimer+MAREX.m in Sources */,
 				C149F94C1ECA8D8A00C8B7C8 /* AppDelegate.m in Sources */,
 				C1150E1A1ECC20DB00176F38 /* CALayer+MAREX.m in Sources */,
