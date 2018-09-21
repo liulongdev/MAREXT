@@ -306,6 +306,19 @@ static inline UIEdgeInsets MARUIEdgeInsetPixelCeil(UIEdgeInsets insets) {
     return insets;
 }
 
+/// Convert transform with simple coordinate. ref https://blog.csdn.net/u010679895/article/details/46648425
+/// centerX 和 centerY是视图的字面意思， x和y是针对view上的坐标的点， 参照（x, y)这个点进行旋转
+static inline CGAffineTransform  MARCGAffineTransformRotateAroundPoint(float centerX, float centerY ,float x ,float y ,float angle)
+{
+    x = x - centerX; //计算(x,y)从(0,0)为原点的坐标系变换到(CenterX ，CenterY)为原点的坐标系下的坐标
+    y = y - centerY; //(0，0)坐标系的右横轴、下竖轴是正轴,(CenterX,CenterY)坐标系的正轴也一样
+    
+    CGAffineTransform  trans = CGAffineTransformMakeTranslation(x, y);
+    trans = CGAffineTransformRotate(trans,angle);
+    trans = CGAffineTransformTranslate(trans,-x, -y);
+    return trans;
+}
+
 // main screen's scale
 #ifndef kScreenScale
 #define kScreenScale MARScreenScale()

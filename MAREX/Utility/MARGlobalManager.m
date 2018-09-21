@@ -215,7 +215,7 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
     return [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
 #else
-    if (IS_IOSORLATER(8.0)) {
+    if (@available(iOS 8.0, *)) {
         return [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
     } else {
         return [[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone;
@@ -419,7 +419,7 @@ static NSString *MARHasBeenOpenedForCurrentVersion  =   @"";
         }
     }
 #else
-    if (IS_IOSORLATER(8.0)) {
+    if (@available(iOS 8.0, *)) {
         PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
         if (authStatus == PHAuthorizationStatusRestricted || authStatus == PHAuthorizationStatusDenied) {
             if (callBack) {

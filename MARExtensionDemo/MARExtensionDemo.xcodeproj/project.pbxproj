@@ -10,6 +10,7 @@
 		5B160DCC2123F99C006878FE /* MARNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B160DCB2123F99C006878FE /* MARNetwork.m */; };
 		5B1FBE49213001100056B5EC /* MARKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1FBE48213001100056B5EC /* MARKeychain.m */; };
 		5B2D7AB7211C073800BE6808 /* MARXMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */; };
+		5B3686B721547C7D00B9CC6D /* NSDictionary+MAREX_Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3686B621547C7D00B9CC6D /* NSDictionary+MAREX_Safe.m */; };
 		5B4DC5F51ECC86400063CF63 /* UINavigationController+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5F41ECC86400063CF63 /* UINavigationController+MAREX.m */; };
 		5B4DC5F91ECC885E0063CF63 /* SVProgressHUD+MAREX.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5F81ECC885E0063CF63 /* SVProgressHUD+MAREX.m */; };
 		5B4DC5FC1ECC8B820063CF63 /* MARUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DC5FB1ECC8B820063CF63 /* MARUserDefault.m */; };
@@ -102,6 +103,8 @@
 		5B1FBE48213001100056B5EC /* MARKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARKeychain.m; sourceTree = "<group>"; };
 		5B2D7AB5211C073800BE6808 /* MARXMLDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MARXMLDictionary.h; sourceTree = "<group>"; };
 		5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MARXMLDictionary.m; sourceTree = "<group>"; };
+		5B3686B521547C7D00B9CC6D /* NSDictionary+MAREX_Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+MAREX_Safe.h"; sourceTree = "<group>"; };
+		5B3686B621547C7D00B9CC6D /* NSDictionary+MAREX_Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MAREX_Safe.m"; sourceTree = "<group>"; };
 		5B4DC5F21ECC85170063CF63 /* MAREXMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAREXMacro.h; sourceTree = "<group>"; };
 		5B4DC5F31ECC86400063CF63 /* UINavigationController+MAREX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MAREX.h"; sourceTree = "<group>"; };
 		5B4DC5F41ECC86400063CF63 /* UINavigationController+MAREX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MAREX.m"; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				5BEAE8D3206DD17300A15477 /* NSDictionary+MAREX.m */,
 				5B2D7AB5211C073800BE6808 /* MARXMLDictionary.h */,
 				5B2D7AB6211C073800BE6808 /* MARXMLDictionary.m */,
+				5B3686B521547C7D00B9CC6D /* NSDictionary+MAREX_Safe.h */,
+				5B3686B621547C7D00B9CC6D /* NSDictionary+MAREX_Safe.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -603,8 +608,8 @@
 				TargetAttributes = {
 					C149F9431ECA8D8A00C8B7C8 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = M5SM2C7SVG;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = FD3FY3GTVB;
+						ProvisioningStyle = Manual;
 					};
 					C149F95C1ECA8D8A00C8B7C8 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -686,6 +691,7 @@
 				C1150E201ECC261F00176F38 /* NSNotificationCenter+MAREX.m in Sources */,
 				C1AA07231EDFC40F00CD5D59 /* MARUnregisteredClass.m in Sources */,
 				C1A7E9EC1ED9819000509424 /* UIResponder+MAREX.m in Sources */,
+				5B3686B721547C7D00B9CC6D /* NSDictionary+MAREX_Safe.m in Sources */,
 				C1150DDD1ECACE5B00176F38 /* NSData+MAREX.m in Sources */,
 				C1150E2F1ECD2A3300176F38 /* MARReachability.m in Sources */,
 				C1150E481ECD892200176F38 /* NSProcessInfo+MAREX.m in Sources */,
@@ -878,13 +884,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M5SM2C7SVG;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = FD3FY3GTVB;
 				INFOPLIST_FILE = MARExtensionDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcorp.MARExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0c4e3b60-219f-4b1c-9559-778ca0d2248d";
+				PROVISIONING_PROFILE_SPECIFIER = mxrnormaldev;
 			};
 			name = Debug;
 		};
@@ -892,12 +901,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M5SM2C7SVG;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MARExtensionDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcorp.MARExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
