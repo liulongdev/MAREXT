@@ -74,6 +74,20 @@
     return [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/", fileName]];
 }
 
++ (BOOL)mar_createDirPathIfNotExist:(NSString *)dirPath
+{
+    BOOL isDir = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dirPath isDirectory:&isDir] && isDir) {
+        return YES;
+    }
+    else
+    {
+        NSError *error = nil;
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error];
+        return success && !error;
+    }
+}
+
 + (NSString *)mar_libraryDirectoryPath
 {
     return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];

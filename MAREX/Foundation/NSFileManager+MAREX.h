@@ -90,6 +90,14 @@ typedef NS_ENUM(NSInteger, MARDirectoryType) {
 + (NSString * _Nonnull)mar_documentsDirectoryPath;
 
 /**
+ Create the directory for dirPath when not exist
+ 
+ @param dirPath directory path
+ @return if exist or create will return YES , or NO
+ */
++ (BOOL)mar_createDirPathIfNotExist:(NSString *)dirPath;
+
+/**
  *  Get the Library directory for a filename
  *
  *  @param fileName Filename
