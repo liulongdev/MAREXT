@@ -270,7 +270,10 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
                               @"Watch3,2" : @"Apple Watch Series 3 42mm",
                               @"Watch3,3" : @"Apple Watch Series 3 38mm",
                               @"Watch3,4" : @"Apple Watch Series 3 42mm",
-                              
+                              @"Watch4,1" : @"Apple Watch Series 4 40mm",
+                              @"Watch4,2" : @"Apple Watch Series 4 44mm",
+                              @"Watch4,3" : @"Apple Watch Series 4 40mm",
+                              @"Watch4,4" : @"Apple Watch Series 4 44mm",
                               
                               @"iPod1,1" : @"iPod touch 1",
                               @"iPod2,1" : @"iPod touch 2",
@@ -330,7 +333,9 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
                               @"iPhone10,4": kMARMachieNameIPhone8,
                               @"iPhone10,5": kMARMachieNameIPhone8Plus,
                               @"iPhone10,6": kMARMachieNameIPhoneX,
-
+                              @"iPhone11,8": kMARMachieNameIphoneXR,
+                              @"iPhone11,2": kMARMachieNameIphoneXS,
+                              @"iPhone11,6": kMARMachieNameIphoneXSMax,
                               
                               @"iPad1,1" : @"iPad 1",
                               @"iPad2,1" : @"iPad 2 (WiFi)",
@@ -369,6 +374,17 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
                               @"iPad7,2" : @"iPad Pro (12.9-inch, 2nd generation)",
                               @"iPad7,3" : @"iPad Pro (10.5-inch)",
                               @"iPad7,4" : @"iPad Pro (10.5-inch)",
+                              @"iPad7,5" : @"iPad (6th generation)",
+                              @"iPad7,6" : @"iPad (6th generation)",
+                              @"iPad8,1" : @"iPad Pro (11-inch)",
+                              @"iPad8,2" : @"iPad Pro (11-inch)",
+                              @"iPad8,3" : @"iPad Pro (11-inch)",
+                              @"iPad8,4" : @"iPad Pro (11-inch)",
+                              @"iPad8,5" : @"iPad Pro (12.9-inch) (3rd generation)",
+                              @"iPad8,6" : @"iPad Pro (12.9-inch) (3rd generation)",
+                              @"iPad8,7" : @"iPad Pro (12.9-inch) (3rd generation)",
+                              @"iPad8,8" : @"iPad Pro (12.9-inch) (3rd generation)",
+                              
                               
                               @"AppleTV2,1" : @"Apple TV 2",
                               @"AppleTV3,1" : @"Apple TV 3",
