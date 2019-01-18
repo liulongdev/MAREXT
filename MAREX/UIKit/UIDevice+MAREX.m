@@ -406,6 +406,19 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     return [[NSDate alloc] initWithTimeIntervalSinceNow:(0 - time)];
 }
 
+- (BOOL)mar_isNotchScreen
+{
+    if (@available(iOS 11.0, *)) {
+        // H:UIEdgeInsets(top: 44.0, left: 0.0, bottom: 34.0, right: 0.0)
+        // V:UIEdgeInsets(top: 0.0, left: 44.0, bottom: 21.0, right: 44.0)
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        if (window && !UIEdgeInsetsEqualToEdgeInsets(window.safeAreaInsets, UIEdgeInsetsZero)) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (int64_t)mar_diskSpace {
     NSError *error = nil;
     NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];

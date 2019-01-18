@@ -105,6 +105,8 @@ kMARMachieNameIPhone6S\
 /// The System's startup time.
 @property (nonatomic, readonly) NSDate *mar_systemUptime;
 
+/// Whther the device's screen is notch.
+@property (nonatomic, readonly) BOOL mar_isNotchScreen;
 
 #pragma mark - Network Information
 ///=============================================================================
