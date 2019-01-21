@@ -426,7 +426,7 @@ static MARKeychainQuerySynchronizationMode MARKeychainQuerySynchonizationEnum(NS
 }
 
 + (BOOL)deleteItem:(MARKeychainItem *)item error:(NSError **)error {
-    if (!item.service || !item.account || !item.generic) {
+    if (!item.service || !item.account) {
         if (error) *error = [MARKeychain errorWithCode:errSecParam];
         return NO;
     }
@@ -446,7 +446,7 @@ static MARKeychainQuerySynchronizationMode MARKeychainQuerySynchonizationEnum(NS
 }
 
 + (MARKeychainItem *)selectOneItem:(MARKeychainItem *)item error:(NSError **)error {
-    if (!item.service || !item.account || !item.generic) {
+    if (!item.service || !item.account) {
         if (error) *error = [MARKeychain errorWithCode:errSecParam];
         return nil;
     }
