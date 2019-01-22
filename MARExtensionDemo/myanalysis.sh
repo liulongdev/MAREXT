@@ -81,9 +81,9 @@ function oclintForProject () {
 
 	echo '-----infer分析中-----'
 	if [[ ${isworkspace} == 'true' ]]; then
-		infer -- xcodebuild -workspace ${myworkspace} -scheme ${myscheme} -configuration Debug -sdk iphonesimulator
+		infer --keep-going -- xcodebuild -workspace ${myworkspace} -scheme ${myscheme} -configuration Debug -sdk iphonesimulator
 	else
-		infer -- xcodebuild -target ${myscheme} -configuration Debug -sdk iphonesimulator
+		infer --keep-going -- xcodebuild -target ${myscheme} -configuration Debug -sdk iphonesimulator
 	fi
 	# infer 增量
 	# infer --incremental -- xcodebuild -workspace ${myworkspace} -scheme ${myscheme} -configuration Debug -sdk iphonesimulator
