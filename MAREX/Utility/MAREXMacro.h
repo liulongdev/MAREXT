@@ -186,7 +186,7 @@ static inline void MARBenchmark(void (^block)(void), void (^complete)(double ms)
      complete(ms);
      */
     
-    // <sys/time.h> version  微妙
+    // <sys/time.h> version  微秒
     struct timeval t0, t1;
     gettimeofday(&t0, NULL);
     block();

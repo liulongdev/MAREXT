@@ -411,10 +411,34 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
     if (@available(iOS 11.0, *)) {
         // H:UIEdgeInsets(top: 44.0, left: 0.0, bottom: 34.0, right: 0.0)
         // V:UIEdgeInsets(top: 0.0, left: 44.0, bottom: 21.0, right: 44.0)
-        UIWindow *window = [UIApplication sharedApplication].delegate.window;
-        if (window && !UIEdgeInsetsEqualToEdgeInsets(window.safeAreaInsets, UIEdgeInsetsZero)) {
-            return YES;
+//        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+//        if (window && !UIEdgeInsetsEqualToEdgeInsets(window.safeAreaInsets, UIEdgeInsetsZero)) {
+//            return YES;
+//        }
+        CGFloat iPhoneNotchDirectionSafeAreaInsets = 0;
+        UIEdgeInsets safeAreaInsets = [UIApplication sharedApplication].windows[0].safeAreaInsets;
+        switch ([UIApplication sharedApplication].statusBarOrientation) {
+            case UIInterfaceOrientationPortrait:{
+                iPhoneNotchDirectionSafeAreaInsets = safeAreaInsets.top;
+            }
+                break;
+            case UIInterfaceOrientationLandscapeLeft:{
+                iPhoneNotchDirectionSafeAreaInsets = safeAreaInsets.left;
+            }
+                break;
+            case UIInterfaceOrientationLandscapeRight:{
+                iPhoneNotchDirectionSafeAreaInsets = safeAreaInsets.right;
+            }
+                break;
+            case UIInterfaceOrientationPortraitUpsideDown:{
+                iPhoneNotchDirectionSafeAreaInsets = safeAreaInsets.bottom;
+            }
+                break;
+            default:
+                iPhoneNotchDirectionSafeAreaInsets = safeAreaInsets.top;
+                break;
         }
+        return iPhoneNotchDirectionSafeAreaInsets > 20;
     }
     return NO;
 }

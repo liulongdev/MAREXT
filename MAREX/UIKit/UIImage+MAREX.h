@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIFont+MAREX.h"
-
+#import <CoreMedia/CoreMedia.h>     // CMSampleBufferRef
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (MAREX)
@@ -492,6 +492,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return UIImage
  */
 + (UIImage *)mar_screenShotWithScrollView:(UIScrollView *)scrollView;
+
+/**
+ convert CMSampleBufferRef to UIImage
+ 
+ @param sampleBuffer CMSampleBufferRef
+ @return UIImage
+ */
++ (UIImage *)mar_imageFromSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 
 @end
 
