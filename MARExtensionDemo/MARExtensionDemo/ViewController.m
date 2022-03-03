@@ -104,7 +104,7 @@
     
     // 给这个layer添加动画效果
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    pathAnimation.duration = 100.0;
+    pathAnimation.duration = 10.0;
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
     [shapeLayer addAnimation:pathAnimation forKey:nil];

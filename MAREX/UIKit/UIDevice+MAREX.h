@@ -10,29 +10,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define kMARMachieNameIPhone1G      @"iPhone 1G"
-#define kMARMachieNameIPhone3G      @"iPhone 3G"
-#define kMARMachieNameIPhones3GS    @"iPhone 3GS"
-#define kMARMachieNameIPhone4GSM    @"iPhone 4 (GSM)"
-#define kMARMachieNameIPhone4       @"iPhone 4"
-#define kMARMachieNameIPhone4CDMA   @"iPhone 4 (CDMA)"
-#define kMARMachieNameIPhone4S      @"iPhone 4S"
-#define kMARMachieNameIPhone5       @"iPhone 5"
-#define kMARMachieNameIPhone5C      @"iPhone 5c"
-#define kMARMachieNameIPhone5S      @"iPhone 5s"
-#define kMARMachieNameIPhone6Plus   @"iPhone 6 Plus"
-#define kMARMachieNameIPhone6       @"iPhone 6"
-#define kMARMachieNameIPhone6S      @"iPhone 6s"
-#define kMARMachieNameIPhone6SPlus  @"iPhone 6s Plus"
-#define kMARMachieNameIPhoneSE      @"iPhone SE"
-#define kMARMachieNameIPhone7       @"iPhone 7"
-#define kMARMachieNameIPhone7Plus   @"iPhone 7 Plus"
-#define kMARMachieNameIPhone8       @"iPhone 8"
-#define kMARMachieNameIPhone8Plus   @"iPhone 8 Plus"
-#define kMARMachieNameIPhoneX       @"iPhone X"
-#define kMARMachieNameIphoneXR      @"iPhone XR"
-#define kMARMachieNameIphoneXS      @"iPhone XS"
-#define kMARMachieNameIphoneXSMax   @"iPhone XR Max"
+extern NSString * const kMARMachieNameIPhone1G;
+extern NSString * const kMARMachieNameIPhone3G;
+extern NSString * const kMARMachieNameIPhones3GS;
+extern NSString * const kMARMachieNameIPhone4GSM;
+extern NSString * const kMARMachieNameIPhone4;
+extern NSString * const kMARMachieNameIPhone4CDMA;
+extern NSString * const kMARMachieNameIPhone4S;
+extern NSString * const kMARMachieNameIPhone5;
+extern NSString * const kMARMachieNameIPhone5C;
+extern NSString * const kMARMachieNameIPhone5S;
+extern NSString * const kMARMachieNameIPhone6Plus;
+extern NSString * const kMARMachieNameIPhone6;
+extern NSString * const kMARMachieNameIPhone6S;
+extern NSString * const kMARMachieNameIPhone6SPlus;
+extern NSString * const kMARMachieNameIPhoneSE;
+extern NSString * const kMARMachieNameIPhone7;
+extern NSString * const kMARMachieNameIPhone7Plus;
+extern NSString * const kMARMachieNameIPhone8;
+extern NSString * const kMARMachieNameIPhone8Plus;
+extern NSString * const kMARMachieNameIPhoneX;
+extern NSString * const kMARMachieNameIphoneXR;
+extern NSString * const kMARMachieNameIphoneXS;
+extern NSString * const kMARMachieNameIphoneXSMax;
 
 #define kMAROldMachies              (@[kMARMachieNameIPhone1G, \
 kMARMachieNameIPhone3G, \

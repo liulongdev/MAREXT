@@ -16,6 +16,43 @@
 #include <ifaddrs.h>
 #import "NSString+MAREX.h"
 
+
+NSString * const kMARMachieNameIPhone1G     = @"iPhone 1G";
+NSString * const kMARMachieNameIPhone3G     = @"iPhone 3G";
+NSString * const kMARMachieNameIPhones3GS   = @"iPhone 3GS";
+NSString * const kMARMachieNameIPhone4GSM   = @"iPhone 4 (GSM)";
+NSString * const kMARMachieNameIPhone4      = @"iPhone 4";
+NSString * const kMARMachieNameIPhone4CDMA  = @"iPhone 4 (CDMA)";
+NSString * const kMARMachieNameIPhone4S     = @"iPhone 4S";
+NSString * const kMARMachieNameIPhone5      = @"iPhone 5";
+NSString * const kMARMachieNameIPhone5C     = @"iPhone 5c";
+NSString * const kMARMachieNameIPhone5S     = @"iPhone 5s";
+NSString * const kMARMachieNameIPhone6Plus  = @"iPhone 6 Plus";
+NSString * const kMARMachieNameIPhone6      = @"iPhone 6";
+NSString * const kMARMachieNameIPhone6S     = @"iPhone 6s";
+NSString * const kMARMachieNameIPhone6SPlus = @"iPhone 6s Plus";
+NSString * const kMARMachieNameIPhoneSE     = @"iPhone SE";
+NSString * const kMARMachieNameIPhone7      = @"iPhone 7";
+NSString * const kMARMachieNameIPhone7Plus  = @"iPhone 7 Plus";
+NSString * const kMARMachieNameIPhone8      = @"iPhone 8";
+NSString * const kMARMachieNameIPhone8Plus  = @"iPhone 8 Plus";
+NSString * const kMARMachieNameIPhoneX      = @"iPhone X";
+NSString * const kMARMachieNameIphoneXR     = @"iPhone XR";
+NSString * const kMARMachieNameIphoneXS     = @"iPhone XS";
+NSString * const kMARMachieNameIphoneXSMax  = @"iPhone XS Max";
+NSString * const kMARMachieNameIphone11         = @"iPhone 11";
+NSString * const kMARMachieNameIphone11Pro      = @"iPhone 11 Pro";
+NSString * const kMARMachieNameIphone11ProMax   = @"iPhone 11 Pro Max";
+NSString * const kMARMachieNameIphoneSE2nd      = @"iPhone SE (2nd generation)";
+NSString * const kMARMachieNameIphone12Mini     = @"iPhone 12 mini";
+NSString * const kMARMachieNameIphone12         = @"iPhone 12";
+NSString * const kMARMachieNameIphone12Pro      = @"iPhone 12 Pro";
+NSString * const kMARMachieNameIphone12ProMax   = @"iPhone 12 Pro Max";
+NSString * const kMARMachieNameIphone13Mini     = @"iPhone 13 mini";
+NSString * const kMARMachieNameIphone13         = @"iPhone 13";
+NSString * const kMARMachieNameIphone13Pro      = @"iPhone 13 Pro";
+NSString * const kMARMachieNameIphone13PeoMax   = @"iPhone 13 Pro Max";
+
 @implementation UIDevice (MAREX)
 
 + (double)mar_systemVersion
@@ -260,6 +297,7 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
         NSString *model = [self mar_machineModel];
         if (!model) return;
         NSDictionary *dic = @{
+                                // Apple Watch
                               @"Watch1,1" : @"Apple Watch 38mm",
                               @"Watch1,2" : @"Apple Watch 42mm",
                               @"Watch2,3" : @"Apple Watch Series 2 38mm",
@@ -274,13 +312,31 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
                               @"Watch4,2" : @"Apple Watch Series 4 44mm",
                               @"Watch4,3" : @"Apple Watch Series 4 40mm",
                               @"Watch4,4" : @"Apple Watch Series 4 44mm",
+                              @"Watch5,1": @"Apple Watch Series 5",
+                              @"Watch5,2": @"Apple Watch Series 5",
+                              @"Watch5,3": @"Apple Watch Series 5",
+                              @"Watch5,4": @"Apple Watch Series 5",
+                              @"Watch5,9": @"Apple Watch SE",
+                              @"Watch5,10": @"Apple Watch SE",
+                              @"Watch5,11": @"Apple Watch SE",
+                              @"Watch5,12": @"Apple Watch SE",
+                              @"Watch6,1": @"Apple Watch Series 6",
+                              @"Watch6,2": @"Apple Watch Series 6",
+                              @"Watch6,3": @"Apple Watch Series 6",
+                              @"Watch6,4": @"Apple Watch Series 6",
+                              @"Watch6,6": @"Apple Watch Series 7",
+                              @"Watch6,7": @"Apple Watch Series 7",
+                              @"Watch6,8": @"Apple Watch Series 7",
+                              @"Watch6,9": @"Apple Watch Series 7",
                               
+                              // iPod touch
                               @"iPod1,1" : @"iPod touch 1",
                               @"iPod2,1" : @"iPod touch 2",
                               @"iPod3,1" : @"iPod touch 3",
                               @"iPod4,1" : @"iPod touch 4",
                               @"iPod5,1" : @"iPod touch 5",
                               @"iPod7,1" : @"iPod touch 6",
+                              @"iPod9,1": @"iPod touch (7th generation)",
                               
 //                              @"iPhone1,1" : @"iPhone 1G",
 //                              @"iPhone1,2" : @"iPhone 3G",
@@ -304,7 +360,8 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
 //                              @"iPhone9,2" : @"iPhone 7 Plus",
 //                              @"iPhone9,3" : @"iPhone 7",
 //                              @"iPhone9,4" : @"iPhone 7 Plus",
-                              
+                            
+                              // iphone
                               @"iPhone1,1" : kMARMachieNameIPhone1G,
                               @"iPhone1,2" : kMARMachieNameIPhone3G,
                               @"iPhone2,1" : kMARMachieNameIPhones3GS,
@@ -336,24 +393,47 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
                               @"iPhone11,8": kMARMachieNameIphoneXR,
                               @"iPhone11,2": kMARMachieNameIphoneXS,
                               @"iPhone11,6": kMARMachieNameIphoneXSMax,
+                              @"iPhone11,4": kMARMachieNameIphoneXSMax,
+                              @"iPhone12,1": kMARMachieNameIphone11,
+                              @"iPhone12,3": kMARMachieNameIphone11Pro,
+                              @"iPhone12,5": kMARMachieNameIphone11ProMax,
+                              @"iPhone12,8": kMARMachieNameIphoneSE2nd,
+                              @"iPhone13,1": kMARMachieNameIphone12Mini,
+                              @"iPhone13,2": kMARMachieNameIphone12,
+                              @"iPhone13,3": kMARMachieNameIphone12Pro,
+                              @"iPhone13,4": kMARMachieNameIphone12ProMax,
+                              @"iPhone14,4": kMARMachieNameIphone13Mini,
+                              @"iPhone14,5": kMARMachieNameIphone13,
+                              @"iPhone14,2": kMARMachieNameIphone13Pro,
+                              @"iPhone14,3": kMARMachieNameIphone13PeoMax,
                               
+                              // ipad
                               @"iPad1,1" : @"iPad 1",
                               @"iPad2,1" : @"iPad 2 (WiFi)",
                               @"iPad2,2" : @"iPad 2 (GSM)",
                               @"iPad2,3" : @"iPad 2 (CDMA)",
                               @"iPad2,4" : @"iPad 2",
-                              @"iPad2,5" : @"iPad mini 1",
-                              @"iPad2,6" : @"iPad mini 1",
-                              @"iPad2,7" : @"iPad mini 1",
                               @"iPad3,1" : @"iPad 3 (WiFi)",
                               @"iPad3,2" : @"iPad 3 (4G)",
                               @"iPad3,3" : @"iPad 3 (4G)",
                               @"iPad3,4" : @"iPad 4",
                               @"iPad3,5" : @"iPad 4",
                               @"iPad3,6" : @"iPad 4",
-                              @"iPad4,1" : @"iPad Air",
-                              @"iPad4,2" : @"iPad Air",
-                              @"iPad4,3" : @"iPad Air",
+                              @"iPad6,11" : @"iPad (5th generation)",
+                              @"iPad6,12" : @"iPad (5th generation)",
+                              @"iPad7,5" : @"iPad (6th generation)",
+                              @"iPad7,6" : @"iPad (6th generation)",
+                              @"iPad7,11": @"iPad (7th generation)",
+                              @"iPad7,12": @"iPad (7th generation)",
+                              @"iPad11,6": @"iPad (8th generation)",
+                              @"iPad11,7": @"iPad (8th generation)",
+                              @"iPad12,1": @"iPad (9th generation)",
+                              @"iPad12,2": @"iPad (9th generation)",
+                              
+                              // iPad mini
+                              @"iPad2,5" : @"iPad mini 1",
+                              @"iPad2,6" : @"iPad mini 1",
+                              @"iPad2,7" : @"iPad mini 1",
                               @"iPad4,4" : @"iPad mini 2",
                               @"iPad4,5" : @"iPad mini 2",
                               @"iPad4,6" : @"iPad mini 2",
@@ -362,20 +442,31 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
                               @"iPad4,9" : @"iPad mini 3",
                               @"iPad5,1" : @"iPad mini 4",
                               @"iPad5,2" : @"iPad mini 4",
+                              @"iPad11,1": @"iPad mini (6th generation)",
+                              @"iPad11,2": @"iPad mini (6th generation)",
+                              @"iPad14,1": @"iPad mini (6th generation)",
+                              @"iPad14,2": @"iPad mini (6th generation)",
+                              
+                              // iPad Air
+                              @"iPad4,1" : @"iPad Air",
+                              @"iPad4,2" : @"iPad Air",
+                              @"iPad4,3" : @"iPad Air",
                               @"iPad5,3" : @"iPad Air 2",
                               @"iPad5,4" : @"iPad Air 2",
+                              @"iPad11,3": @"iPad Air (3rd generation)",
+                              @"iPad11,4": @"iPad Air (3rd generation)",
+                              @"iPad13,1": @"iPad Air (4th generation)",
+                              @"iPad13,2": @"iPad Air (4th generation)",
+                              
+                              // iPad Pro
                               @"iPad6,3" : @"iPad Pro (9.7 inch)",
                               @"iPad6,4" : @"iPad Pro (9.7 inch)",
                               @"iPad6,7" : @"iPad Pro (12.9 inch)",
                               @"iPad6,8" : @"iPad Pro (12.9 inch)",
-                              @"iPad6,11" : @"iPad (5th generation)",
-                              @"iPad6,12" : @"iPad (5th generation)",
                               @"iPad7,1" : @"iPad Pro (12.9-inch, 2nd generation)",
                               @"iPad7,2" : @"iPad Pro (12.9-inch, 2nd generation)",
                               @"iPad7,3" : @"iPad Pro (10.5-inch)",
                               @"iPad7,4" : @"iPad Pro (10.5-inch)",
-                              @"iPad7,5" : @"iPad (6th generation)",
-                              @"iPad7,6" : @"iPad (6th generation)",
                               @"iPad8,1" : @"iPad Pro (11-inch)",
                               @"iPad8,2" : @"iPad Pro (11-inch)",
                               @"iPad8,3" : @"iPad Pro (11-inch)",
@@ -384,13 +475,26 @@ static mar_net_interface_counter mar_get_net_interface_counter() {
                               @"iPad8,6" : @"iPad Pro (12.9-inch) (3rd generation)",
                               @"iPad8,7" : @"iPad Pro (12.9-inch) (3rd generation)",
                               @"iPad8,8" : @"iPad Pro (12.9-inch) (3rd generation)",
-                              
-                              
+                              @"iPad8,9": @"iPad Pro (11-inch) (2nd generation)",
+                              @"iPad8,10": @"iPad Pro (11-inch) (2nd generation)",
+                              @"iPad8,11": @"iPad Pro (12.9-inch) (4th generation)",
+                              @"iPad8,12": @"iPad Pro (12.9-inch) (4th generation)",
+                              @"iPad13,4": @"iPad Pro (11-inch) (3rd generation)",
+                              @"iPad13,5": @"iPad Pro (11-inch) (3rd generation)",
+                              @"iPad13,6": @"iPad Pro (11-inch) (3rd generation)",
+                              @"iPad13,8": @"iPad Pro (12.9-inch) (5th generation)",
+                              @"iPad13,9": @"iPad Pro (12.9-inch) (5th generation)",
+                              @"iPad13,10": @"iPad Pro (12.9-inch) (5th generation)",
+                              @"iPad13,11": @"iPad Pro (12.9-inch) (5th generation)",
+                          
+                              // Apple TV
+                              @"AppleTV1,1": @"Apple TV (1st generation)",
                               @"AppleTV2,1" : @"Apple TV 2",
                               @"AppleTV3,1" : @"Apple TV 3",
                               @"AppleTV3,2" : @"Apple TV 3",
                               @"AppleTV5,3" : @"Apple TV 4",
                               @"AppleTV6,2" : @"Apple TV 4K",
+                              @"AppleTV11,1": @"Apple TV 4K (2nd generation)",
                               
                               @"i386" : @"Simulator x86",
                               @"x86_64" : @"Simulator x64",

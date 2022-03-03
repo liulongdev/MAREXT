@@ -92,7 +92,7 @@
 
 + (instancetype)ivarWithObjCIvar:(Ivar)ivar
 {
-    return [[self alloc] initWithIvar:ivar];
+    return [[self alloc] initWithObjCIvar:ivar];
 }
 
 + (instancetype)ivarWithName:(NSString *)name encode:(const char *)encodeStr
@@ -102,7 +102,7 @@
 
 + (instancetype)ivarWithName:(NSString *)name typeEncoding:(NSString *)typeEncoding
 {
-    return [[self alloc] ivarWithName:name typeEncoding:typeEncoding];
+    return [[self alloc] initWithName:name typeEncoding:typeEncoding];
 }
 
 - (instancetype)initWithObjCIvar:(Ivar)ivar

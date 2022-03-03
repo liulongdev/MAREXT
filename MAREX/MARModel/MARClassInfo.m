@@ -8,6 +8,7 @@
 
 #import "MARClassInfo.h"
 
+// @see https://gcc.gnu.org/onlinedocs/gcc-4.3.3/gcc/Type-encoding.html#Type-encoding
 MAREncodingType MAREncodingGetType(const char *typeEncoding) {
     char *type = (char *)typeEncoding;
     if (!type) return MAREncodingTypeUnknown;

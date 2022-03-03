@@ -628,6 +628,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -887,13 +888,13 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = FD3FY3GTVB;
 				INFOPLIST_FILE = MARExtensionDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcorp.MARExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0c4e3b60-219f-4b1c-9559-778ca0d2248d";
-				PROVISIONING_PROFILE_SPECIFIER = mxrnormaldev;
+				PROVISIONING_PROFILE_SPECIFIER = mxrNormalDev;
 			};
 			name = Debug;
 		};
@@ -904,7 +905,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MARExtensionDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcorp.MARExtensionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
