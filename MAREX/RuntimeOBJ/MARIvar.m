@@ -122,7 +122,7 @@
 
 - (BOOL)isEqual:(id)object
 {
-    return [object isKindOfClass:[MARIvar class]] && [[self name] isEqual:[object name]] && [[self typeEncoding] isEqual:[object typeEncoding]] && [self offset] == [object offset];
+    return [object isKindOfClass:[MARIvar class]] && [[self name] isEqual:[(MARIvar *)object name]] && [[self typeEncoding] isEqual:[(MARIvar *)object typeEncoding]] && [self offset] == [(MARIvar *)object offset];
 }
 
 - (NSString *)description
