@@ -11,7 +11,6 @@
 #import <UIKit/UIKit.h>
 #import <pthread.h>
 #import <sys/time.h>
-#import "UIDevice+MAREX.h"
 
 #ifdef __cplusplus
 #ifndef MAR_EXTERN_C_BEGIN
@@ -66,8 +65,17 @@ blue:((float)(_hex & 0xFF))/255.0 alpha:_alpha]
 #define IS_IPHONE_47Size()      (IS_IPHONE() && kScreenMAXLENGTH == 667.0)
 #define IS_IPHONE_55Size()      (IS_IPHONE() && kScreenMAXLENGTH >= 736.0)
 
+#if __has_include("UIDevice+MAREX.h")
+#import "UIDevice+MAREX.h"
 #define IS_NOTCH_SCREEN() ([UIDevice currentDevice].mar_isNotchScreen)
 #define IS_iPhoneX_Device() IS_NOTCH_SCREEN()
+#elif __has_include(<UIDevice+MAREX.h>)
+#import <UIDevice+MAREX.h>
+#define IS_NOTCH_SCREEN() ([UIDevice currentDevice].mar_isNotchScreen)
+#define IS_iPhoneX_Device() IS_NOTCH_SCREEN()
+#else
+#define IS_iPhoneX_Device() NO
+#endif
 
 #define MARiPhoneX_BottomMargin (IS_iPhoneX_Device() && UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation) ? 34 : 0)
 #define MARiPhoneX_LeftMargin (IS_iPhoneX_Device() && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 44 : 0)
